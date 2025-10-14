@@ -49,10 +49,10 @@ class ChowBasis(BasisAbstract):
         # For each G ≤ F, get the Poincaré polynomial of the contraction M^F_G
         return E.sum_of_terms(
             (G, q**(1 * (rank(F) - rank(G))) *
-            #R(poincare_polynomial_of_minor(matroid, F, G)(q**-2)))
+            R(poincare_polynomial_of_minor(matroid, F, G)(q**-2)))
             #R(-reduced_characteristic_polynomial_of_minor(matroid, F, G)(q**-2)))
             #R(characteristic_polynomial(matroid.delete(matroid.groundset() - F).contract(G))(q**-2)))
-            R(inverse_kazhdan_lustig_polynomial(matroid.delete(matroid.groundset() - F).contract(G))(q**-2)))
+            #R(inverse_kazhdan_lustig_polynomial(matroid.delete(matroid.groundset() - F).contract(G))(q**-2)))
             #kl(G, F)(q=q**-2))
             for G in L.order_ideal([F])
         )
