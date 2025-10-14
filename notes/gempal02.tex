@@ -1,0 +1,243 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage{amssymb,amsmath,amsfonts,verbatim,amsthm, amscd}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[breakable,skins]{tcolorbox}
+\usepackage{graphicx,tikz-cd,adjustbox}
+\usepackage{float}
+\usepackage{scalerel}
+\usepackage{stackengine}
+\usepackage[backend=biber, style=alphabetic]{biblatex}
+\usepackage{filecontents}
+
+\begin{filecontents}{\jobname.bib}
+@article{BV20,
+    AUTHOR = {Braden, Tom and Vysogorets, Artem},
+    TITLE = {Kazhdan-Lusztig polynomials of matroids under deletion},
+    JOURNAL = {Electron. J. Combin.},
+    VOLUME = {27},
+    YEAR = {2020},
+    NUMBER = {1},
+    PAGES = {Paper No. 1.17},
+}
+@article{FMSV24,
+    AUTHOR = {Ferroni, Luis and Matherne, Jacob P. and Stevens, Matthew and Vecchi, Lorenzo},
+    TITLE = {Hilbert-Poincar\'{e} series of matroid Chow rings and intersection cohomology},
+    YEAR = {2024},
+    EPRINT = {2212.03190v3},
+    ARCHIVEPREFIX = {arXiv},
+    PRIMARYCLASS = {math.CO},
+}
+\end{filecontents}
+\addbibresource{\jobname.bib}
+
+\newtcolorbox{mybox}[2][]{
+    arc=0mm, enhanced, frame hidden, breakable
+}
+\usepackage{mathtools}
+
+\usepackage{subcaption}
+\usepackage{array} % core package
+\usepackage[sc]{mathpazo} % Palatino font with small caps
+\usepackage[scr=euler]{mathalfa}
+\usepackage[unicode=true]{hyperref} % permits navigating on the pdf
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyBlue,
+    citecolor=OliveGreen,
+    urlcolor=blue,
+    pdfencoding=auto
+}
+\usepackage{cleveref} % smart referencing
+\usepackage{caption}
+
+% --- Math Commands from User ---
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\bz}{\mathbb{Z}}
+\newcommand{\lt}{\normalfont\text{lt}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\ind}{\text{\normalfont Ind}}
+\newcommand{\stab}{\text{\normalfont Stab}}
+\newcommand{\chow}{\normalfont\text{\underline{H}}}
+\newcommand{\augchow}{\normalfont\text{H}}
+\newcommand{\rank}{\normalfont\text{rk}}
+\newcommand{\corank}{\normalfont\text{crk}}
+\newcommand{\flats}{\normalfont\text{Flats}}
+\newcommand{\flags}{\normalfont\text{Flags}}
+\newcommand{\matM}{\normalfont\text{M}}
+\newcommand{\hilbMmodF}{\normalfont\text{\underline{H}}_\text{M/F}}
+\newcommand{\M}{\normalfont\text{M}}
+\newcommand{\N}{\normalfont\text{N}}
+\newcommand{\rk}{\normalfont\text{rk}}
+\newcommand{\chibar}{\overline{\chi}}
+\newcommand{\E}{\normalfont\text{E}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Ebasis}[1]{\mathrm{#1}}
+\newcommand{\Cbasis}[1]{\mathrm{c}^{#1}}
+\newcommand{\CbasisSub}[2]{\mathrm{c}^{#1}_{#2}}
+\newcommand{\Zbasis}[1]{\mathrm{z}^{#1}}
+\newcommand{\pal}{\normalfont\text{Pal}}
+
+\newcommand{\qbinom}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}_q}
+
+% --- Theorem Environments ---
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark} % Unnumbered remark
+
+\title{\texorpdfstring{Notes: A Parallel Chow Theory for Matroid Deletion}{Notes: A Parallel Chow Theory for Matroid Deletion}}
+\author{Nutan Nepal}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    These notes develop an algebraic framework for studying the behavior of Chow polynomials of matroids under single-element deletion, in direct analogy with the Kazhdan-Lusztig theory of Braden and Vysogorets. We define a new basis \(\{\Cbasis{F}\}\) for the module of formal sums of flats, built from Chow polynomials. We then define a `perverse-like' \(\pal(0)\)-module \(\calS(\M)\) for which this new basis is natural. We establish the main properties of this module and its basis, culminating in a conjectural deletion formula for \(\Delta(\Cbasis{F})\). As an application, we show how this formula recovers the known semi-small decomposition formulas for both the regular and augmented Chow polynomials.
+\end{abstract}
+
+\section{Definitions}
+
+Let \(\M\) be a matroid of rank \(r\) with lattice of flats \(\mathcal{L}(\M)\). The module \(\calH(\M)\) is defined as the free \(\ZZ[x, x^{-1}]\)-module with a standard basis \(\{\Ebasis{F}\}_{F \in \mathcal{L}(\M)}\).
+Following Braden-Vysogorets \cite{BV20}, there is an important abelian subgroup \(\calH_p(\M) \subset \calH(\M)\) of \textbf{perverse elements}, consisting of all \(\alpha = \sum \alpha_F \cdot \Ebasis{F}\) such that for every flat \(F \in \mathcal{L}(\M)\):
+\begin{enumerate}
+    \item The coefficient \(\alpha_F\) is a polynomial in \(x\), i.e., \(\alpha_F \in \ZZ[x]\).
+    \item The Laurent polynomial \(S_F^{\M}(\alpha)(x):=\sum_{G \ge F} x^{\rank(F)-\rank(G)} \alpha_G\) is in \(\pal(0)\).
+\end{enumerate}
+
+\begin{definition}
+    We relax the first condition to define a larger subgroup \(\calH'_p(\M) \subseteq \calH(\M)\) consisting of all elements \(\alpha\) that satisfy the second (palindromicity) condition.
+\end{definition}
+
+\begin{definition}
+    We define a new basis of \(\calH(\M)\), analogous to the Kazhdan-Lusztig basis, given by
+    \[
+        \Cbasis{F} = \sum_{G\le F} \CbasisSub{F}{G}\cdot\Ebasis{G} :=
+        \sum_{G \le F} x^{\rank(F)-\rank(G)} \chow_{\M_G^F}(x^{-2}) \cdot \Ebasis{G}
+    \]
+    where \(\chow_{\M}\) is the Chow polynomial of the matroid \(\M\), which is palindromic of degree \(\rank(\M)-1\) \cite{FMSV24}.
+\end{definition}
+
+\begin{remark}
+    The coefficients of this basis have a special structure. We use \(\pal(n)\) to denote the additive group of Laurent polynomials satisfying \(f(x) = x^n f(x^{-1})\). A direct calculation shows:
+    \[\CbasisSub{F}{F} = 1 \in \pal(0),\quad\text{and}\quad\CbasisSub{F}{G}
+        \in \pal(2)\ \text{for all}\ G < F.\]
+\end{remark}
+
+\begin{definition}
+    Let \(\calS(\M)\) be the free \(\pal(0)\)-module with basis \(\{\Cbasis{F}\}\).
+\end{definition}
+
+\begin{definition}
+    For an element \(e\) of \(\M\), the \textbf{deletion operator} is a \(\ZZ[x, x^{-1}]\)-module homomorphism \(\Delta : \calH(\M) \to \calH(\M \setminus e)\) defined by
+    \[\Delta(\Ebasis{F}) = x^{-\delta(F)}\cdot \Ebasis{F \setminus e}, \quad \text{where } \delta(F) := \rank_{\M}(F) - \rank_{\M \setminus e}(F \setminus e).\]
+\end{definition}
+
+\begin{definition}
+    \(S_e(\M) := \{ F \in \mathcal{L}(\M) \mid e \notin F \text{ and } F\cup e \in \mathcal{L}(\M) \}\).
+\end{definition}
+
+\section{Main Propositions}
+
+\begin{proposition}\label{prop:cinHp}
+    For all \(F \in \mathcal{L}(\M)\), \(\Cbasis{F} \in \calH'_p(\M)\).
+\end{proposition}
+\begin{proof}
+    For any flat \(G \leq F\), the palindromic check sum \(S_G(\Cbasis{F})\) simplifies to \(x^{\rank(F)-\rank(G)} \augchow_{\M_G^F}(x^{-2})\). Let \(d = \rank(F)-\rank(G)\). The term \(x^d\) is in \(\pal(2d)\) and \(\augchow_{\M_G^F}(x^{-2})\) is in \(\pal(-2d)\), so their product is in \(\pal(0)\).
+\end{proof}
+
+\begin{proposition}\label{prop:Hp_is_pal0_mod}
+    The subgroup \(\calH'_p(\M)\) is a \(\pal(0)\)-module.
+\end{proposition}
+\begin{proof}
+    Let \(\alpha \in \calH'_p(\M)\) and \(q \in \pal(0)\). The palindromic check sum for the product is \(S_G(q \cdot \alpha) = q \cdot S_G(\alpha)\). Since \(\pal(0)\) is a ring, the product of two \(\pal(0)\) elements is in \(\pal(0)\).
+\end{proof}
+
+\begin{proposition}\label{prop:SisHp}
+    \(\calS(\M) = \calH'_p(\M)\) as \(\pal(0)\)-modules.
+\end{proposition}
+\begin{proof}
+    The inclusion \(\calS(\M) \subseteq \calH'_p(\M)\) follows from the previous two propositions. For the reverse, let \(\alpha \in \calH'_p(\M)\). Since \(\{\Cbasis{F}\}\) is a triangular basis for \(\calH(\M)\), \(\alpha\) has a unique expansion \(\alpha = \sum q_F \cdot \Cbasis{F}\). An induction on decreasing rank shows that the condition \(\alpha \in \calH'_p(\M)\) forces each coefficient \(q_F\) to be in \(\pal(0)\), which means \(\alpha \in \calS(\M)\).
+\end{proof}
+
+\begin{proposition}\label{prop:LPDecomposition}
+    Any Laurent polynomial \(f\) can be uniquely written as a sum \(f = f_0 + f_2\) where \(f_0 \in \pal(0)\) and \(f_2 \in \pal(2)\). The projections are given by
+    \[ f_0(x) = \frac{x^2 f(x^{-1}) - f(x)}{x^2 - 1} \quad \text{and} \quad f_2(x) = \frac{f(x) - f(x^{-1})}{1 - x^{-2}}. \]
+\end{proposition}
+
+\begin{proposition}[Change of Basis Formula]\label{prop:changeofbasis}
+    If \(\alpha = \sum \alpha_F \cdot\Ebasis{F} \in \calS(\M)\), its \(\Cbasis{F}\)-basis expansion is \(\alpha = \sum q_F \cdot\Cbasis{F}\), where \(q_F\) is the unique \(\pal(0)\) component of \(\alpha_F\) from the decomposition in Proposition~\ref{prop:LPDecomposition}.
+\end{proposition}
+\begin{proof}
+    Since \(\alpha \in \calS(\M)\), its \(\Cbasis{F}\)-basis coefficients \(q_F\) are in \(\pal(0)\). The change of basis formula gives \(\alpha_F = q_F + \sum_{G > F} q_G \cdot \CbasisSub{G}{F}\). The sum is an element of \(\pal(2)\). Thus, \(\alpha_F\) is expressed as the sum of a \(\pal(0)\) element (\(q_F\)) and a \(\pal(2)\) element. By uniqueness (Proposition~\ref{prop:LPDecomposition}), \(q_F\) must be the \(\pal(0)\) part of \(\alpha_F\).
+\end{proof}
+
+\begin{proposition}\label{prop:DeltaFInS}
+    For any flat \(F \in \mathcal{L}(\M)\), the element \(\Delta(\Cbasis{F})\) is in \(\calS(\M \setminus e)\).
+\end{proposition}
+\begin{proof}
+    This follows the proof of Proposition 2.14 in \cite{BV20}. Since \(\calS(\M \setminus e) = \calH'_p(\M \setminus e)\), we only need to check the palindromicity condition. The check sum \(S_H(\Delta(\Cbasis{F}))\) for any \(H \in \mathcal{L}(\M \setminus e)\) simplifies, via the definition of discrepancy and Lemma 2.15 of \cite{BV20}, to the palindromicity check \(S_{\overline{H}}(\Cbasis{F})\) for \(\Cbasis{F}\) at the flat \(\overline{H} \in \mathcal{L}(\M)\). Since \(\Cbasis{F} \in \calH'_p(\M)\), this is in \(\pal(0)\).
+\end{proof}
+
+\section{The Deletion Formula and Its Consequences}
+
+The following proposition provides an explicit formula for the action of \(\Delta\) on the \(\Cbasis{F}\) basis. It is the central result of this framework.
+
+\begin{proposition}[Deletion Formula]\label{prop:imageofDeltaCbasis}
+    For any flat \(F \in \mathcal{L}(\M)\), the following identities hold in \(\calS(\M \setminus e)\):
+    \begin{enumerate}
+        \item If \(e\) is not a coloop in \(\M^F\), then
+        \begin{equation}\label{eq:imageofDeltaCbasisnoncoloop}
+            \Delta(\Cbasis{F}) = \Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F)}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+        \end{equation}
+        \item If \(e\) is a coloop in \(\M^F\), then
+        \begin{equation}\label{eq:imageofDeltaCbasiscoloop}
+            \Delta(\Cbasis{F}) = (x+x^{-1})\Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F), G \neq F\setminus e}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+        \end{equation}
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    By Proposition~\ref{prop:changeofbasis}, the coefficients \(q_G\) in the expansion \(\Delta(\Cbasis{F}) = \sum q_G \cdot \Cbasis{G}\) are the unique \(\pal(0)\) components of the standard-basis coefficients \(\beta_G\). A case analysis of \(\beta_G\) for \(G \neq F \setminus e\) and \(G = F \setminus e\) confirms the coefficients in the proposition. In particular, for \(G=F\setminus e\), the standard-basis coefficient \(\beta_{F\setminus e}\) is \(1\) in the non-coloop case and \(\CbasisSub{F}{F\setminus e} + x^{-1}\) in the coloop case. Extracting the \(\pal(0)\) parts of these expressions yields \(1\) and \(x+x^{-1}\), respectively.
+\end{proof}
+
+\subsection{Application 1: Recovery of the Semi-Small Decomposition}
+
+As a verification of the formula, we can recover the known semi-small decomposition formulas for \(\chow\) \cite{FMSV24} by taking the coefficient of the empty flat \(\Ebasis{\emptyset}\) on both sides of \eqref{eq:imageofDeltaCbasisnoncoloop} and \eqref{eq:imageofDeltaCbasiscoloop}. Let \(y=x^{-2}\).
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Decomposition Formulas for \(\chow\)]
+    \begin{enumerate}
+    \item If \(e\) is not a coloop in \(\M^F\),
+    \[ \chow_{\M^F}(y) = \chow_{\M^F\setminus e}(y) + y\sum_{G \in S_e(\M^F)\setminus\{\emptyset\}} \chow_{\M^F_{G\cup e}}(y) \cdot \chow_{\M^G}(y). \]
+    \item If \(e\) is a coloop in \(\M^F\),
+    \[ \chow_{\M^F}(y) = (1+y)\chow_{\M^F\setminus e}(y) + y\sum_{G \in \mathcal{L}(\M^F\setminus e)\setminus\{\emptyset\}} \chow_{(\M^F\setminus e)/G}(y) \cdot \chow_{(\M^F\setminus e)|_G}(y). \]
+    \end{enumerate}
+\end{tcolorbox}
+
+\subsection{Application 2: New Formulas for Augmented Chow Polynomials}
+We consider the map \(\Phi_{\M}(\alpha) = \sum_{F \in \mathcal{L}(\M)} x^{-\rank(F)} \alpha_F\), which satisfies \(\Phi_{\M\setminus e}\circ \Delta = \Phi_{\M}\). Applying this map to the deletion formulas in Proposition~\ref{prop:imageofDeltaCbasis} yields new recursive identities for the augmented Chow polynomials.
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Decomposition Formulas for \(\augchow\)]
+    \begin{enumerate}
+    \item If \(e\) is not a coloop in \(\M^F\),
+    \[ \augchow_{\M^F}(y) = \augchow_{\M^F\setminus e}(y) + \sum_{G \in S_e(\M^F)} y \chow_{\M^F_{G\cup e}}(y) \cdot \augchow_{\M^G}(y). \]
+    \item If \(e\) is a coloop in \(\M^F\),
+    \[ \augchow_{\M^F}(y) = (1+y)\augchow_{\M^F\setminus e}(y) + \sum_{G \in S_e(\M^F)\setminus\{F\setminus e\}} y \chow_{\M^F_{G\cup e}}(y) \cdot \augchow_{\M^G}(y). \]
+    \end{enumerate}
+\end{tcolorbox}
+
+\section{Conclusion}
+This framework successfully establishes a parallel between the Kazhdan-Lusztig theory of matroids and a new theory based on Chow polynomials. The identification of the module \(\calS(\M) = \calH'_p(\M)\) and its natural basis \(\{\Cbasis{F}\}\) provides a solid foundation. The main result is a conjectural deletion formula that behaves predictably on this module, which in turn implies new and known identities among Chow and augmented Chow polynomials. The primary remaining task is a direct, combinatorial proof of the standard-basis coefficient identities that underpin the main deletion formula.
+
+\printbibliography
+
+\end{document}

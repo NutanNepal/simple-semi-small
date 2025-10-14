@@ -1,0 +1,626 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage{amssymb,amsmath,amsfonts,verbatim,amsthm, amscd}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[breakable,skins]{tcolorbox}
+\usepackage{graphicx,tikz-cd,adjustbox}
+\usepackage{float}
+\usepackage{scalerel}
+\usepackage{stackengine}
+\usepackage[backend=biber]{biblatex} % Using biber backend is recommended
+
+\newtcolorbox{mybox}[2][]{
+    arc=0mm, enhanced, frame hidden, breakable
+}
+\usepackage{mathtools}
+
+\usepackage{subcaption}
+\usepackage{array} % core package
+\usepackage[sc]{mathpazo} % Palatino font with small caps
+\usepackage[scr=euler]{mathalfa}
+\usepackage[unicode=true]{hyperref} % permits navigating on the pdf
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyBlue,
+    citecolor=OliveGreen,
+    urlcolor=blue,
+    pdfencoding=auto
+}
+\usepackage{cleveref} % smart referencing
+\usepackage{caption}
+
+% --- Math Commands from User ---
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\bz}{\mathbb{Z}}
+\newcommand{\lt}{\normalfont\text{lt}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\ind}{\text{\normalfont Ind}}
+\newcommand{\stab}{\text{\normalfont Stab}}
+\newcommand{\chow}{\normalfont\text{\underline{H}}}
+\newcommand{\augchow}{\normalfont\text{H}}
+\newcommand{\klpoly}{\normalfont\text{P}}
+\newcommand{\invklpoly}{\normalfont\hat{\text{Q}}}
+\newcommand{\redchar}{\overline{\chi}}
+\newcommand{\rank}{\normalfont\text{rk}}
+\newcommand{\corank}{\normalfont\text{crk}}
+\newcommand{\flats}{\normalfont\text{Flats}}
+\newcommand{\flags}{\normalfont\text{Flags}}
+\newcommand{\matM}{\normalfont\text{M}}
+\newcommand{\hilbMmodF}{\normalfont\text{\underline{H}}_\text{M/F}}
+\newcommand{\M}{\normalfont\text{M}}
+\newcommand{\N}{\normalfont\text{N}}
+\newcommand{\rk}{\normalfont\text{rk}}
+\newcommand{\chibar}{\overline{\chi}}
+\newcommand{\E}{\normalfont\text{E}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Ebasis}[1]{\mathrm{#1}}
+\newcommand{\Cbasis}[1]{\mathrm{c}^{#1}}
+\newcommand{\CbasisSub}[2]{\mathrm{c}^{#1}_{#2}}
+\newcommand{\Zbasis}[1]{\zeta^{#1}}
+\newcommand{\ZbasisSub}[2]{\zeta^{#1}_{#2}}
+\newcommand{\Ibasis}[2]{\mathfrak{b}^{#1}_{#2}}
+\newcommand{\pal}{\normalfont\text{Pal}}
+\newcommand{\klchowcoeff}{\mathfrak{a}}
+\newcommand{\intM}{\normalfont\text{Int}}
+
+\newcommand{\qbinom}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}_q}
+
+% --- Theorem Environments ---
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{example}[]{Example}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark} % Unnumbered remark
+
+\title{Notes: Chow Theory for Matroid Deletion}
+\author{Nutan Nepal}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Algebraic Preliminaries}
+
+\subsection{The Module of Flats and Perverse Subgroups}
+Let \(R := \ZZ[x, x^{-1}]\) be the ring of Laurent polynomials with integer coefficients.
+For any integer \(n\), we denote by \(\pal(n)\) the additive group of polynomials \(f(x) \in R\)
+satisfying \(f(x) = x^n f(x^{-1})\). While \(\pal(0)\) is a subring of \(R\), we note that
+\(\pal(n)\) for \(n \neq 0\) is not, as \(\pal(n) \cdot \pal(m) \subseteq \pal(n+m)\).
+
+Let \(\M\) be a matroid with lattice of flats \(\mathcal{L}(\M)\).
+\begin{definition}
+    The module \(\calH(\M)\) is the free \(R\)-module with a standard basis \(\{\Ebasis{F}\}_{F \in \mathcal{L}(\M)}\). An element \(\alpha \in \calH(\M)\) is a formal sum
+    \[ \alpha = \sum_{F \in \mathcal{L}(\M)} \alpha_F \cdot\Ebasis{F}, \quad \text{where } \alpha_F \in R. \]
+\end{definition}
+
+We also define the \(R\)-linear maps \(S_F: \calH(\M) \to R\) for any flat \(F \in \mathcal{L}(\M)\) by
+\[ S_F(\alpha) := \sum_{G \ge F} x^{\rank(F)-\rank(G)} \alpha_G. \]
+Following Braden-Vysogorets, there is an important abelian subgroup of \(\calH(\M)\).
+\begin{definition}
+    The subgroup of \textbf{perverse elements} \(\calH_p(\M) \subset \calH(\M)\) consists of all \(\alpha\) such that for every flat \(F \in \mathcal{L}(\M)\):
+    \begin{enumerate}
+        \item The coefficient \(\alpha_F\) is a polynomial, i.e., \(\alpha_F \in \ZZ[x]\).
+        \item The Laurent polynomial \(S_F(\alpha)\) is in \(\pal(0)\).
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    We relax the first condition to define a larger subgroup \(\calH'_p(\M) \subseteq \calH(\M)\)
+    consisting of all elements \(\alpha\) that satisfy \(S_F(\alpha) \in \pal(0)\)
+    for all \(F \in \mathcal{L}(\M)\).
+\end{definition}
+
+\subsection{The Chow and Kazhdan-Lusztig Bases}
+The module \(\calH(\M)\) has natural bases constructed from the Kazhdan-Lusztig and Chow polynomials.
+
+\begin{definition}
+    The \textbf{Kazhdan-Lusztig basis} \(\{\Zbasis{F}\}\) is defined by
+    \[ \Zbasis{F} = \sum_{G \le F} \ZbasisSub{F}{G}\cdot\Ebasis{G} := \sum_{G \le F} x^{\rank(F)-\rank(G)} \klpoly_{\M_G^F}(x^{-2}) \cdot \Ebasis{G}, \]
+    where \(\klpoly_{\M}\) is the Kazhdan-Lusztig polynomial of \(\M\).
+\end{definition}
+
+\begin{remark}
+    Braden-Vysogorets prove that the elements \(\{\Zbasis{F}\}\) form a \(\ZZ\)-basis for \(\calH_p(\M)\). In
+    particular, if \(\alpha = \sum_F \alpha_F \cdot \Ebasis{F} \in \calH_p(\M)\), then
+    \[ \alpha = \sum_F \alpha_F(0) \cdot \Zbasis{F}. \]
+\end{remark}
+
+\begin{definition}
+    The \textbf{Chow basis} \(\{\Cbasis{F}\}\) is defined by
+    \[
+        \Cbasis{F} = \sum_{G\le F} \CbasisSub{F}{G}\cdot\Ebasis{G} :=
+        \sum_{G \le F} x^{\rank(F)-\rank(G)} \chow_{\M_G^F}(x^{-2}) \cdot \Ebasis{G},
+    \]
+    where \(\chow_{\M}\) is the Chow polynomial of \(\M\), which is palindromic of degree \(\rank(\M)-1\).
+\end{definition}
+
+\begin{remark}
+    The coefficients of the Chow basis have a special structure:
+    \[\CbasisSub{F}{F} = 1 \in \pal(0),\quad\text{and}\quad\CbasisSub{F}{G} \in \pal(2)\ \text{for all}\ G < F.\]
+\end{remark}
+\begin{definition}
+    We define the module \(\calS(\M)\) to be the free \(\pal(0)\)-module with basis \(\{\Cbasis{F}\}\).
+\end{definition}
+
+\begin{definition}
+    For an element \(e\) in the ground set of \(\M\), the \textbf{deletion operator} is an \(R\)-module homomorphism \(\Delta : \calH(\M) \to \calH(\M \setminus e)\) defined by
+    \[ \Delta(\Ebasis{F}) = x^{-\delta(F)}\cdot \Ebasis{F \setminus e}, \quad \text{where } \delta(F) := \rank_{\M}(F) - \rank_{\M\setminus e}(F \setminus e).\]
+\end{definition}
+
+\begin{definition}
+    For any element \(e\) in the ground set of \(\M\), we define the set
+    \(S_e(\M) := \{ F \in \mathcal{L}(\M) \mid e \notin F \text{ and } F\cup e \in \mathcal{L}(\M) \}\).
+    As demonstrated in Braden-Vysogorets, \(S_e(\M)\) plays a crucial role in the deletion formula.
+\end{definition}
+
+\section{Main Propositions}
+
+\begin{proposition}\label{prop:cinHp}
+    For all \(F \in \mathcal{L}(\M)\), \(\Cbasis{F} \in \calH'_p(\M)\), i.e.,
+    it satisfies \(S_G(\Cbasis{F}) \in \pal(0)\) for all \(G \in \mathcal{L}(\M)\).
+\end{proposition}
+\begin{proof}
+    We see that, for any \(G \in \mathcal{L}(\M)\),
+    \begin{align*}
+        S_G(\Cbasis{F}) = \sum_{H: G \le H \le F} x^{\rank(G)-\rank(H)}\cdot\CbasisSub{F}{H}
+         & = \sum_{H: G \le H \le F} x^{\rank(G)-\rank(H)} \left( x^{\rank(F)-\rank(H)} \chow_{\M_H^F}(x^{-2}) \right) \\
+         & = x^{\rank(F)-\rank(G)} \sum_{H: G \le H \le F} x^{-2(\rank(H) -\rank(G))} \chow_{\M_H^F}(x^{-2}).
+    \end{align*}
+    This sum is precisely the definition of the \textit{augmented} Chow polynomial, \(\augchow_{\M_G^F}(x^{-2})\). So,
+    \(S_G(c^F) = x^{\rank(F)-\rank(G)} \augchow_{\M_G^F}(x^{-2})\). Let \(d = \rank(F)-\rank(G)\).
+    The term \(x^d\) is in \(\pal(2d)\).
+    The term \(\augchow_{\M_G^F}(x^{-2})\) is in \(\pal(-2d)\).
+    The product is in \(\pal(2d - 2d) = \pal(0)\) as required.
+\end{proof}
+\begin{proposition}\label{prop:Hp_is_pal0_mod}
+    The subgroup \(\calH'_p(\M)\) is a \(\pal(0)\)-module.
+\end{proposition}
+\begin{proof}
+    Let \(\alpha = \sum_F p_F \cdot \Ebasis{F} \in \calH'_p(\M)\) and \(q \in \pal(0)\).
+
+    We see that
+    \[ S_G(q \cdot \alpha) = \sum_{H \ge G} x^{\rank(G)-\rank(H)} (q \cdot p_H)
+        = q \cdot S_G(\alpha) \in \pal(0). \]
+    Therefore, \(q \cdot \alpha \in \calH'_p(\M)\).
+\end{proof}
+
+\begin{proposition}\label{prop:LPDecomposition}
+    Any Laurent polynomial \(f\) can be uniquely written as a sum \(f = f_0 + f_2\) where
+    \(f_0 \in \pal(0)\) and \(f_2 \in \pal(2)\). The projections are given by
+    \[ f_0(x) = \frac{x^2 f(x^{-1}) - f(x)}{x^2 - 1} \quad \text{and} \quad f_2(x) = \frac{f(x) - f(x^{-1})}{1 - x^{-2}}. \]
+\end{proposition}
+
+\begin{proposition}\label{prop:SisHp}
+    \(\calS(\M) = \calH'_p(\M)\) as \(\pal(0)\)-modules.
+\end{proposition}
+\begin{proof}
+    It is enough to show that \(\calH'_p(\M) \subseteq \calS(\M)\).
+
+    Let \(\alpha = \sum_F \alpha_F \cdot \Ebasis{F}\) be an arbitrary element of \(\calH'_p(\M)\). Since \(\{\Cbasis{F}\}\) is a basis for the entire module \(\calH(\M)\), \(\alpha\) has a unique expansion in this basis:
+    \[ \alpha = \sum_{F \in \calL(\M)} q_F \cdot \Cbasis{F}\quad \text{for } q_F \in \ZZ[x, x^{-1}]. \]
+    To show that \(\alpha \in \calS(\M)\), we must prove that each of these coefficients \(q_F\) is actually in
+    \(\pal(0)\). We prove this by induction on the corank of \(F\).
+
+    \textbf{Base Case:} The relationship between the coefficients is given by the change-of-basis formula:
+    \[ \alpha_F = \sum_{G \ge F} q_G \cdot \CbasisSub{G}{F} = q_F + \sum_{G > F} q_G \cdot \CbasisSub{G}{F}. \]
+    For \(F=E\), this simplifies to \(q_E = \alpha_E\). Since \(\alpha \in \calH'_p(\M)\),
+    we have \(S_E(\alpha) = \alpha_E \in \pal(0)\). This implies that \(q_E \in \pal(0)\), establishing the base case.
+
+    \textbf{Inductive Step:} Assume that for all flats \(G\) with \(\rank(G) > \rank(F)\),
+    the coefficient \(q_G\) is in \(\pal(0)\).
+
+    Since \(\alpha \in \calH'_p(\M)\), it satisfies:
+    \[ S_F(\alpha) = \sum_{H \ge F} x^{\rank(F)-\rank(H)} \alpha_H \in \pal(0). \]
+    We substitute the change-of-basis formula \(\alpha_H = \sum_{L \ge H} q_L \cdot \CbasisSub{L}{H}\) into this expression:
+    \[ S_F(\alpha) = \sum_{H \ge F} x^{\rank(F)-\rank(H)} \left( \sum_{L \ge H} q_L \cdot \CbasisSub{L}{H} \right)
+        = \sum_{L \ge F} q_L \left( \sum_{H: F \le H \le L} x^{\rank(F)-\rank(H)} \CbasisSub{L}{H} \right)
+        = \sum_{L \ge F} q_L \cdot S_F(\Cbasis{L}). \]
+    We isolate the \(L=F\) term and rearrange the sum:
+    \[ q_F = S_F(\alpha) - \sum_{L > F} q_L \cdot S_F(\Cbasis{L}). \]
+    By the inductive hypothesis, each \(q_L\) in the sum is in \(\pal(0)\).
+    Since \(\pal(0)\) is a ring, the difference on the right is in \(\pal(0)\).
+    Thus, \(q_F\) must also be in \(\pal(0)\).
+\end{proof}
+
+\begin{proposition}[Change of Basis Formula]\label{prop:changeofbasis}
+    If \(\alpha = \sum_F \alpha_F \cdot\Ebasis{F} \in \calS(\M)\),
+    then its expansion in the \(\Cbasis{F}\) basis is
+    \(\alpha = \sum_F \overline{\alpha_F} \cdot\Cbasis{F}\), where \(\overline{\alpha_F}\) is the unique \(\pal(0)\) component of \(\alpha_F\) from the decomposition in Proposition~\ref{prop:LPDecomposition}.
+\end{proposition}
+\begin{proof}
+    Let \(\alpha \in \calS(\M)\). By the definition of \(\calS(\M)\), \(\alpha\) can be uniquely expressed as a \(\pal(0)\)-linear combination of the \(\Cbasis{F}\) basis vectors:
+    \[ \alpha = \sum_{F \in \calL(\M)} q_F \cdot \Cbasis{F}, \quad \text{where each } q_F \in \pal(0). \]
+    We can also express \(\alpha\) in the standard basis as \(\alpha = \sum_F \alpha_F \cdot\Ebasis{F}\).
+    As in the proof of proposition \ref{prop:SisHp}, the change-of-basis formula relating the two sets of coefficients is:
+    \begin{equation}\label{eq:changeofbasis}
+        q_F = \alpha_F - \sum_{G > F} q_G \cdot \CbasisSub{G}{F}.
+    \end{equation}
+    The goal is to show that \(q_F = \overline{\alpha_F}\). We
+    prove this by induction on the corank of \(F\) as in the previous proposition.
+
+    \textbf{Base Case:} For the base case, we see that \(q_E = \alpha_E = S_E(\alpha) \in \pal(0)\).\
+    This implies that \(q_E = \overline{\alpha_E}\).
+
+    \textbf{Inductive Step:} Assume that for all flats \(G\) with \(\rank(G) > \rank(F)\),
+    the coefficient \(q_G = \overline{\alpha_G}\).
+
+    Then the entire sum \(\sum_{G > F} q_G \cdot \CbasisSub{G}{F}\) is in \(\pal(2)\), since for any \(G > F\),
+    the coefficient \(q_G\) is in \(\pal(0)\) and the basis coefficient \(\CbasisSub{G}{F}\) is in
+    \(\pal(2)\), as noted in a previous remark.
+    This shows that \(\alpha_F\) is the sum of \(q_F\) (which, by definition, is in \(\pal(0)\))
+    and another term that is in \(\pal(2)\).
+
+    By Proposition~\ref{prop:LPDecomposition}, this decomposition is unique. Therefore,
+    the coefficient \(q_F\) must be the unique \(\pal(0)\) component of the \(\alpha_F\).
+\end{proof}
+
+
+\begin{proposition}\label{prop:DeltaFInS}
+    For any flat \(F \in \mathcal{L}(\M)\), the element \(\Delta(\Cbasis{F})\) is in \(\calS(\M \setminus e)\).
+\end{proposition}
+\begin{proof}
+    Let \(F \in \mathcal{L}(\M)\) be an arbitrary flat. We need to show that
+    \(S_H^{\M\setminus e}(\Delta(\Cbasis{F}))\) is in \(\pal(0)\) for all \(H \in \calL(\M \setminus e)\).
+
+    Let \(\beta = \Delta(\Cbasis{F}) = \sum_{G \in \calL(\M \setminus e)} \beta_G \cdot \Ebasis{G}\).
+
+    By definition, \(\Cbasis{F} = \sum_{L \le F} \CbasisSub{F}{L} \cdot \Ebasis{L}\). Applying the \(\Delta\) operator gives:
+    \[ \beta = \Delta(\Cbasis{F}) = \sum_{L \le F} \CbasisSub{F}{L} x^{-\delta(L)}\cdot \Ebasis{L \setminus e}. \]
+    The coefficient \(\beta_G\) is the sum over all flats \(L \le F\) such that \(L \setminus e = G\).
+    Thus, we have:
+    \begin{align*}
+        S_H^{\M\setminus e}(\Delta(\Cbasis{F})) = \sum_{G \ge H} x^{\rank(H)-\rank(G)} \beta_G
+         & = \sum_{G \ge H} x^{\rank(H)-\rank(G)} \left( \sum_{L: L \le F, L\setminus e = G} \CbasisSub{F}{L} x^{-\delta(L)} \right) \\
+         & = \sum_{L: L \le F, L\setminus e \ge H} x^{\rank(H)-\rank(L \setminus e)} \CbasisSub{F}{L} x^{-\delta(L)}
+    \end{align*}
+    The exponent on \(x\) simplifies  to \( \rank(H) - \rank(L) \) using the definition of discrepancy.
+    \[ S_H^{\M\setminus e}(\Delta(\Cbasis{F})) = \sum_{L: L \le F, L\setminus e \ge H} x^{\rank(H)-\rank(L)}
+        \CbasisSub{F}{L}. \]
+    Now we apply Lemma 2.15 from Braden-Vysogorets.
+    The condition \(L\setminus e \ge H\) is equivalent to \(L \ge \overline{H}\), where \(\overline{H}\)
+    is the closure of \(H\) in \(\M\). Furthermore, \(\rank_{\M\setminus e}(H) = \rank_{\M}(\overline{H})\).
+
+    Substituting these two facts, the summation range becomes \(L \in [\overline{H}, F]\) and the expression is:
+    \[ S_H^{\M\setminus e}(\Delta(\Cbasis{F})) = \sum_{L: \overline{H} \le L \le F} x^{\rank(\overline{H})-\rank(L)} \CbasisSub{F}{L}
+        = S_{\overline{H}}(\Cbasis{F})\in \pal(0). \]
+    Since the palindromic condition holds for any flat \(H\), we have proven that
+    \(\Delta(\Cbasis{F}) \in \calS(\M \setminus e)\).
+\end{proof}
+
+\begin{remark}
+    The map \(\Delta : \calS(\M) \to \calS(\M \setminus e)\) is a \(\pal(0)\)-module homomorphism that
+    restricts from the \(\ZZ[x, x^{-1}]\)-module homomorphism \(\Delta : \calH(\M) \to \calH(\M \setminus e)\).
+\end{remark}
+
+\begin{proposition}\label{prop:imageofDeltaCbasis}
+    For any flat \(F \in \mathcal{L}(\M)\), the following identities hold in \(\calS(\M \setminus e)\):
+    \begin{enumerate}
+        \item If \(e\) is not a coloop in \(\M^F\), then
+              \begin{equation}\label{eq:imageofDeltaCbasisnoncoloop}
+                  \Delta(\Cbasis{F}) = \Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F)}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+              \end{equation}
+        \item If \(e\) is a coloop in \(\M^F\), then
+              \begin{equation}\label{eq:imageofDeltaCbasiscoloop}
+                  \Delta(\Cbasis{F}) = (x+x^{-1})\Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F), G \neq F\setminus e}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+              \end{equation}
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    By Proposition~\ref{prop:changeofbasis}, the coefficients
+    \(q_G\) in the expansion \(\Delta(\Cbasis{F}) = \sum q_G \cdot \Cbasis{G}\) are the unique \(\pal(0)\)
+    components of the standard-basis coefficients,
+    \[\beta_G = \sum_{L: L \le F, L\setminus e = G} \CbasisSub{F}{L} x^{-\delta(L)}.\]
+    Thus we analyze
+    \(q_G\) by considering different cases for the flat \(G\).
+
+    \textbf{Coefficients for \(G \neq F \setminus e\):}
+    For any flat \(G\) not equal to \(F \setminus e\), its preimages \(L \le F\) are a subset of
+    \(\{\overline{G}, G \cup e\}\) where \(\overline{G}\) is the closure of \(G\) in \(\M\).
+    \begin{itemize}
+        \item If \(G \in S_e(\M^F)\), \(\overline{G} = G\) and the standard-basis coefficient is \(\beta_G = \CbasisSub{F}{G} + x^{-1}\CbasisSub{F}{G\cup e}\). This is a sum of a \(\pal(2)\) term and a \(\pal(0)\) term. Its unique \(\pal(0)\) part is \(q_G = x^{-1}\CbasisSub{F}{G\cup e}\).
+        \item If \(G \notin S_e(\M^F)\), the only possible preimage is
+              \(L=\overline{G}\). The standard-basis coefficient is
+              \(\beta_G = \CbasisSub{F}{\overline{G}}\), which is in \(\pal(2)\). Its \(\pal(0)\) part is \(q_G = 0\).
+    \end{itemize}
+    These coefficients account for the summation in both formulas of the proposition.
+
+    \textbf{Coefficient for \(G = F \setminus e\):}
+    Here we analyze \(\beta_{F\setminus e}\) by considering the the following two cases:
+    \begin{itemize}
+        \item If \(e\) is \textbf{not a coloop} in \(\M^F\), the only flat \(L \le F\) that deletes to
+              \(F \setminus e\) is \(L=F\). The standard-basis coefficient is \(\beta_{F\setminus e} =
+              \CbasisSub{F}{F}x^{-0} = 1 \in \pal(0)\).
+              So \(q_{F\setminus e} = 1\), proving the first part of the proposition.
+
+        \item If \(e\) is \textbf{a coloop} in \(\M^F\), the preimages are \(L=F \setminus e\) and
+              \(L=F\). The standard-basis coefficient is
+              \(\beta_{F\setminus e} = \CbasisSub{F}{F\setminus e} + x^{-1}\CbasisSub{F}{F} = x+x^{-1}\in \pal(0)\).
+              So \(q_{F\setminus e} = x+x^{-1}\). This proves the second part of the proposition.
+    \end{itemize}
+\end{proof}
+
+\section{Recovery of the Semi-Small Decomposition Formulas}
+
+We now show how the formulas in Proposition~\ref{prop:imageofDeltaCbasis} recover the known
+semi-small decomposition formulas for the Chow polynomial \(\chow\) from [FMSV24]. This
+is achieved by equating the coefficients of the empty flat \(\Ebasis{\emptyset}\) on both sides of the identities.
+
+Let \(f = \rank(F)\). The coefficient of \(\Ebasis{\emptyset}\) in \(\Delta(\Cbasis{F})\) is:
+\[ \beta_\emptyset = \CbasisSub{F}{\emptyset}x^{-\delta(\emptyset)} + \CbasisSub{F}{\{e\}}x^{-\delta(\{e\})} = x^f \chow_{\M^F}(x^{-2}) + x^{f-2}\chow_{\M^F_e}(x^{-2}) \]
+
+\textbf{Case 1: \(e\) is not a coloop in \(\M^F\).}
+We take the coefficient of \(\Ebasis{\emptyset}\) in the formula \eqref{eq:imageofDeltaCbasisnoncoloop}.
+\[ x^{f}\chow_{\M^F}(x^{-2}) + x^{f-2}\chow_{\M^F_e}(x^{-2}) = x^{f}\chow_{\M^F\setminus e}(x^{-2}) +
+    x^{-1}\sum_{G \in S_e(\M^F)}x^{f-g-1}\chow_{\M^F_{G\cup e}}(x^{-2})\cdot x^g\chow_{\M^G}(x^{-2}). \]
+Dividing by \(x^f\) and setting \(y=x^{-2}\), we get:
+\[ \chow_{\M^F}(y) + y\chow_{\M^F_e}(y) = \chow_{\M^F\setminus e}(y) + y\sum_{G \in S_e(\M^F)}\chow_{\M^F_{G\cup e}}(y)\cdot \chow_{\M^G}(y)\]
+The sum on the right includes the term for \(G=\emptyset\), which is \(\chow_{\M^F_e}(y) \cdot \chow_{U_{0,0}}(y) = \chow_{\M^F_e}(y)\). Separating this term and canceling it with the \(y\chow_{\M^F_e}(y)\) from the LHS yields the semi-small decomposition formula:
+\begin{tcolorbox}
+    When \(e\) is not a coloop in \(\M^F\),
+    \begin{equation} \label{eq:semi-small-decomposition-noncoloop}
+        \chow_{\M^F}(y) = \chow_{\M^F\setminus e}(y) + \sum_{G \in S_e(\M^F)\setminus\{\emptyset\}} y \chow_{\M^F_{G\cup e}}(y) \cdot \chow_{\M^G}(y).
+    \end{equation}
+\end{tcolorbox}
+
+\textbf{Case 2: \(e\) is a coloop in \(\M^F\).}
+We take the coefficient of \(\Ebasis{\emptyset}\) in the formula \eqref{eq:imageofDeltaCbasiscoloop}.
+Equating the coefficients gives:
+\[ x^f \chow_{\M^F}(x^{-2}) + x^{f-2}\chow_{\M^F_e}(x^{-2}) = (x+x^{-1})x^{f-1}\chow_{\M^F\setminus e}(x^{-2}) + x^{f-2}\sum_{\dots} \dots \]
+Dividing by \(x^f\) and setting \(y=x^{-2}\) leads to the known formula for adding a coloop:
+\begin{tcolorbox}
+    When \(e\) is a coloop in \(\M^F\),
+    \begin{equation} \label{eq:semi-small-decomposition-coloop}
+        \chow_{\M^F}(y) = (1+y)\chow_{\M^F\setminus e}(y) +
+        \sum_{G \in \mathcal{L}(\M^F\setminus e)\setminus\{\emptyset\}}y \chow_{\M^F_{G\cup e}}(y) \cdot
+        \chow_{\M^G}(y).
+    \end{equation}
+\end{tcolorbox}
+This completes the recovery of the known decomposition formulas.
+
+\subsection{Recovery of the Augmented Chow Polynomial Decomposition Formulas}
+We consider another \(\ZZ[x, x^{-1}]\)-module homomorphism
+\(\Phi_{\M} : \calH(\M) \to \ZZ[x, x^{-1}]\) defined by
+\[\Phi_{\M}(\alpha) = \sum_{F \in \mathcal{L}(\M)} x^{-\rank(F)} \alpha_F,\]
+which satisfies \(\Phi_{\M\setminus e}\circ \Delta = \Phi_{\M}\).
+Applying this map to \(\Cbasis{F}\) gives
+\[\Phi_{\M}(\Cbasis{F}) = \sum_{G \le F} x^{-\rank(G)} \Cbasis{F}_G =
+    x^{\rank(F)}\sum_{G \le F} x^{-2\rank(G)} \chow_{\M_G^F}(x^{-2}) =
+    x^{\rank(F)} \augchow_{\M^F}(x^{-2}) \in \pal(0).\]
+\begin{remark}
+    We see that the factorization \(\Phi_{\M} = \Phi_{\M\setminus e}\circ \Delta \)
+    as \(\ZZ[x, x^{-1}]\)-module homomorphisms also holds as \(\pal(0)\)-module homomorphisms
+    \(\calS(\M) \to \pal(0)\).
+\end{remark}
+
+Applying the \(\Phi_{\M\setminus e}\) map to \eqref{eq:imageofDeltaCbasisnoncoloop} yields the following identity:
+\[ x^f \augchow_{\M^F}(x^{-2}) = x^f \augchow_{\M^F\setminus e}(x^{-2}) +
+    x^{-1}\sum_{G \in S_e(\M^F)} x^{f-g-1}\chow_{\M^F_{G\cup e}}(x^{-2}) \cdot x^g\augchow_{\M^G}(x^{-2}). \]
+Simplifying the exponents and setting \(y=x^{-2}\), we get:
+\begin{tcolorbox}
+    When \(e\) is not a coloop in \(\M^F\),
+    \begin{equation} \label{eq:augchow-decomposition-noncoloop}
+        \augchow_{\M^F}(y) = \augchow_{\M^F\setminus e}(y) +
+        \sum_{G \in S_e(\M^F)} y \chow_{\M^F_{G\cup e}}(y) \cdot \augchow_{\M^G}(y).
+    \end{equation}
+\end{tcolorbox}
+Proceeding similarly for the coloop case, we get the following identity:
+\[ x^f \augchow_{\M^F}(x^{-2}) = (x+x^{-1})x^{f-1}\augchow_{\M^F\setminus e}(x^{-2}) +
+    x^{-1}\sum_{G \in S_e(\M^F)} x^{f-g-1}\chow_{\M^F_{G\cup e}}(x^{-2}) \cdot x^g\augchow_{\M^G}(x^{-2}). \]
+Simplifying the exponents and setting \(y=x^{-2}\), we get:
+\begin{tcolorbox}
+    When \(e\) is a coloop in \(\M^F\),
+    \begin{equation} \label{eq:augchow-decomposition-coloop}
+        \augchow_{\M^F}(y) = (1+y)\augchow_{\M^F\setminus e}(y) +
+        \sum_{G \in S_e(\M^F)} y \chow_{\M^F_{G\cup e}}(y) \cdot \augchow_{\M^G}(y).
+    \end{equation}
+\end{tcolorbox}
+
+\section{Relating the \(\Zbasis{F}\) and \(\Cbasis{F}\) bases}
+Braden-Vysogorets define a basis \(\{\Zbasis{F}\}_{F \in \mathcal{L}(\M)}\) of \(\calH(\M)\) as
+\begin{equation} \label{eq:Zbasis-definition}
+    \Zbasis{F} = \sum_{G \le F}\ZbasisSub{F}{G} \cdot \Ebasis{G} :=
+    \sum_{G \le F} x^{\rank(F)-\rank(G)} \klpoly_{\M_G^F}(x^{-2}) \cdot \Ebasis{G}.
+\end{equation}
+Using the fact that the inverse of the Chow function, \(\chow\), in the incidence algebra
+of \(\M\) is negative the reduced characteristic function, \(\redchar\), and that the inverse of the
+Kazhdan-Lusztig function, \(\klpoly\),
+is the inverse Kazhdan-Lusztig function, \(\invklpoly\), of the matroid, we have the following
+change of basis formulas:
+\begin{equation} \label{eq:Cbasis-change-of-basis}
+    \Ebasis{F} =\sum_{G \le F} \mathfrak{f}^F_G \cdot \Cbasis{G} =
+    \sum_{G \le F} x^{\rank(F)-\rank(G)}\redchar_{\M_G^F}(x^{-2}) \cdot \Cbasis{G}.
+\end{equation}
+\begin{equation} \label{eq:Zbasis-change-of-basis}
+    \Ebasis{F} = \sum_{G \le F} \mathfrak{q}^F_G \cdot \Zbasis{G} =
+    \sum_{G \le F} x^{\rank(F)-\rank(G)}\invklpoly_{\M_G^F}(x^{-2}) \cdot \Zbasis{G}.
+\end{equation}
+Applying the \(\Phi_{\M}\) map to \eqref{eq:Cbasis-change-of-basis} and \eqref{eq:Zbasis-change-of-basis} yields the following identities:
+\begin{equation} \label{eq:Cbasis-change-of-basis-Phi}
+    x^{-f} = -\sum_{G \le F} x^{f-g}\redchar_{\M_G^F}(x^{-2}) \cdot x^g\augchow_{\M^G}(x^{-2})
+    \implies 1 + \sum_{G \le F} x^{2f}\redchar_{\M_G^F}(x^{-2}) \cdot \augchow_{\M^G}(x^{-2}) = 0.
+\end{equation}
+\begin{equation} \label{eq:Zbasis-change-of-basis-Phi}
+    x^{-f} = \sum_{G \le F} x^{f-g}\invklpoly_{\M_G^F}(x^{-2}) \cdot x^g Z_{\M^G}(x^{-2})
+    \implies 1 - \sum_{G \le F} x^{2f}\invklpoly_{\M_G^F}(x^{-2}) \cdot Z_{\M^G}(x^{-2}) = 0.
+\end{equation}
+Thus we have the following two identities in the incidence algebra of \(\M\):
+\begin{tcolorbox}
+    \begin{equation} \label{eq:chichow-and-QZ}
+        \redchar\cdot \augchow = -x^r \text{ and }
+        \invklpoly \cdot Z = x^r.
+    \end{equation}
+\end{tcolorbox}
+We define a new family of elements in \(\mathcal{H}(\M)\):
+\[\xi^F := \sum_{G\le F} x^{\rk(G)}\mu(\M^F_G)\,\cdot \Ebasis{G}.\]
+We have the following lemma from the previous paper:
+\begin{lemma}\label{lem:deletion-xi}
+    Let \(\M\) be a matroid on \(E\), and let \(i\in E\) be an element of \(\M\).
+    \begin{enumerate}
+        \item \label{xi-with-i-coloop}
+              If \(e\) is a coloop of \(\M^F\), then \(\Delta(\xi^F) = 0\).
+        \item \label{xi-with-i-noncoloop}
+              If \(e\) is not a coloop of \(\M^F\), then \(\Delta(\xi^F) =
+              \xi^{F\setminus e}\).
+    \end{enumerate}
+\end{lemma}
+Since the \(\Zbasis{F}\in \calH_p(\M) \subset \calS(\M)\),
+we can express it as:
+\[ \Zbasis{F} = \sum_{G \in \mathcal{L}(\M)} \klchowcoeff^F_{G} \cdot \Cbasis{G}
+    \quad \text{where } \klchowcoeff^F_{G} = \overline{\ZbasisSub{F}{G}} \in \pal(0). \]
+
+\begin{tcolorbox}[colback=red!10!white, colframe=red!50!black, title=Example---Incorrect Simplification]
+    For the boolean matroid \(B_n\), the KL polynomial is \(P_{B_k}(x)=1\),
+    so \(\ZbasisSub{F}{G} = x^{\rank(F)-\rank(G)} = x^{f-g}\).
+    Using the projection formula, we have that
+    \[\klchowcoeff^F_{G} = \overline{\ZbasisSub{F}{G}} = \frac{x^{g-f+2} - x^{f-g}}{x^2 - 1} =
+        \sum_{i=0}^{f-g} x^{f-g-2i}. \tag{the product telescopes}\]
+    Thus, for the boolean matroid \(B_n\),
+    \[ \Zbasis{F} = \sum_{G \le F} \left( \sum_{i=0}^{f-g} x^{f-g-2i} \right) \cdot \Cbasis{G}. \]
+
+    The previous simplification to a single sum was incorrect. The correct coefficients are:
+    \begin{align*}
+        f-g=0: & \quad \klchowcoeff^F_{G} = \overline{x^0} = \overline{1} = 1                                                           \\
+        f-g=1: & \quad \klchowcoeff^F_{G} = \overline{x^1} = \frac{x^2(x^{-1}) - x}{x^2-1} = 0                                          \\
+        f-g=2: & \quad \klchowcoeff^F_{G} = \overline{x^2} = \frac{x^2(x^{-2}) - x^2}{x^2-1} = \frac{1-x^2}{x^2-1} = -1                 \\
+        f-g=3: & \quad \klchowcoeff^F_{G} = \overline{x^3} = \frac{x^2(x^{-3}) - x^3}{x^2-1} = \frac{x^{-1}-x^3}{x^2-1} = -x-x^{-1}     \\
+        f-g=4: & \quad \klchowcoeff^F_{G} = \overline{x^4} = \frac{x^2(x^{-4}) - x^4}{x^2-1} = \frac{x^{-2}-x^4}{x^2-1} = -x^2-1-x^{-2}
+    \end{align*}
+    and so on.
+\end{tcolorbox}
+\begin{remark}
+    Computing these coefficients in general does not seem to be easy.
+\end{remark}
+We have that
+\[ \sum_{H \le F} \mathfrak{f}^F_H \cdot \Cbasis{H} =
+    \Ebasis{F} = \sum_{G \le F} \mathfrak{q}^F_G \cdot \Zbasis{G}
+    = \sum_{G \le F} \mathfrak{q}^F_G \cdot \sum_{H \le G} \overline{\ZbasisSub{G}{H}} \cdot \Cbasis{H}
+    = \sum_{H \le F} \left( \sum_{G: H \le G \le F} \mathfrak{q}^F_G \cdot \overline{\ZbasisSub{G}{H}} \right) \cdot \Cbasis{H}. \]
+Thus \(\mathfrak{f}^F_H = \sum_{G: H \le G \le F} \mathfrak{q}^F_G \cdot \overline{\ZbasisSub{G}{H}}
+\implies \mathfrak{f} = \mathfrak{q} \cdot \overline{\zeta}\).
+Multiplying both sides by \(zeta\) on the left yields:
+\[ \zeta \cdot \mathfrak{f} = \zeta \cdot \mathfrak{q} \cdot \overline{\zeta} = \overline{\zeta}. \]
+
+\section{The incidence algebra of M}
+
+Let \(\intM(\M)\) be the set of all intervals in \(\mathcal{L}(\M)\).
+In our study, \textbf{the incidence algebra \(\mathcal{I}(\M)\)} of \(\M\) is the
+\(\ZZ[x, x^{-1}]\)-algebra with basis
+\(\{\Ibasis{F}{G}\}_{[G,F] \in \intM(\M)}\). The algebra structure is given by
+\[ \Ibasis{F}{G} \cdot \Ibasis{K}{H} = \begin{cases}
+        \Ibasis{F}{H} & \text{if } G = K, \\
+        0             & \text{otherwise}.
+    \end{cases} \]
+for all \(F, G, H, K \in \mathcal{L}(\M)\). The elements of \(\mathcal{I}(\M)\) are formal sums of the form
+\[ \alpha = \sum_{[G,F] \in \intM(\M)} \alpha_{G,F} \cdot \Ibasis{F}{G} \quad \text{where } \alpha_{G,F} \in \ZZ[x, x^{-1}]. \]
+
+\section{todo}
+\begin{itemize}
+    \item Find the correct formula for the coefficients \(\mathfrak{a}^{F}_{G}\) in the change of basis formula
+          of the Boolean matroid.
+    \item Define similar polynomial as \(Y\) for the reduced characteristic polynomial and see
+          if it is palindromic.
+    \item Use the definition of the mobius basis as in previous paper and see if it gives
+          similar identities as \eqref{eq:chichow-and-QZ}.
+\end{itemize}
+
+\begin{proposition}
+    Let \(\alpha \in \calS(\M)\) and let \(p_F\) be the coefficients of its expansion in the
+    \(\{\Zbasis{F}\}\) basis. These coefficients must satisfy the global condition:
+
+    \[ \sum_{F \in \mathcal{L}(\M)} p_F(x) \cdot x^{\rank(F)} Z_{\M^F}(x^{-2}) \in \pal(0) \]
+\end{proposition}
+\begin{proof}
+    \[\pal(0) \ni \Phi_{\M}(\alpha) = \sum_{F \in \mathcal{L}(\M)} p_F(x) \cdot x^{\rank(F)} Z_{\M^F}(x^{-2}) \]
+\end{proof}
+\begin{align*}
+    (\Delta_e \circ \Delta_f)(\Ebasis{F}) & = \Delta_e(x^{-\delta_f(F)} \Ebasis{F \setminus f})                                        \\
+                                          & = x^{-\delta_f(F)} \cdot \Delta_e(\Ebasis{F \setminus f})                                  \\
+                                          & = x^{-\delta_f(F)} \cdot x^{-\delta_e(F \setminus f)} \Ebasis{(F \setminus f) \setminus e} \\
+                                          & = x^{-(\delta_f(F) + \delta_e(F \setminus f))} \Ebasis{F \setminus {e,f}}
+\end{align*}
+The exponent is the sum of the discrepancies. Let's expand it:
+\begin{align*}
+    \delta_f(F) + \delta_e(F \setminus f) & = \left(\rank_{\M}(F) - \rank_{\M\setminus f}(F \setminus f)\right)                                     \\
+                                          & \quad + \left(\rank_{\M\setminus f}(F \setminus f) - \rank_{\M\setminus{e,f}}(F \setminus {e,f})\right) \\
+                                          & = \rank_{\M}(F) - \rank_{\M\setminus{e,f}}(F \setminus {e,f})
+\end{align*}
+Notice this is a telescoping sum. The total exponent just measures the total rank drop from $\M$ to the minor $\M \setminus \{e,f\}$.
+
+\section{Commutativity of Deletion Operators}
+
+A fundamental property of the deletion operator is that the order in which elements are deleted does not matter. This combinatorial fact is reflected in the commutativity of the corresponding algebraic operators acting on our modules. Let \(e, f \in E\) be distinct elements of the ground set. We have two deletion operators:
+\begin{align*}
+    \Delta_e & : \calH(\M) \to \calH(\M \setminus e) \\
+    \Delta_f & : \calH(\M) \to \calH(\M \setminus f)
+\end{align*}
+We can compose them to form maps from \(\calH(\M)\) to \(\calH(\M \setminus \{e,f\})\).
+
+\begin{proposition}\label{prop:delta_commutes}
+    The deletion operators commute. That is, as maps from \(\calH(\M)\) to \(\calH(\M \setminus \{e,f\})\), we have the equality:
+    \[ \Delta_f \circ \Delta_e = \Delta_e \circ \Delta_f. \]
+\end{proposition}
+\begin{proof}
+    Since the operators are \(\ZZ[x, x^{-1}]\)-module homomorphisms,
+    it is sufficient to check that they agree on the standard basis vectors
+    \(\{\Ebasis{H}\}_{H \in \mathcal{L}(\M)}\). Let
+    \(\delta_e(H) := \rank_{\M}(H) - \rank_{\M\setminus e}(H\setminus e)\) denote the discrepancy of \(H\)
+    when deleting \(e\).
+
+    First, we compute the composition \(\Delta_f \circ \Delta_e\).
+    \begin{align*}
+        (\Delta_f \circ \Delta_e)(\Ebasis{H}) & = \Delta_f \left( \Delta_e(\Ebasis{H}) \right)                                                   \\
+                                              & = \Delta_f \left( x^{-\delta_e(H)} \cdot \Ebasis{H \setminus e} \right)                          \\
+                                              & = x^{-\delta_e(H)} \cdot \Delta_f(\Ebasis{H \setminus e})                                        \\
+                                              & = x^{-\delta_e(H)} \cdot x^{-\delta_f(H \setminus e)} \cdot \Ebasis{(H \setminus e) \setminus f} \\
+                                              & = x^{-(\delta_e(H) + \delta_f(H \setminus e))} \cdot \Ebasis{H \setminus \{e,f\}}
+    \end{align*}
+    The total exponent is the sum of the discrepancies:
+    \begin{align*}
+        \delta_e(H) + \delta_f(H \setminus e) & = \left( \rank_{\M}(H) - \rank_{\M\setminus e}(H\setminus e) \right)
+        + \left( \rank_{\M\setminus e}(H\setminus e) - \rank_{\M\setminus\{e,f\}}(H\setminus\{e,f\}) \right)         \\
+                                              & = \rank_{\M}(H) - \rank_{\M\setminus\{e,f\}}(H\setminus\{e,f\}).
+    \end{align*}
+
+    This final expression is the total discrepancy from deleting both elements. It is symmetric with respect to \(e\) and \(f\). If we were to compute the composition \(\Delta_e \circ \Delta_f\), we would arrive at the same exponent and the same final basis vector \(\Ebasis{H \setminus \{e,f\}}\). Therefore, the operators commute.
+\end{proof}
+
+\begin{remark}
+    Since \(\Delta_e\) and \(\Delta_f\) are also \(\pal(0)\)-module homomorphisms that preserve the submodules \(\calS(\M)\), their composition is also a \(\pal(0)\)-module homomorphism \(\calS(\M) \to \calS(\M \setminus \{e,f\})\) that is independent of the order of application. This commutativity is essential for building chain complexes using sequences of deletion operators, a potential direction for future research.
+\end{remark}
+\section{A Cohomology Complex for \(\calS(\M)\)}
+
+The commutativity of the deletion operators allows us to construct a cochain complex whose properties could reveal deep information about the structure of the \(\calS(\M)\) modules. This formalizes the idea of using the Boolean lattice of operators to deduce properties of \(\calS(\M)\).
+
+\begin{definition}[The Cochain Complex of \(\calS\)]
+Let \(\M\) be a matroid on a ground set \(E\).
+\begin{enumerate}
+    \item For each integer \(k \ge 0\), we define the \textbf{\(k\)-th cochain group} as the \(\pal(0)\)-module
+    \[ C^k(\calS, \M) := \bigoplus_{A \subseteq E, |A|=k} \calS(\M \setminus A). \]
+    By definition, \(C^0(\calS, \M) = \calS(\M)\).
+
+    \item Let us fix a total ordering on the ground set \(E\). For \(k \ge 0\), we define the \textbf{\(k\)-th coboundary map} \(d^k: C^k(\calS, \M) \to C^{k+1}(\calS, \M)\) by its action on each summand. For an element \(\alpha \in \calS(\M \setminus A)\) with \(|A|=k\), we define
+    \[ d^k(\alpha) := \sum_{e \notin A} (-1)^{\text{pos}(e, E \setminus A)} \Delta_e(\alpha) \in \bigoplus_{e \notin A} \calS(\M \setminus (A \cup \{e\})) \subseteq C^{k+1}(\calS, \M), \]
+    where \(\text{pos}(e, E \setminus A)\) is the position of the element \(e\) in the ordered set \(E \setminus A\).
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    The pair \((C^\bullet(\calS, \M), d^\bullet)\) is a cochain complex. That is, the composition of any two consecutive coboundary maps is zero: \(d^{k+1} \circ d^k = 0\).
+\end{proposition}
+\begin{proof}[Proof Sketch]
+    We need to show that applying the map \(d\) twice results in the zero map. An element in the image of \(d^k\) is a sum of elements of the form \(\Delta_e(\alpha)\). Applying \(d^{k+1}\) to such an element gives a sum of terms like \(\Delta_f(\Delta_e(\alpha))\).
+
+    The full expression for \((d^{k+1} \circ d^k)(\alpha)\) will be a double summation over pairs of distinct elements \(\{e_1, e_2\}\) not in the original deletion set. Each pair will appear twice, for example as \(\Delta_{e_2} \circ \Delta_{e_1}\) and \(\Delta_{e_1} \circ \Delta_{e_2}\). The alternating signs in the definition of the coboundary map are chosen precisely so that these two terms cancel each other out. This cancellation is guaranteed because the deletion operators commute, as shown in Proposition~\ref{prop:delta_commutes} (\(\Delta_{e_1} \circ \Delta_{e_2} = \Delta_{e_2} \circ \Delta_{e_1}\)). Thus, the entire sum is zero.
+\end{proof}
+
+\begin{remark}
+    Having defined a cochain complex, one can now study its \textbf{cohomology groups}, \(H^k(\calS, \M) := \ker(d^k) / \text{im}(d^{k-1})\). These groups are new, potentially very rich, algebraic invariants of the matroid \(\M\). The "pipe dream" would be to compute these groups and discover that they have a simple structure (for example, that they vanish in most degrees). Such a result would imply profound new identities among the Chow polynomials of the matroid and its minors.
+\end{remark}
+\end{document}
