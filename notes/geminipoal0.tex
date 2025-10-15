@@ -67,7 +67,7 @@
 \newcommand{\intM}{\normalfont\text{Int}}
 
 \newcommand{\qbinom}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}_q}
-
+\newcommand{\palcomp}[2]{\left(#1\right)_{#2}}
 % --- Theorem Environments ---
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -623,4 +623,218 @@ Let \(\M\) be a matroid on a ground set \(E\).
 \begin{remark}
     Having defined a cochain complex, one can now study its \textbf{cohomology groups}, \(H^k(\calS, \M) := \ker(d^k) / \text{im}(d^{k-1})\). These groups are new, potentially very rich, algebraic invariants of the matroid \(\M\). The "pipe dream" would be to compute these groups and discover that they have a simple structure (for example, that they vanish in most degrees). Such a result would imply profound new identities among the Chow polynomials of the matroid and its minors.
 \end{remark}
+
+\begin{proposition}[Expansion in the KL Basis]\label{prop:expansion_in_zbasis}
+    If \(\alpha = \sum_F \alpha_F \cdot\Ebasis{F}\) is an element of \(\calS(\M)\), its expansion in the Kazhdan-Lusztig basis is \(\alpha = \sum_F p_F \cdot\Zbasis{F}\), where the coefficients \(p_F \in \ZZ[x, x^{-1}]\) are determined by the recursive formula:
+    \[ p_F = \alpha_F - \sum_{G > F} p_G \cdot \ZbasisSub{G}{F}. \]
+\end{proposition}
+\begin{proof}
+    Let the expansion of \(\alpha\) in the \(\Zbasis{F}\) basis be \(\alpha = \sum_F p_F \cdot\Zbasis{F}\). We can expand this in the standard basis:
+    \[ \alpha = \sum_F p_F \left( \sum_{H \le F} \ZbasisSub{F}{H} \cdot \Ebasis{H} \right) = \sum_H \left( \sum_{F \ge H} p_F \cdot \ZbasisSub{F}{H} \right) \cdot \Ebasis{H}. \]
+    By comparing the coefficient of \(\Ebasis{H}\) with the original expansion of \(\alpha\), we get:
+    \[ \alpha_H = \sum_{F \ge H} p_F \cdot \ZbasisSub{F}{H}. \]
+    Since \(\ZbasisSub{H}{H} = 1\), we can isolate the \(p_H\) term and solve for it, which yields the recursive formula in the proposition. The coefficients \(p_F\) for \(F > H\) are computed first in an induction on decreasing rank.
+\end{proof}
+
+\begin{remark}[Why there is no simple projection]
+It's important to understand why this result is a recursion and not a simple projection like the other two cases.
+\begin{itemize}
+    \item For \(\alpha \in \calH_p(\M)\), the coefficients \(\alpha_F\) are polynomials and the basis coefficients \(\ZbasisSub{G}{F}\) are divisible by \(x\) for \(G<F\). This special structure allows an inductive proof that the \(\Zbasis{F}\)-basis coefficients are simply \(\alpha_F(0)\).
+    \item For \(\alpha \in \calS(\M)\) expanded in the \(\Cbasis{F}\) basis, the basis coefficients \(\CbasisSub{G}{F}\) have the convenient \(\pal(2)\) property. This forces the standard-basis coefficient \(\alpha_F\) to have a unique `\(\pal(0)+\pal(2)\)` structure, allowing you to find the \(\Cbasis{F}\)-basis coefficient by projection.
+\end{itemize}
+In the present case—expanding \(\alpha \in \calS(\M)\) in the \(\Zbasis{F}\) basis—neither of these special conditions applies. The coefficients \(\alpha_F\) are Laurent polynomials and the basis coefficients \(\ZbasisSub{G}{F}\) have no special palindromic structure. Therefore, the full recursive formula is the only way to describe the relationship. The resulting coefficients \(p_F\) will, in general, be complex Laurent polynomials, not simply constants or `\(\pal(0)\)` elements.
+\end{remark}
+\section{Relating the \(\Zbasis{F}\) and \(\Cbasis{F}\) Bases}
+
+The two special bases for \(\calH(\M)\) can be expressed in terms of each other. The formulas for this change of basis reveal a deep connection between the polynomial invariants that define them.
+
+\subsection{Expressing \(\Cbasis{F}\) in the \(\Zbasis{F}\) Basis}
+We can find the coefficients for expanding \(\Cbasis{F}\) in the \(\Zbasis{F}\) basis by composing the known change-of-basis maps through the standard basis \(\{\Ebasis{G}\}\). In the language of the incidence algebra, this amounts to a convolution product.
+
+\begin{proposition}
+The expansion of the Chow basis element \(\Cbasis{F}\) in the Kazhdan-Lusztig basis \(\{\Zbasis{G}\}\) is given by:
+\[ \Cbasis{F} = \sum_{G \le F} B_{FG}(x) \cdot \Zbasis{G}, \]
+where the coefficient \(B_{FG}(x)\) is given by the convolution of the Chow polynomial and the inverse Kazhdan-Lusztig polynomial:
+\[ B_{FG}(x) = \sum_{K: G \le K \le F} \left( x^{\rank(F)-\rank(K)}\chow_{\M_K^F}(x^{-2}) \right) \cdot \left( x^{\rank(K)-\rank(G)}Q_{\M_G^K}(x^{-2}) \right). \]
+\end{proposition}
+\begin{proof}
+    In the incidence algebra, the relationships between the bases are given by convolutions. The definition of the \(\Cbasis{F}\) basis can be written as \(\Cbasis{} = \Ebasis{} * \mathbf{c}\), where \(\mathbf{c}(G,F) = \CbasisSub{F}{G}\). Similarly, we have \(\Zbasis{} = \Ebasis{} * \mathbf{z}\).
+
+    From \cite{gx-inversekazhdanlustig}, we know that the inverse of the KL polynomial function \(\mathbf{p}\) is the inverse KL polynomial function \(\mathbf{q}\). Since \(\mathbf{z}\) is defined using \(\mathbf{p}\), its inverse in the incidence algebra is the function for \(Q\). Therefore, we can express the standard basis as \(\Ebasis{} = \Zbasis{} * \mathbf{q}\), where \(\mathbf{q}(G,F) = x^{\rank(F)-\rank(G)}Q_{\M_G^F}(x^{-2})\).
+
+    Substituting this into the definition of \(\Cbasis{F}\) gives:
+    \[ \Cbasis{} = \Ebasis{} * \mathbf{c} = (\Zbasis{} * \mathbf{q}) * \mathbf{c} = \Zbasis{} * (\mathbf{q} * \mathbf{c}). \]
+    The formula in the proposition is the explicit expression of the convolution product \((\mathbf{q} * \mathbf{c})(G,F)\).
+\end{proof}
+
+\begin{remark}
+    This proposition provides a direct formula to translate from the Chow basis to the Kazhdan-Lusztig basis. The coefficients \(B_{FG}(x)\) are, in general, complex Laurent polynomials whose structure is determined by the interplay between the Chow polynomials and the inverse Kazhdan-Lusztig polynomials of the matroid's minors.
+\end{remark}
+\begin{equation}\label{eq:incidence_algebra_convolution}
+    \Ibasis{F}{G}(x) = x^{\rank(F)-\rank(G)}\left(\chow_{\M_G^F}(x^{-2}) - \klpoly_{\M_G^F}(x^{-2})\right) - \sum_{K: G < K < F} \Ibasis{F}{K}(x) \cdot x^{\rank(K)-\rank(G)}\klpoly_{\M_G^K}(x^{-2})
+\end{equation}
+
+\section*{Expressing the Chow Basis in the KL Basis}
+
+We want to find the coefficients $\Ibasis{F}{G}(x) \in \pal(0)$ in the expansion:
+\[
+    \Cbasis{F} = \sum_{G \le F} \Ibasis{F}{G}(x) \cdot \Zbasis{G}
+\]
+Since both bases are lower-triangular with respect to the standard basis $\{\Ebasis{L}\}$, we can solve for the coefficients $\Ibasis{F}{G}(x)$ recursively.
+
+By expanding both sides in the standard basis and equating the coefficients of a given basis vector $\Ebasis{L}$ where $L \le F$, we get:
+\[
+    \CbasisSub{F}{L} = \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot \ZbasisSub{G}{L}
+\]
+Using the definitions of the basis coefficients from your notes, this equation becomes:
+\[
+    x^{\rank(F)-\rank(L)} \chow_{\M_L^F}(x^{-2}) = \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot x^{\rank(G)-\rank(L)} \klpoly_{\M_L^G}(x^{-2})
+\]
+
+\section*{A Recursive Formula for the Coefficients}
+
+We can rearrange this equation to get a recursive formula for the coefficients $\Ibasis{F}{G}(x)$. We solve for the coefficients by induction on the corank of $G$ within the interval $[\emptyset, F]$.
+
+\begin{tcolorbox}
+\textbf{The relationship is defined by the following recursive formula:}
+\begin{enumerate}
+    \item \textbf{Base Case ($G=F$):}
+    \[ \Ibasis{F}{F}(x) = 1 \]
+
+    \item \textbf{Recursive Step (for $G < F$):}
+    \[ 
+        \Ibasis{F}{G}(x) = x^{\rank(F)-\rank(G)}\left(\chow_{\M_G^F}(x^{-2}) - \klpoly_{\M_G^F}(x^{-2})\right) - \sum_{K: G < K < F} \Ibasis{F}{K}(x) \cdot x^{\rank(K)-\rank(G)}\klpoly_{\M_G^K}(x^{-2})
+    \]
+\end{enumerate}
+\end{tcolorbox}
+
+You can use this formula to compute the coefficients starting from the top of the lattice (where $\Ibasis{F}{F}=1$) and working your way down. The fact that both bases belong to the module $\calS(\M)$ guarantees that each coefficient $\Ibasis{F}{G}(x)$ you compute will be in $\pal(0)$.
+
+\section*{Expressing the Chow Basis in the KL Basis}
+We want to find the coefficients $\Ibasis{F}{G}(x) \in \pal(0)$ in the expansion:
+\[
+    \Cbasis{F} = \sum_{G \le F} \Ibasis{F}{G}(x) \cdot \Zbasis{G}
+\]
+
+By expanding both sides in the standard basis and equating the coefficients of a given basis vector $\Ebasis{L}$ where $L \le F$, we get:
+\[
+    \CbasisSub{F}{L} = \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot \ZbasisSub{G}{L}
+\]
+Using the definitions of the basis coefficients from your notes, this equation becomes:
+\[
+    x^{\rank(F)-\rank(L)} \chow_{\M_L^F}(x^{-2}) = \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot x^{\rank(G)-\rank(L)} \klpoly_{\M_L^G}(x^{-2})
+\]
+
+
+\section{Simplification by Palindromicity}
+
+Your observations are correct, and they lead to a significant simplification of the change-of-basis formula. By using the properties of palindromicity, we can decompose the single equation into two separate, simpler identities.
+
+\subsection{The Decomposition Principle}
+The key here is the unique decomposition of any Laurent polynomial $f$ into a $\pal(0)$ part and a $\pal(2)$ part, as stated in Proposition~\ref{prop:LPDecomposition}. We will denote the $\pal(0)$ component of a polynomial $f$ as $\palcomp{f}{0}$ and the $\pal(2)$ component as $\palcomp{f}{2}$, such that $f = \palcomp{f}{0} + \palcomp{f}{2}$. We apply this principle to the equation:
+\[
+    \CbasisSub{F}{L} = \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot \ZbasisSub{G}{L}
+\]
+
+\subsection{Applying the Decomposition}
+\begin{enumerate}
+    \item \textbf{Analyze the Left-Hand Side (LHS):} As you noted, the Chow basis coefficient $\CbasisSub{F}{L}$ is in $\pal(2)$ for all $L < F$. This means its decomposition is trivial:
+    \begin{itemize}
+        \item $\palcomp{\CbasisSub{F}{L}}{0} = 0$
+        \item $\palcomp{\CbasisSub{F}{L}}{2} = \CbasisSub{F}{L}$
+    \end{itemize}
+
+    \item \textbf{Analyze the Right-Hand Side (RHS):} Each term in the sum is a product of $\Ibasis{F}{G}(x)$ and $\ZbasisSub{G}{L}$.
+    \begin{itemize}
+        \item We know that the coefficient $\Ibasis{F}{G}(x)$ must be in $\pal(0)$.
+        \item The term $\ZbasisSub{G}{L}$ is a polynomial but has no inherent palindromic symmetry. We can decompose it into its parts: $\ZbasisSub{G}{L} = \palcomp{\ZbasisSub{G}{L}}{0} + \palcomp{\ZbasisSub{G}{L}}{2}$.
+    \end{itemize}
+    Therefore, each term in the sum is $\Ibasis{F}{G} \cdot (\palcomp{\ZbasisSub{G}{L}}{0} + \palcomp{\ZbasisSub{G}{L}}{2})$. Since multiplying a $\pal(0)$ term by a $\pal(n)$ term results in a $\pal(n)$ term, we can separate the entire sum into its $\pal(0)$ and $\pal(2)$ components:
+    \begin{itemize}
+        \item $(\text{RHS})_0 = \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot \palcomp{\ZbasisSub{G}{L}}{0}$
+        \item $(\text{RHS})_2 = \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot \palcomp{\ZbasisSub{G}{L}}{2}$
+    \end{itemize}
+\end{enumerate}
+
+\subsection{The Simplified Equations}
+By equating the corresponding palindromic components of the LHS and RHS, we replace the original mixed equation with two ``purer'' identities.
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Simplified Identities (for $L<F$)]
+\begin{enumerate}
+    \item Equating the $\pal(0)$ components gives a set of linear constraints on the coefficients:
+        \[ \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot \palcomp{\ZbasisSub{G}{L}}{0} = 0 \]
+
+    \item Equating the $\pal(2)$ components gives a new formula for the Chow coefficients:
+        \[ \CbasisSub{F}{L} = \sum_{G: L \le G \le F} \Ibasis{F}{G}(x) \cdot \palcomp{\ZbasisSub{G}{L}}{2} \]
+\end{enumerate}
+\end{tcolorbox}
+
+This is a powerful simplification. The original equation has been split into two distinct relationships that separate the symmetric and anti-symmetric aspects of the connection between the Chow and Kazhdan-Lusztig bases.
+
+We know that
+\[ \ZbasisSub{F}{L} = x^{\rank(F)-\rank(L)} \klpoly_{\M_L^F}(x^{-2}) \]
+Let 
+\[ \Zbasis{F} = \sum_{G \le F} \ZbasisSub{F}{G} \cdot \Ebasis{G}
+= \sum_{H \le F} \klchowcoeff_{H}^F \cdot \Cbasis{H}
+= \sum_{H \le F} \klchowcoeff_{H}^F \cdot \sum_{G \le H}
+\CbasisSub{H}{G} \cdot \Ebasis{G}
+= \sum_{G\le F}\left(\sum_{H:G\le H\le F} \klchowcoeff_{H}^F \cdot
+\CbasisSub{H}{G}\right) \cdot \Ebasis{G}\]
+We know that
+\[\klchowcoeff_{H}^F = \overline{\ZbasisSub{F}{H}}
+=\frac{x^{h-f+2}\cdot\klpoly_{\M_H^F}(x^2)-x^{f-h}\cdot\klpoly_{\M_H^F}(x^{-2})}
+{x^2-1}\]
+
+So,
+\begin{align*}
+\ZbasisSub{F}{G} &= \sum_{H:G\le H\le F} \frac{x^{h-f+2}\cdot
+\klpoly_{\M_H^F}(x^2)-x^{f-h}\cdot\klpoly_{\M_H^F}(x^{-2})}
+{x^2-1} x^{h-g} \cdot \chow_{\M_G^H}(x^{-2})\\
+x^{f-g}\cdot\klpoly_{\M_G^F}(x^{-2})
+&= \sum_{H\in [G,F]} \frac{x^{2h-f+2}\cdot\klpoly_{\M_H^F}(x^2)-x^f\cdot\klpoly_{\M_H^F}
+(x^{-2})}
+{x^2-1} \cdot x^{-g}\chow_{\M_G^H}(x^{-2})\\
+\klpoly_{\M_G^F}(x^{-2})
+&= \sum_{H\in [G,F]} \frac{x^{2h-2f+2}\cdot\klpoly_{\M_H^F}(x^2)
+-\klpoly_{\M_H^F}
+(x^{-2})}{x^2-1}\cdot \chow_{\M_G^H}(x^{-2})\\
+\end{align*}
+Setting \(y=x^{-2}\), we get:
+\[(y^{-1}-1)\cdot\klpoly_{\M_G^F}(y) =
+\sum_{H\in [G,F]} \left(y^{\rank(\M_H^F)-1}\cdot\klpoly_{\M_H^F}(y^{-1})
+-\klpoly_{\M_H^F}(y)\right)\cdot \chow_{\M_G^H}(y)\]
+
+\[(1-y)\cdot\klpoly_{\M_G^F}(y) =
+\sum_{H\in [G,F]} \left(y^{\rank(\M_H^F)}\cdot\klpoly_{\M_H^F}(y^{-1})
+-y\cdot\klpoly_{\M_H^F}(y)\right)\cdot \chow_{\M_G^H}(y)\]
+Taking \(F = \M\) and \(G = \emptyset\), we get:
+\[(1-y)\cdot\klpoly_{\M}(y) =
+\sum_{H\in \calL(\M)} \left(y^{\corank(H)}\cdot\klpoly_{\M_H}(y^{-1})
+-y\cdot\klpoly_{\M_H}(y)\right)\cdot \chow_{\M^H}(y)\]
+\[(1-y)\cdot\klpoly_{\M}(y) = y^r\cdot\klpoly_{\M}(y^{-1}) - y\cdot\klpoly_{\M}(y)+
+\sum_{H\neq \emptyset} \left(y^{\corank(H)}\cdot\klpoly_{\M_H}(y^{-1})
+-y\cdot\klpoly_{\M_H}(y)\right)\cdot \chow_{\M^H}(y)\]
+
+\[\klpoly_{\M}(y)-y^r\cdot\klpoly_{\M}(y^{-1}) =
+\sum_{H\neq \emptyset} \left(y^{\corank(H)}\cdot\klpoly_{\M_H}(y^{-1})
+-y\cdot\klpoly_{\M_H}(y)\right)\cdot \chow_{\M^H}(y)\]
+Can we use the following identity to simplify the sum:
+
+\[ y^{r}\cdot \klpoly_{\M}(y^{-1}) - \klpoly_{\M}(y) =
+\sum_{F\neq \emptyset} \chi_{\M^F}(y)\cdot
+\klpoly_{\M_F}(y) = R_{\M}(y)\] 
+\[ \sum_{F\neq \emptyset} \chi_{\M^F}(y)\cdot \klpoly_{\M_F}(y) = \sum_{H\neq \emptyset} \left(y\cdot\klpoly_{\M_H}(y) - y^{\corank(H)}\cdot\klpoly_{\M_H}(y^{-1})\right)\cdot \chow_{\M^H}(y)\]
+\[ R_{\M}(y) =
+\sum_{H\neq \emptyset} \left(y\cdot\klpoly_{\M_H}(y)
+- R_{\M_H}(y) - \klpoly_{\M_H}(y)\right)\cdot \chow_{\M^H}(y)\]
+\[ R_{\M}(y) =
+(y-1)\cdot\sum_{H\neq \emptyset} \klpoly_{\M_H}(y)\cdot \chow_{\M^H}(y)
+- \sum_{H\neq \emptyset} R_{\M_H}(y)\cdot \chow_{\M^H}(y)\]
+
+\[\sum_{H\in \calL(\M)} R_{\M_H}(y)\cdot \chow_{\M^H}(y) = (y-1)\sum_{H\neq \emptyset} \klpoly_{\M_H}(y)\cdot \chow_{\M^H}(y)\]
+\[\sum_{H\in \calL(\M)} \sum_{H < F}
+\chi_{\M^F_H}(y)\cdot\klpoly_{\M_F}(y)\cdot \chow_{\M^H}(y) = (y-1)\sum_{H\neq \emptyset} \klpoly_{\M_H}(y)\cdot \chow_{\M^H}(y)\]
+\[\sum_{\emptyset \neq F\in \calL(\M)}\klpoly_{\M_F}(y)\cdot
+\sum_{H < F}
+\chow_{\M^H}\cdot\chi_{\M_H^F}(y) = (y-1)\sum_{H\neq \emptyset} \klpoly_{\M_H}(y)\cdot \chow_{\M^H}(y)\]
 \end{document}

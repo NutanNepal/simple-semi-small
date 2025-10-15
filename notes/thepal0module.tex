@@ -212,7 +212,9 @@ The module \(\calH(\M)\) has natural bases constructed from the Kazhdan-Lusztig 
     \(\calS(\M) = \calH'_p(\M)\) as \(\pal(0)\)-modules.
 \end{proposition}
 \begin{proof}
-    It is enough to show that \(\calH'_p(\M) \subseteq \calS(\M)\).
+    Proposition \ref{prop:cinHp} and \ref{prop:Hp_is_pal0_mod}
+    show that \(\calS(\M) \subseteq \calH'_p(\M)\).
+    It is now enough to show that \(\calH'_p(\M) \subseteq \calS(\M)\).
 
     Let \(\alpha = \sum_F \alpha_F \cdot \Ebasis{F}\) be an arbitrary element of \(\calH'_p(\M)\). Since \(\{\Cbasis{F}\}\) is a basis for the entire module \(\calH(\M)\), \(\alpha\) has a unique expansion in this basis:
     \[ \alpha = \sum_{F \in \calL(\M)} q_F \cdot \Cbasis{F}\quad \text{for } q_F \in \ZZ[x, x^{-1}]. \]
@@ -283,7 +285,7 @@ The module \(\calH(\M)\) has natural bases constructed from the Kazhdan-Lusztig 
     Let \(\beta = \Delta(\Cbasis{F}) = \sum_{G \in \calL(\M \setminus e)} \beta_G \cdot \Ebasis{G}\).
 
     By definition, \(\Cbasis{F} = \sum_{L \le F} \CbasisSub{F}{L} \cdot \Ebasis{L}\). Applying the \(\Delta\) operator gives:
-    \[ \beta = \Delta(\Cbasis{F}) = \sum_{L \le F} \CbasisSub{F}{L} x^{-\delta(L)}\cdot \Ebasis{L \setminus e}. \]
+    \[ \Delta(\Cbasis{F}) = \sum_{L \le F} \CbasisSub{F}{L} x^{-\delta(L)}\cdot \Ebasis{L \setminus e}. \]
     The coefficient \(\beta_G\) is the sum over all flats \(L \le F\) such that \(L \setminus e = G\).
     Thus, we have:
     \begin{align*}
