@@ -1,0 +1,312 @@
+\documentclass[11pt,letterpaper,english]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}   % utilities for mathematics
+\usepackage{amsthm}    % utilities for theorem environment
+\usepackage{amssymb}   % loads mathematical fonts
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amscd} % utilities for commutative diagrams
+
+\usepackage{mathtools}
+
+\usepackage{subcaption}
+\usepackage{array} % core package
+\usepackage[sc]{mathpazo} % Palatino font with small caps
+\usepackage[scr=boondoxo]{mathalfa}
+
+\usepackage[unicode=true]{hyperref} % permits navigating on the pdf
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyBlue,
+    citecolor=OliveGreen,
+    urlcolor=blue,
+    pdfencoding=auto
+}
+\usepackage{cleveref} % smart referencing
+\usepackage{caption}
+
+\usepackage{graphics,graphicx} % permits putting images
+\usepackage{tikz,tikz-cd} % tool for diagrams
+
+%\usetikzlibrary{graphdrawing.force}% quotes library is for the [""] edges
+\usetikzlibrary{graphs,graphs.standard,calc}
+
+\usetikzlibrary{decorations.pathreplacing,}%angles,quotes
+
+\usepackage{enumerate} % permits enumerating using letters or other symbols
+
+\DeclareMathAlphabet{\mathsf}{OT1}{\sfdefault}{m}{n}
+
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+%\usepackage[margin=1.30in]{geometry}
+%\usepackage[textwidth=360pt,textheight=615pt]{geometry}
+\linespread{1.3}
+\setlength\parindent{0.2in}
+
+\usepackage{verbatim}
+\usepackage{scalerel}
+
+\makeatletter
+\def\dual#1{\expandafter\dual@aux#1\@nil}
+\def\dual@aux#1/#2\@nil{\begin{tabular}{@{}c@{}}#1\\#2\end{tabular}}
+\makeatother
+
+\makeatletter
+\@namedef{subjclassname@2020}{\textup{2020} Mathematics Subject Classification}
+\makeatother
+
+
+\newcommand{\stirlingtwo}[2]{\biggl\{\genfrac{}{}{0pt}{}{#1}{#2}\biggr\}}
+\newcommand{\tstirlingtwo}[2]{\left\{\genfrac{}{}{0pt}{}{#1}{#2}\right\}}
+%\renewcommand{\tilde}{\widetilde}
+%\renewcommand{\widetilde}{\wwtilde}
+
+\DeclareMathAlphabet{\amathbb}{U}{bbold}{m}{n}
+
+
+\newcommand{\mfrak}[1]{\scaleobj{0.93}{\mathfrak{#1}}}
+
+\hypersetup{
+    colorlinks = true,
+    linkbordercolor = {white},
+    linkcolor = {BrickRed},
+    anchorcolor = {black},
+    citecolor = {BrickRed},
+    filecolor = {cyan},
+    menucolor = {BrickRed},
+    runcolor = {cyan},
+    urlcolor = {black}
+}
+
+\usetikzlibrary{automata}
+\usepackage{bbm}
+\usepackage{yfonts}
+
+\newtheoremstyle{teoremas}% <name>
+{11pt}% <Space above>
+{11pt}% <Space below>
+{\itshape}% <Body font>
+{}% <Indent amount>
+{\bfseries}% <Theorem head font>
+{}% <Punctuation after theorem head>
+{.5em}% <Space after theorem headi>
+{}% <Theorem head spec (can be left empty, meaning `normal')>
+
+
+
+\theoremstyle{teoremas}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newtheoremstyle{definition}% <name>
+{11pt}% <Space above>
+{11pt}% <Space below>
+{}% <Body font>
+{}% <Indent amount>
+{\bfseries}% <Theorem head font>
+{}% <Punctuation after theorem head>
+{.5em}% <Space after theorem headi>
+{}% <Theorem head spec (can be left empty, meaning `normal')>
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{thmdefinition}[theorem]{Theorem-Definition}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{openproblem}[theorem]{Open Problem}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\cusp}{cusp}
+\DeclareMathOperator{\Rel}{Rel}
+\DeclareMathOperator{\Poin}{Poin}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+
+\newcommand{\M}{\mathsf{M}}
+%\newcommand{\B}{\mathsf{B}} let us only write \U_{n,n} for boolean matroids
+\newcommand{\N}{\mathsf{N}}
+\newcommand{\U}{\mathsf{U}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\A}{\mathrm{A}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\LL}{\mathsf{\Lambda}}
+\newcommand{\PP}{\mathsf{\Pi}}
+\newcommand{\C}{\mathsf{C}}
+%\renewcommand{\lambda}{\lambda}
+
+\newcommand{\Hilb}{\operatorname{Hilb}}
+\newcommand{\rank}{\operatorname{rk}}
+\newcommand{\corank}{\operatorname{crk}}
+\newcommand{\cl}{\operatorname{cl}}
+\renewcommand{\H}{\mathrm{H}}
+\newcommand{\CH}{\mathrm{CH}}
+\newcommand{\aug}{\operatorname{aug}}
+\newcommand{\IH}{\mathrm{IH}}
+\newcommand{\uH}{\underline{\mathrm{H}}}
+\newcommand{\uCH}{\underline{\mathrm{CH}}}
+\newcommand\size[1]{|#1|}
+\DeclareMathOperator{\Pal}{\mathrm{Pal}}
+\DeclareMathOperator{\Poly}{\mathrm{Poly}}
+
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\PG}{\operatorname{PG}}
+\newcommand{\Rep}{\operatorname{Rep}}
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\VRep}{\operatorname{VRep}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\col}{\operatorname{col}}
+\newcommand{\asc}{\operatorname{asc}}
+\newcommand{\bad}{\operatorname{bad}}
+\newcommand{\des}{\operatorname{des}}
+\newcommand{\luis}{\textcolor{NavyBlue}}
+\newcommand{\qbinom}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}_q}
+
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\bz}{\mathbb{Z}}
+\newcommand{\rev}{\normalfont\text{rev}}
+\newcommand{\lt}{\normalfont\text{lt}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\ind}{\text{\normalfont Ind}}
+\newcommand{\stab}{\text{\normalfont Stab}}
+\newcommand{\chow}{\normalfont\text{\underline{H}}}
+\newcommand{\augchow}{\normalfont\text{H}}
+\newcommand{\klpoly}{\normalfont\text{P}}
+\newcommand{\invklpoly}{\normalfont\hat{\text{Q}}}
+\newcommand{\redchar}{\overline{\chi}}
+\newcommand{\flats}{\normalfont\text{Flats}}
+\newcommand{\flags}{\normalfont\text{Flags}}
+\newcommand{\matM}{\normalfont\text{M}}
+\newcommand{\hilbMmodF}{\normalfont\text{\underline{H}}_\text{M/F}}
+\newcommand{\chibar}{\overline{\chi}}
+\newcommand{\E}{\normalfont\text{E}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Ebasis}[1]{\mathrm{#1}}
+\newcommand{\Cbasis}[1]{\mathrm{c}^{#1}}
+\newcommand{\CbasisSub}[2]{\mathrm{c}^{#1}_{#2}}
+\newcommand{\klbasis}[1]{\mathrm{z}^{#1}}
+\newcommand{\klbasisSub}[2]{\mathrm{z}^{#1}_{#2}}
+\newcommand{\Ibasis}[2]{\mathfrak{b}^{#1}_{#2}}
+\newcommand{\pal}{\normalfont\text{Pal}}
+\newcommand{\klchowcoeff}{\mathfrak{a}}
+\newcommand{\IntP}{\normalfont\text{Int}}
+\newcommand{\inc}{\normalfont\text{I}}
+\newcommand{\barchi}{\overline{\chi}}
+
+
+%\newcommand\rev[1]{#1^{\operatorname{rev}}}
+
+\AtBeginDocument{%
+   \def\MR#1{}
+}
+
+
+%% preliminary version only
+\begin{comment}
+ \usepackage{prelim2e}
+ \renewcommand{\PrelimText}{\sf\scriptsize --- INCOMPLETE DRAFT of \today ---}
+ \marginparwidth=0.75in
+ \usepackage[notcite,notref]{showkeys}
+ \usepackage[colorinlistoftodos,bordercolor=orange,backgroundcolor=orange!20,linecolor=orange,textsize=scriptsize]{todonotes}
+
+ \usepackage{prelim2e}
+ \usepackage[us,24hr]{datetime}
+ \renewcommand{\PrelimText}{\sf\scriptsize ---\,Version of \today \,-\,\currenttime\,---}
+\end{comment}
+
+
+
+\title[Deletion Formulas for Chow Functions]{\Huge\(\kappa\mathfrak{Chow\text{-}functions}\)}
+
+\author[N.~Nepal]{Nutan Nepal}
+
+\address{(N. Nepal)
+Department of Mathematics, North Carolina State University, Raleigh, NC, USA.
+}
+\email{nnepal2@ncsu.edu}
+
+\subjclass[2020]{Primary: 05B35}
+
+\allowdisplaybreaks
+
+\begin{document}
+
+\begin{abstract}
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\subsection{Main results}
+
+\section{Framework}
+
+\subsection{Posets and Incidence Algebras}
+Let \(\calP\) be a \emph{finite partially ordered set} ranked by the function \(\rho\).
+We denote by \(\inc(\calP)\) the incidence algebra of the poset \(\calP\) over the ring
+\(\ZZ[x]\) with the algebra structure given by the convolution product.
+Some of the functions we consider in \(\inc(\calP)\) are \(\delta\); \(\zeta\); its
+inverse, the Moebius function, \(\mu\);
+the characteristic \(\calP\)-kernel \(\chi\) and its associated functions.
+Following \cite{ferroni-matherne-vecchi}, some of the functions associated to
+\(\chi\) are the left and the right Kazhdan--Lusztig--Stanley functions
+(\(g\) and \(f\) respectively); the \(\mathrm{Z}\) function;
+the reduced characteristic \(\calP\)-kernel  \(\overline{\chi}\);
+the characteristic Chow function \(\H\); and the left and the right
+augmented Chow functions (\(G\) and \(F\) respectively). All these
+functions live inside a special subalgebra \(\inc_{\rho}(\calP)\)
+which consists of all the functions \(\mathrm{a}\in\inc(\calP)\)
+that satisfy \(\deg(\mathrm{a}_{st}(x))\leq\rho_{st}:=\rho(t)-\rho(s)\)
+for all \(s\leq t\) in \(\calP\).
+This subalgebra \(\inc_\rho(\calP)\) is equipped with an involution
+defined by \(\mathrm{a}\mapsto\mathrm{a}^{\rev}\) with
+\(\mathrm{a}^{\rev}_{st}:= x^{\rho_{st}}\mathrm{a}_{st}(x^{-1})\).
+We summarize some properties of these functions as follows:
+\begin{enumerate}
+    \item \(\chi= \chi^{\rev} = \mu\cdot\zeta^{\rev}\),
+    \item \(g = \zeta^{\rev}\),
+    \item \(\mathrm{Z} = g^{\rev}f = gf^{\rev}\) satisfies \(\mathrm{Z}^{\rev}
+          = \mathrm{Z}\),
+    \item \(\displaystyle\barchi_{st}(x) =
+          \begin{cases}
+              \chi_{st}(x)/(x-1)\quad & \text{if } s<t,   \\
+              -1 \quad                & \text{if } s = t,
+          \end{cases}\)
+    \item \(\H:=-\left(\barchi\right)^{-1}\) satisfies \(\H_{st}(x) = x^{\rho_{st}-1}\H_{st}(x^{-1}),\)
+    \item \(F = \H\cdot f^{\rev}\) satisfies \(\mathrm{F}^{\rev}= \mathrm{F}\),
+    \item \(G = g^{\rev}\cdot \H\) satisfies \(\mathrm{G}^{\rev}= \mathrm{G}\).
+\end{enumerate}
+
+\subsection{The Hecke Module}
+Let \(R:=\ZZ[x,x^{-1}]\) be the ring of Laurent polynomials with integer coefficients.
+The ring contains the additive subgroups \(\pal(n)\) consisting of all Laurent polynomials
+\(p\) satisfying \(p(x)=x^{n}p(x^{-1})\). We note that these subgroups satisfy
+\(\pal(n)\cdot\pal(m)\subset \pal(n+m)\) and, in particular, \(\pal(0)\) is a ring.
+
+\bibliographystyle{amsalpha}
+\bibliography{references}
+
+\end{document}

@@ -14,19 +14,21 @@
 \usepackage{float}
 \usepackage{scalerel}
 \usepackage{stackengine}
-\usepackage[backend=biber]{biblatex} % Using biber backend is recommended
-\addbibresource{references.bib}
 
 \newtcolorbox{mybox}[2][]{
     arc=0mm, enhanced, frame hidden, breakable
 }
 \usepackage{mathtools}
 
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
 \usepackage{subcaption}
 \usepackage{array} % core package
 \usepackage[sc]{mathpazo} % Palatino font with small caps
 \usepackage[scr=euler]{mathalfa}
 \usepackage[unicode=true]{hyperref} % permits navigating on the pdf
+\usepackage{enumerate}
 \hypersetup{
     colorlinks=true,
     linkcolor=NavyBlue,
@@ -34,6 +36,9 @@
     urlcolor=blue,
     pdfencoding=auto
 }
+
+\linespread{1.1}
+\setlength\parindent{0.2in}
 \usepackage{cleveref} % smart referencing
 \usepackage{caption}
 
@@ -66,13 +71,16 @@
 \newcommand{\Ebasis}[1]{\mathrm{#1}}
 \newcommand{\Cbasis}[1]{\mathrm{c}^{#1}}
 \newcommand{\CbasisSub}[2]{\mathrm{c}^{#1}_{#2}}
-\newcommand{\Zbasis}[1]{\zeta^{#1}}
-\newcommand{\ZbasisSub}[2]{\zeta^{#1}_{#2}}
+\newcommand{\klbasis}[1]{\mathrm{z}^{#1}}
+\newcommand{\klbasisSub}[2]{\mathrm{z}^{#1}_{#2}}
 \newcommand{\Ibasis}[2]{\mathfrak{b}^{#1}_{#2}}
 \newcommand{\pal}{\normalfont\text{Pal}}
 \newcommand{\klchowcoeff}{\mathfrak{a}}
 \newcommand{\intM}{\normalfont\text{Int}}
-
+\newcommand{\mathscrI}{\mathscr{I}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\IntP}{\normalfont\text{Int}}
+\newcommand{\rev}{\normalfont\text{rev}}
 \newcommand{\qbinom}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}_q}
 
 % --- Theorem Environments ---
@@ -87,7 +95,7 @@
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark} % Unnumbered remark
 
-\title{Notes: Chow Theory for Matroid Deletion}
+\title{Notes: The $\pal(0)$-module of flats}
 \author{Nutan Nepal}
 \date{\today}
 
@@ -95,6 +103,56 @@
 \maketitle
 
 \section{Algebraic Preliminaries}
+
+\subsection{Posets and Incidence Algebras}
+Let \(\calP\) be a \emph{bounded, weakly ranked, partially ordered set}.
+We denote by \(\IntP(\calP)\) the set of all closed intervals of \(\calP\) and
+by \(\rho: \IntP(\calP) \to \ZZ\)
+the \emph{weak rank function}.
+
+The \emph{incidence algebra} of \(\calP\) over \(\ZZ[x]\), denoted \(\mathscr{I}\), is the free \(\ZZ[x]\)-module on \(\IntP(\calP)\). An element \(a \in \mathscr{I}\) is a function that assigns a polynomial \(a_{st}(x)\) to each interval \([s,t]\). The algebra structure is given by the convolution product:
+\[ (ab)_{su} := \sum_{s\leq t\leq u} a_{st}(x) \cdot b_{tu}(x), \qquad
+    \text{ for every \(s\leq u\) in \(\calP\).}
+\]
+This algebra is associative and has a multiplicative identity \(\delta\).
+An element \(a \in \mathscr{I}\) is invertible if and only if \(a_{ss}(x)\) is a unit
+for every \(s \in \calP\). Two fundamental elements in \(\mathscr{I}\) are the \emph{zeta function},
+\(\zeta_{st}(x) = 1\), and its inverse, the \emph{Möbius function}, \(\mu = \zeta^{-1}\).
+
+\subsection{Kernels, KLS functions, and the Chow function}
+The weak rank function \(\rho\) induces a subalgebra \(\mathscr{I}_\rho \subseteq \mathscr{I}\) consisting of elements \(a\) such that \(\deg(a_{st}) \le \rho_{st}\) for every interval \([s,t]\). This subalgebra is equipped with an involution \(a \mapsto a^{\rev}\) defined by:
+\[ (a^{\rev})_{st}(x) := x^{\rho_{st}} a_{st}(x^{-1}) \]
+An element \(\kappa \in \mathscr{I}_\rho\) is a \emph{\((\calP,\rho)\)-kernel} if
+\(\kappa_{ss}(x) = 1\) and it satisfies the property \(\kappa^{-1} = \kappa^{\rev}\).
+The primary example is the \emph{characteristic function} \(\chi := \mu \cdot \zeta^{\rev}\),
+which is a kernel for any weakly ranked poset.
+
+In \cite{ferroni-matherne-vecchi}, the authors show that a kernel uniquely determines two key functions:
+\begin{theorem}\label{thm:kernel-properties}
+    Let \(\kappa \in \mathscrI_\rho\) be a \((\calP,\rho)\)-kernel. There exist unique elements
+    \(f, g \in \mathscrI_\rho\) (the right and left KLS functions, respectively) satisfying:
+    \begin{enumerate}[\normalfont(i)]
+        \item \(f_{ss}(x) = 1\) and \(g_{ss}(x) = 1\) for all \(s \in \calP\).
+        \item \(\deg f_{st}(x) < \frac{1}{2} \rho_{st}\) and \(\deg g_{st}(x) < \frac{1}{2}
+              \rho_{st}\) for all \(s < t\).
+        \item \(f^{\rev} = \kappa \cdot f\) and \(g^{\rev} = g \cdot \kappa\).
+    \end{enumerate}
+\end{theorem}
+
+From a kernel \(\kappa\) and its KLS functions, one can define several other
+important polynomial invariants.
+Central to this paper is the \emph{Chow function},
+which is formulated in \cite{ferroni-matherne-vecchi} as follows:
+
+\begin{definition}\label{def:chow-reduced} [Reduced Kernel and Chow Function]
+    Let \(\kappa\) be a \((\calP,\rho)\)-kernel.
+    \begin{enumerate}
+        \item The \emph{reduced kernel} \(\overline{\kappa} \in \mathscr{I}_\rho\) is given by:
+              \[ \overline{\kappa}_{st}(x) = \begin{cases} \frac{\kappa_{st}(x)}{x - 1} & \text{if } s < t, \\ -1 & \text{if } s = t.\end{cases}\]
+        \item The \emph{\(\kappa\)-Chow function} \(\chow \in \mathscr{I}_\rho\) is defined as:
+              \[ \chow = - (\overline{\kappa})^{-1}\]
+    \end{enumerate}
+\end{definition}
 
 \subsection{The Module of Flats and Perverse Subgroups}
 Let \(R := \ZZ[x, x^{-1}]\) be the ring of Laurent polynomials with integer coefficients.
@@ -128,15 +186,15 @@ Following Braden-Vysogorets, there is an important abelian subgroup of \(\calH(\
 The module \(\calH(\M)\) has natural bases constructed from the Kazhdan-Lusztig and Chow polynomials.
 
 \begin{definition}
-    The \textbf{Kazhdan-Lusztig basis} \(\{\Zbasis{F}\}\) is defined by
-    \[ \Zbasis{F} = \sum_{G \le F} \ZbasisSub{F}{G}\cdot\Ebasis{G} := \sum_{G \le F} x^{\rank(F)-\rank(G)} \klpoly_{\M_G^F}(x^{-2}) \cdot \Ebasis{G}, \]
+    The \textbf{Kazhdan-Lusztig basis} \(\{\klbasis{F}\}\) is defined by
+    \[ \klbasis{F} = \sum_{G \le F} \klbasisSub{F}{G}\cdot\Ebasis{G} := \sum_{G \le F} x^{\rank(F)-\rank(G)} \klpoly_{\M_G^F}(x^{-2}) \cdot \Ebasis{G}, \]
     where \(\klpoly_{\M}\) is the Kazhdan-Lusztig polynomial of \(\M\).
 \end{definition}
 
 \begin{remark}
-    Braden-Vysogorets prove that the elements \(\{\Zbasis{F}\}\) form a \(\ZZ\)-basis for \(\calH_p(\M)\). In
+    Braden-Vysogorets prove that the elements \(\{\klbasis{F}\}\) form a \(\ZZ\)-basis for \(\calH_p(\M)\). In
     particular, if \(\alpha = \sum_F \alpha_F \cdot \Ebasis{F} \in \calH_p(\M)\), then
-    \[ \alpha = \sum_F \alpha_F(0) \cdot \Zbasis{F}. \]
+    \[ \alpha = \sum_F \alpha_F(0) \cdot \klbasis{F}. \]
 \end{remark}
 
 \begin{definition}
@@ -190,6 +248,9 @@ The module \(\calH(\M)\) has natural bases constructed from the Kazhdan-Lusztig 
     The term \(\augchow_{\M_G^F}(x^{-2})\) is in \(\pal(-2d)\).
     The product is in \(\pal(2d - 2d) = \pal(0)\) as required.
 \end{proof}
+\begin{remark}
+    The proof of Proposition \ref{prop:cinHp} demonstrates that the Chow basis elements have the property that their image under the evaluation maps $S_G$ lies in $\pal(0)$ for all flats $G$.
+\end{remark}
 \begin{proposition}\label{prop:Hp_is_pal0_mod}
     The subgroup \(\calH'_p(\M)\) is a \(\pal(0)\)-module.
 \end{proposition}
@@ -434,7 +495,7 @@ Simplifying the exponents and setting \(y=x^{-2}\), we get:
     \end{equation}
 \end{tcolorbox}
 
-\section{References}
-\printbibliography
+\bibliographystyle{amsalpha}
+\bibliography{references}
 
 \end{document}
