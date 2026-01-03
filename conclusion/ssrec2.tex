@@ -1,4 +1,4 @@
-\documentclass[11pt,letterpaper,english]{amsart}
+\documentclass[10pt,letterpaper,english]{amsart}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}   % utilities for mathematics
 \usepackage{amsthm}    % utilities for theorem environment
@@ -26,13 +26,12 @@
 
 \usepackage{graphics,graphicx} % permits putting images
 \usepackage{tikz,tikz-cd} % tool for diagrams
+\usepackage{enumitem}
 
 %\usetikzlibrary{graphdrawing.force}% quotes library is for the [""] edges
 \usetikzlibrary{graphs,graphs.standard,calc}
 
 \usetikzlibrary{decorations.pathreplacing,}%angles,quotes
-
-\usepackage{enumerate} % permits enumerating using letters or other symbols
 
 \DeclareMathAlphabet{\mathsf}{OT1}{\sfdefault}{m}{n}
 
@@ -42,8 +41,7 @@
 %\usepackage[margin=1.30in]{geometry}
 %\usepackage[textwidth=360pt,textheight=615pt]{geometry}
 \linespread{1.3}
-\setlength\parindent{0.2in}
-
+\setlength\parindent{0.25in}
 \usepackage{verbatim}
 \usepackage{scalerel}
 
@@ -205,8 +203,8 @@
 \newcommand{\Ebasis}[1]{\mathrm{#1}}
 \newcommand{\Cbasis}[1]{\mathrm{c}^{#1}}
 \newcommand{\CbasisSub}[2]{\mathrm{c}^{#1}_{#2}}
-\newcommand{\klbasis}[1]{\mathrm{z}^{#1}}
-\newcommand{\klbasisSub}[2]{\mathrm{z}^{#1}_{#2}}
+\newcommand{\klbasis}[1]{\mathrm{kl}^{#1}}
+\newcommand{\klbasisSub}[2]{\mathrm{kl}^{#1}_{#2}}
 \newcommand{\Ibasis}[2]{\mathfrak{b}^{#1}_{#2}}
 \newcommand{\pal}{\normalfont\text{Pal}}
 \newcommand{\klchowcoeff}{\mathfrak{a}}
@@ -237,9 +235,9 @@
 
 
 
-\title[Deletion Formulas for Chow Functions]{\Huge\(\kappa\mathfrak{Chow\text{-}functions}\)}
+\title[\(\kappa\mathfrak{Chow\text{-}functions}\)]{\Huge\(\kappa\mathfrak{Chow\text{-}functions}\)}
 
-\author[N.~Nepal]{Nutan Nepal}
+\author[Nutan Nepal]{Nutan Nepal}
 
 \address{(N. Nepal)
 Department of Mathematics, North Carolina State University, Raleigh, NC, USA.
@@ -267,9 +265,10 @@ Department of Mathematics, North Carolina State University, Raleigh, NC, USA.
 \subsection{Posets and Incidence Algebras}
 Let \(\calP\) be a \emph{finite partially ordered set} ranked by the function \(\rho\).
 We denote by \(\inc(\calP)\) the incidence algebra of the poset \(\calP\) over the ring
-\(\ZZ[x]\) with the algebra structure given by the convolution product.
-Some of the functions we consider in \(\inc(\calP)\) are \(\delta\); \(\zeta\); its
-inverse, the Moebius function, \(\mu\);
+\(\ZZ[x]\) with the algebra structure given by convolution.
+Some of the functions we consider in \(\inc(\calP)\) are \(\delta\);
+the zeta function, \(\zeta\); its
+inverse, the M\"obius function, \(\mu\);
 the characteristic \(\calP\)-kernel \(\chi\) and its associated functions.
 Following \cite{ferroni-matherne-vecchi}, some of the functions associated to
 \(\chi\) are the left and the right Kazhdan--Lusztig--Stanley functions
@@ -286,8 +285,9 @@ defined by \(\mathrm{a}\mapsto\mathrm{a}^{\rev}\) with
 \(\mathrm{a}^{\rev}_{st}:= x^{\rho_{st}}\mathrm{a}_{st}(x^{-1})\).
 We summarize some properties of these functions as follows:
 \begin{enumerate}
-    \item \(\chi= \chi^{\rev} = \mu\cdot\zeta^{\rev}\),
-    \item \(g = \zeta^{\rev}\),
+    \item \(\chi = \mu\cdot\zeta^{\rev}\) is a \(\calP\)-kernel, i.e. it satisfies
+          \(\chi^{-1}= \chi^{\rev}\),
+    \item \(g = \zeta^{\rev};\ \zeta^{\rev}_{st} = x^{\rho_{st}}\),
     \item \(\mathrm{Z} = g^{\rev}f = gf^{\rev}\) satisfies \(\mathrm{Z}^{\rev}
           = \mathrm{Z}\),
     \item \(\displaystyle\barchi_{st}(x) =
@@ -300,11 +300,140 @@ We summarize some properties of these functions as follows:
     \item \(G = g^{\rev}\cdot \H\) satisfies \(\mathrm{G}^{\rev}= \mathrm{G}\).
 \end{enumerate}
 
-\subsection{The Hecke Module}
+\subsection{The lorem ipsum modules}
 Let \(R:=\ZZ[x,x^{-1}]\) be the ring of Laurent polynomials with integer coefficients.
-The ring contains the additive subgroups \(\pal(n)\) consisting of all Laurent polynomials
+This ring contains the additive subgroups \(\pal(n)\), for each \(n\in\ZZ\),
+consisting of all Laurent polynomials
 \(p\) satisfying \(p(x)=x^{n}p(x^{-1})\). We note that these subgroups satisfy
 \(\pal(n)\cdot\pal(m)\subset \pal(n+m)\) and, in particular, \(\pal(0)\) is a ring.
+
+We now consider the module \(\cH(\calP)\) of \(\calP\)
+which is defined as the free \(R\)-module
+on the set \(\{\Ebasis{s}\}_{s\in \calP}\). A typical element in \(\cH(\calP)\) looks like
+\[\alpha = \sum_{s \in \calP}{\alpha_s\cdot \mathrm{s}},\hspace{10mm}\text{where }\alpha_s\in R.\]
+We also define a family of \(R\)-linear map, \(\{S_s:\cH(\calP)\to R\}_{s\in\calP}\), given by
+\[\sum_{t \in \calP}{\alpha_t\cdot \mathrm{t}} \mapsto \sum_{t\geq s}{x^{-\rho_{st}}\alpha_t}.\]
+Using these maps, we can now introduce some `local' conditions to impose on the elements
+\(\alpha\in\cH(\calP)\):
+\begin{enumerate}
+    \item \label{cond:p1}
+          \(\alpha_s\in\ZZ[x]\) for every \(s\in\calP\),
+    \item \label{cond:p2}
+          \(S_s(\alpha)\in \pal(0)\) for every \(s\in\calP\).
+\end{enumerate}
+Let \(\cH_p(\calP)\) the subgroup consisting of all
+elements \(\alpha\in \cH(\calP)\) that satisfy both of the conditions
+and let \(\cH'_p(\calP)\) be the subgroup consisting of only those
+that satisfy \ref{cond:p2}. We remark that the subgroup
+\(\cH_p(\calP)\) is a \(\ZZ\)-module and the subgroup
+\(\cH'_p(\calP)\) is a \(\pal(0)\)-module. To further study these
+modules, we define two new \(R\)-bases of \(\cH(\calP)\) given by:
+\[\klbasis{t} = \sum_{s\leq t}{\klbasisSub{t}{s}(x)\cdot\Ebasis{s}}
+    :=\sum_{s\leq t}{x^{\rho_{st}}f_{st}(x^{-2})\cdot\Ebasis{s}},
+    \hspace{10mm}\text{and}\hspace{10mm}
+    \Cbasis{t}= \sum_{s\leq t}{\CbasisSub{t}{s}(x)\cdot\Ebasis{s}}
+    :=\sum_{s\leq t}{x^{\rho_{st}}\H_{st}(x^{-2})\cdot\Ebasis{s}}.
+\]
+We will name the first one as the \textbf{Kazhdan--Lusztig basis} and the second
+as the \textbf{Chow basis}.
+There are a few notes that we can make about these new
+bases:
+\begin{enumerate}
+    \item \(\klbasis{t} \in \cH_p(\calP)\) for all \(t\in\calP\):
+          We need to show that \(\klbasis{t}\) satisfies the two conditions. Firstly,
+          since \(\deg(f_{st})<\rho_{st}/2\), we have \(\klbasisSub{t}{s}
+          \in\ZZ[x]\). Secondly, for a fixed \(s\in\calP\), we have
+          \begin{align*}
+              S_s(\klbasis{t}) & = \sum_{u\geq s}{x^{-\rho_{su}}\klbasisSub{t}{u}(x)}                  \\
+                               & = \sum_{u\geq s}{x^{-\rho_{su}}x^{\rho_{ut}}f_{ut}(x^{-2})}           \\
+                               & = x^{\rho_{st}}\sum_{u: s\leq u\leq t}{x^{-2\rho_{su}}f_{ut}(x^{-2})} \\
+                               & = x^{\rho_{st}}\mathrm{Z}_{st}(x^{-2}).
+          \end{align*}
+          The factor \(x^{\rho_{st}}\) is in \(\pal(2\rho_{st})\) and,
+          since \(\mathrm{Z}^{\rev}=\mathrm{Z}\),
+          the factor \(\mathrm{Z}_{st}(x^{-2})\)
+          is in \(\pal(-2\rho_{st})\). Thus their product \(S_s(\klbasis{t})\) is in
+          \(\pal(2\rho_{st}-2\rho_{st}) = \pal(0)\), as required.
+
+    \item \(\Cbasis{t} \in \cH'_p(\calP)\):
+          This requires \(S_s(\Cbasis{t})\) to be in \(\pal(0)\) for every \(s\in \calP\).
+          As in the previous
+          case, \(S_s(\Cbasis{t})\) now reduces to the product \(x^{\rho_{st}} \left(g^{\rev}\cdot \cH
+          \right)_{st}(x^{-2}) = x^{\rho_{st}}G_{st}(x^{-2})\) which is also in \(\pal(0)\)
+          since \(G^{\rev} = G\).
+\end{enumerate}
+Since the set \(\{\klbasis{t}\}_{t\in\calP}\) (resp. \(\{\Cbasis{t}\}_{t\in\calP}\))
+is \(R\)-independent, it is also a \(\ZZ\) (resp. \(\pal(0)\))-independent
+set in \(\cH_p(\calP)\) (resp. \(\cH'_p(\calP)\)).
+But we can have even more:
+\begin{theorem}
+    \(\{\klbasis{t}\}_{t\in \calP}\) forms a \(\ZZ\)-basis for \(\cH_p(\calP)\) and
+    \(\{\Cbasis{t}\}_{t\in \calP}\) forms a \(\pal(0)\)-basis for \(\cH'_p(\calP)\).
+\end{theorem}
+\begin{proof}
+    We need to show that the sets span the respective modules.
+
+    Let \(\alpha:=\sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}}\) be an element in \(\cH_p(\calP)
+    \subset\cH(\calP)\).
+    In terms of the Kazhdan--Lusztig basis, we write it as
+    \(\sum_{t\in\calP}{\beta_t\cdot\klbasis{t}}\). Thus we have
+    \begin{equation}\label{eqn:change-of-basis}
+        \alpha = \sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}} = \sum_{t\in\calP}{\beta_t\cdot\klbasis{t}}
+        =\sum_{t\in\calP}{\beta_t\cdot\sum_{s\leq t}{\klbasisSub{t}{s}\cdot\Ebasis{s}}}
+        =\sum_{s\in\calP}{\left(\sum_{t\geq s}{\beta_{t}\klbasisSub{t}{s}}\right)\cdot\Ebasis{s}}
+        \implies\alpha_{s}=\sum_{t\geq s}{\beta_{t}\klbasisSub{t}{s}}.
+    \end{equation}
+    We will show that \(\beta_s\in\ZZ\) by induction on the corank of \(s\).
+
+    \noindent\textbf{Base case:} When \(s=\hat{1}\), \(\alpha_{\hat{1}}=\beta_{\hat{1}}\klbasisSub{\hat{1}}
+    {\hat{1}}=\beta_{\hat{1}}\). Since \(\alpha\in\cH_p(\calP)\),
+    we have that \(S_{\hat{1}}(\alpha) = \sum_{t\geq \hat{1}}
+    {x^{-\rho_{\hat{1}t}}\alpha_{t} = \alpha_{\hat{1}}}\in\pal(0)\). But \(\alpha_{\hat{1}}\)
+    also needs to be in \(\ZZ[x]\). Thus, \(\beta_{\hat{1}}=\alpha_{\hat{1}}\in\pal(0)\cap\ZZ[x] = \ZZ\)
+    as required.
+
+    \noindent\textbf{Inductive step:} Assume that for all \(t\in\calP\) with \(\rho(t)>\rho(s)\),
+    we have \(\beta_t\in\ZZ\). Then,
+    \[S_s(\alpha)=\sum_{t\geq s}{x^{-\rho_{st}}\alpha_{t}}.\]
+    Substituting for \(\alpha_t\) using the change of basis formula in \ref{eqn:change-of-basis},
+    we have
+    \[S_s(\alpha)=\sum_{t\geq s}{x^{-\rho_{st}}\sum_{u\geq t}{\beta_{u}\klbasisSub{u}{t}}}
+        =\sum_{u\geq s}{\beta_{u}\left(\sum_{t:s\leq t\leq u}{x^{-\rho_{st}}\klbasisSub{u}{t}}\right)}
+        =\sum_{u\geq s}{\beta_{u}S_s(\klbasis{u})}.\]
+    Isolating the \(u=s\) term, we have,
+    \[\beta_{s} = S_s(\alpha) - \sum_{u> s}{\beta_{u}S_s(\klbasis{u})}.\]
+    The entire right-hand-side is in \(\pal(0)\) and thus \(\beta_{t}\in\pal(0)\).
+
+    Using the change of basis formula in \ref{eqn:change-of-basis}, we also have
+    \(\beta_{s}=\alpha_s-\sum_{t>s}{\beta_{t}\klbasisSub{t}{s}}.\)
+    The right-hand-side here is just an expression of polynomials. Combining this fact with the previous,
+    \(\beta_s\in\pal(0)\cap\ZZ[x]=\ZZ\).
+
+    \vspace*{4mm}
+    \noindent The proof of the second part is similar.
+\end{proof}
+
+We continue our notes about the bases:
+\begin{enumerate}[resume]
+    \item \(\klbasisSub{t}{t} = \CbasisSub{t}{t} = 1 \in \ZZ\subset\pal(0)\).
+    \item \(\klbasisSub{t}{s} \in x\ZZ[x]\) and \(\CbasisSub{t}{s} \in \pal(2)\)
+          for \(s<t\) in \(\calP\): The first part is true because \(\deg(f_{st}(x))
+          <\rho_{st}/2\). For the second assertion, using the fact that
+          \(\H_{st}(x)\) is a symmetric polynomial with center of symmetry
+          \((\rho_{st}-1)/2\), we note that
+          \[x^{\rho_{st}}\H_{st}(x^{-2}) \in \pal(2\rho_{st})\cdot\pal(-2(\rho_{st}-1))\subset\pal(2).\]
+\end{enumerate}
+So we have
+\(\klbasis{t}\in \ZZ\cdot \Ebasis{t} + \sum_{s<t}{x\ZZ[x]\cdot\Ebasis{s}}\) and
+\(\Cbasis{t}\in \pal(0)\cdot \Ebasis{t} + \sum_{s<t}{\pal(2)\cdot\Ebasis{s}}\)
+These decompositions are quite special because the pairs \((\ZZ, x\ZZ[x])\)
+and \((\pal(0), \pal(2))\) form complementary subspaces of \(\ZZ[x]\) and
+\(\ZZ[x,x^{-1}]\) respectively. In other words,
+\[\ZZ[x] = \ZZ \oplus x\ZZ[x]\hspace{10mm}\text{and}\hspace{10mm}\ZZ[x,x^{-1}]
+    = \pal(0)\oplus\pal(2)\]
+as \(\ZZ\)-modules and \(\pal(0)\)-modules respectively.
+
+
 
 \bibliographystyle{amsalpha}
 \bibliography{references}
