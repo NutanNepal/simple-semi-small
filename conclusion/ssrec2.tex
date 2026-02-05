@@ -1,4 +1,4 @@
-\documentclass[10pt,letterpaper,english]{amsart}
+\documentclass[11pt,letterpaper,english]{amsart}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}   % utilities for mathematics
 \usepackage{amsthm}    % utilities for theorem environment
@@ -270,8 +270,8 @@ Some of the functions we consider in \(\inc(\calP)\) are \(\delta\);
 the zeta function, \(\zeta\); its
 inverse, the M\"obius function, \(\mu\);
 the characteristic \(\calP\)-kernel \(\chi\) and its associated functions.
-Following \cite{ferroni-matherne-vecchi}, some of the functions associated to
-\(\chi\) are the left and the right Kazhdan--Lusztig--Stanley functions
+Following \cite{ferroni-matherne-vecchi}, we study some functions associated to
+\(\chi\). For example, the left and the right Kazhdan--Lusztig--Stanley functions
 (\(g\) and \(f\) respectively); the \(\mathrm{Z}\) function;
 the reduced characteristic \(\calP\)-kernel  \(\overline{\chi}\);
 the characteristic Chow function \(\H\); and the left and the right
@@ -283,10 +283,11 @@ for all \(s\leq t\) in \(\calP\).
 This subalgebra \(\inc_\rho(\calP)\) is equipped with an involution
 defined by \(\mathrm{a}\mapsto\mathrm{a}^{\rev}\) with
 \(\mathrm{a}^{\rev}_{st}:= x^{\rho_{st}}\mathrm{a}_{st}(x^{-1})\).
+Special elements \(\mathrm{a}\in\inc_\rho(\calP)\) that satisfy 
+\(\mathrm{a}^{-1} = \mathrm{a}^{\rev}\) are known as \(\calP\)-kernel.
 We summarize some properties of these functions as follows:
 \begin{enumerate}
-    \item \(\chi = \mu\cdot\zeta^{\rev}\) is a \(\calP\)-kernel, i.e. it satisfies
-          \(\chi^{-1}= \chi^{\rev}\),
+    \item \(\chi = \mu\cdot\zeta^{\rev}\) is a \(\calP\)-kernel,
     \item \(g = \zeta^{\rev};\ \zeta^{\rev}_{st} = x^{\rho_{st}}\),
     \item \(\mathrm{Z} = g^{\rev}f = gf^{\rev}\) satisfies \(\mathrm{Z}^{\rev}
           = \mathrm{Z}\),
@@ -309,7 +310,7 @@ consisting of all Laurent polynomials
 
 We now consider the module \(\cH(\calP)\) of \(\calP\)
 which is defined as the free \(R\)-module
-on the set \(\{\Ebasis{s}\}_{s\in \calP}\). A typical element in \(\cH(\calP)\) looks like
+on the set \(\{\Ebasis{s}\}_{s\in \calP}\). An element in \(\cH(\calP)\) is of the form
 \[\alpha = \sum_{s \in \calP}{\alpha_s\cdot \mathrm{s}},\hspace{10mm}\text{where }\alpha_s\in R.\]
 We also define a family of \(R\)-linear map, \(\{S_s:\cH(\calP)\to R\}_{s\in\calP}\), given by
 \[\sum_{t \in \calP}{\alpha_t\cdot \mathrm{t}} \mapsto \sum_{t\geq s}{x^{-\rho_{st}}\alpha_t}.\]
@@ -367,26 +368,32 @@ is \(R\)-independent, it is also a \(\ZZ\) (resp. \(\pal(0)\))-independent
 set in \(\cH_p(\calP)\) (resp. \(\cH'_p(\calP)\)).
 But we can have even more:
 \begin{theorem}
-    \(\{\klbasis{t}\}_{t\in \calP}\) forms a \(\ZZ\)-basis for \(\cH_p(\calP)\) and
-    \(\{\Cbasis{t}\}_{t\in \calP}\) forms a \(\pal(0)\)-basis for \(\cH'_p(\calP)\).
+    We have the following statements:
+    \begin{enumerate}
+        \item \(\{\klbasis{t}\}_{t\in \calP}\) forms a \(\ZZ\)-basis for \(\cH_p(\calP)\),
+        \item \(\{\Cbasis{t}\}_{t\in \calP}\) forms a \(\pal(0)\)-basis for \(\cH'_p(\calP)\).
+    \end{enumerate}
 \end{theorem}
 \begin{proof}
     We need to show that the sets span the respective modules.
 
-    Let \(\alpha:=\sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}}\) be an element in \(\cH_p(\calP)
-    \subset\cH(\calP)\).
-    In terms of the Kazhdan--Lusztig basis, we write it as
-    \(\sum_{t\in\calP}{\beta_t\cdot\klbasis{t}}\). Thus we have
+    Let \(\alpha:=\sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}}\) be an element in \(\cH_p(\calP)\).
+    We write it as
+    \(\sum_{t\in\calP}{\beta_t\cdot\klbasis{t}}\) in the Kazhdan--Lusztig basis.
+    Thus we have
     \begin{equation}\label{eqn:change-of-basis}
-        \alpha = \sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}} = \sum_{t\in\calP}{\beta_t\cdot\klbasis{t}}
+        \alpha = \sum_{t\in\calP}{\beta_t\cdot\klbasis{t}}
         =\sum_{t\in\calP}{\beta_t\cdot\sum_{s\leq t}{\klbasisSub{t}{s}\cdot\Ebasis{s}}}
         =\sum_{s\in\calP}{\left(\sum_{t\geq s}{\beta_{t}\klbasisSub{t}{s}}\right)\cdot\Ebasis{s}}
         \implies\alpha_{s}=\sum_{t\geq s}{\beta_{t}\klbasisSub{t}{s}}.
     \end{equation}
     We will show that \(\beta_s\in\ZZ\) by induction on the corank of \(s\).
 
-    \noindent\textbf{Base case:} When \(s=\hat{1}\), \(\alpha_{\hat{1}}=\beta_{\hat{1}}\klbasisSub{\hat{1}}
-    {\hat{1}}=\beta_{\hat{1}}\). Since \(\alpha\in\cH_p(\calP)\),
+    \noindent\textbf{Base case:} When \(s=\hat{1}\),
+    \(\alpha_{\hat{1}}=\beta_{\hat{1}}\klbasisSub{\hat{1}}
+    {\hat{1}}=\beta_{\hat{1}}\).
+    
+    Since \(\alpha\in\cH_p(\calP)\),
     we have that \(S_{\hat{1}}(\alpha) = \sum_{t\geq \hat{1}}
     {x^{-\rho_{\hat{1}t}}\alpha_{t} = \alpha_{\hat{1}}}\in\pal(0)\). But \(\alpha_{\hat{1}}\)
     also needs to be in \(\ZZ[x]\). Thus, \(\beta_{\hat{1}}=\alpha_{\hat{1}}\in\pal(0)\cap\ZZ[x] = \ZZ\)
@@ -403,17 +410,38 @@ But we can have even more:
     Isolating the \(u=s\) term, we have,
     \[\beta_{s} = S_s(\alpha) - \sum_{u> s}{\beta_{u}S_s(\klbasis{u})}.\]
     The entire right-hand-side is in \(\pal(0)\) and thus \(\beta_{t}\in\pal(0)\).
-
-    Using the change of basis formula in \ref{eqn:change-of-basis}, we also have
+    
+    
+    \noindent Using the change of basis formula in \ref{eqn:change-of-basis}, we also have
     \(\beta_{s}=\alpha_s-\sum_{t>s}{\beta_{t}\klbasisSub{t}{s}}.\)
     The right-hand-side here is just an expression of polynomials. Combining this fact with the previous,
     \(\beta_s\in\pal(0)\cap\ZZ[x]=\ZZ\).
 
-    \vspace*{4mm}
-    \noindent The proof of the second part is similar.
-\end{proof}
+    \noindent Let us now show that \(\{\Cbasis{t}\}_{t\in\calP}\) forms a
+    \(\pal(0)\)-basis for \(\cH'_p(\calP)\) using the same induction. Let
+    \(\alpha:=\sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}}\) be an element in
+    \(\cH'_p(\calP)\) which we write as \(\sum_{t\in\calP}{\gamma_t\cdot\Cbasis{t}}\)
+    in the Chow basis. We show that \(\gamma_t\in\pal(0)\) by induction on the corank of \(t\).
+    
+    \noindent When \(t=\hat{1}\), we apply the map \(S_{\hat{1}}\) to \(\alpha\):
+    \[S_{\hat{1}}(\alpha) = \sum_{u \in \calP} \gamma_u S_{\hat{1}}(\Cbasis{u})= \gamma_{\hat{1}} \cdot 1 = \gamma_{\hat{1}}.\]
+    Since \(\alpha \in \cH'_p(\calP)\), we have \(S_{\hat{1}}(\alpha) \in \pal(0)\). Therefore, \(\gamma_{\hat{1}} \in \pal(0)\)
+    proving the base case.
 
-We continue our notes about the bases:
+    \noindent Now assume that for all \(u \in \calP\) with
+    \(\rho(u) > \rho(t)\), we have that \(\gamma_u \in \pal(0)\).
+    We apply \(S_t\) to \(\alpha\):
+    \[ S_t(\alpha) = \sum_{u \in \calP} \gamma_u S_t(\Cbasis{u}). \]
+    Since \(S_t(\Cbasis{u})\) is non-zero only when \(u \ge t\). We split the sum into the term \(u=t\) and the terms \(u > t\):
+    \[ S_t(\alpha) = \gamma_t S_t(\Cbasis{t}) + \sum_{u > t} \gamma_u S_t(\Cbasis{u}). \]
+    We observe that \(S_t(\Cbasis{t}) = x^{-\rho_{tt}}\CbasisSub{t}{t} = 1\). Solving for \(\gamma_t\), we obtain:
+    \[ \gamma_t = S_t(\alpha) - \sum_{u > t} \gamma_u S_t(\Cbasis{u}). \]
+        On the right-hand side, we have that
+        \(S_t(\alpha) \in \pal(0)\), \(\gamma_u \in \pal(0)\) by the inductive hypothesis,
+        and \(S_t(\Cbasis{u}) \in \pal(0)\) because \(\Cbasis{u} \in \cH'_p(\calP)\), as established previously.
+        Since \(\pal(0)\) is a ring, the linear combination of these terms remains in \(\pal(0)\). Thus, \(\gamma_t \in \pal(0)\).
+\end{proof}
+\noindent We continue our notes about the bases:
 \begin{enumerate}[resume]
     \item \(\klbasisSub{t}{t} = \CbasisSub{t}{t} = 1 \in \ZZ\subset\pal(0)\).
     \item \(\klbasisSub{t}{s} \in x\ZZ[x]\) and \(\CbasisSub{t}{s} \in \pal(2)\)
@@ -425,15 +453,85 @@ We continue our notes about the bases:
 \end{enumerate}
 So we have
 \(\klbasis{t}\in \ZZ\cdot \Ebasis{t} + \sum_{s<t}{x\ZZ[x]\cdot\Ebasis{s}}\) and
-\(\Cbasis{t}\in \pal(0)\cdot \Ebasis{t} + \sum_{s<t}{\pal(2)\cdot\Ebasis{s}}\)
+\(\Cbasis{t}\in \pal(0)\cdot \Ebasis{t} + \sum_{s<t}{\pal(2)\cdot\Ebasis{s}}\).
 These decompositions are quite special because the pairs \((\ZZ, x\ZZ[x])\)
 and \((\pal(0), \pal(2))\) form complementary subspaces of \(\ZZ[x]\) and
 \(\ZZ[x,x^{-1}]\) respectively. In other words,
 \[\ZZ[x] = \ZZ \oplus x\ZZ[x]\hspace{10mm}\text{and}\hspace{10mm}\ZZ[x,x^{-1}]
     = \pal(0)\oplus\pal(2)\]
-as \(\ZZ\)-modules and \(\pal(0)\)-modules respectively.
+as \(\ZZ\)-modules and \(\pal(0)\)-modules respectively. An element
+\(f\in\ZZ[x, x^{-1}]\) can be uniquely written as
+\begin{equation} \label{eqn:decompositionoflpoly}
+    f = f_0 + f_2,
+\end{equation}
+where \(f_0\in\pal(0)\) and \(f_2\in\pal(2)\). The projections are given by
+\[ f_0(x) = \frac{x^2 f(x^{-1}) - f(x)}{x^2 - 1} \quad \text{and} \quad f_2(x) = \frac{f(x) - f(x^{-1})}{1 - x^{-2}}. \]
 
+\begin{theorem}
+    If \(\alpha\in\cH'_p(\calP)\) is represented by
+    \(\alpha = \sum_{s\in\calP}{\alpha_s\cdot\Ebasis{s}}\) in the standard basis,
+    then it is represented by
+    \(\alpha = \sum_{s\in\calP}{(\alpha_s)_0}\cdot\Cbasis{s}\) in the Chow basis
+    where \((\alpha_s)_0\) is the \(\pal(0)\) component of \(\alpha_s\)
+    from the decomposition in \ref{eqn:decompositionoflpoly}.
+\end{theorem}
+\begin{proof}
+    Let \(\alpha\in\cH'_p(\calP)\) be represented by
+    \(\alpha = \sum_{s\in\calP}{\alpha_s\cdot\Ebasis{s}}\) in the standard basis and
+    \(\alpha = \sum_{s\in\calP}{\gamma_s\cdot\Cbasis{s}}\) in the Chow basis.
+    We need to show that \(\gamma_s = (\alpha_s)_0\).
+    We prove this by induction on the corank of \(s\).
 
+    For the base case, when \(s=\hat{1}\), we have
+    \[S_{\hat{1}}(\alpha) = \alpha_{\hat{1}}\quad\text{and}\quad S_{\hat{1}}(\alpha) = \sum_{u \in \calP} \gamma_u S_{\hat{1}}(\Cbasis{u})= \gamma_{\hat{1}} \cdot 1 = \gamma_{\hat{1}}.\]
+    Since \(\alpha_{\hat{1}}\in\pal(0)\), we have \(\gamma_{\hat{1}} = \alpha_{\hat{1}} = (\alpha_{\hat{1}})_0\).
+
+    Now assume that for all \(u\in\calP\) with \(\rho(u) > \rho(s)\), we have that \(\gamma_u = (\alpha_u)_0\).
+    Using the change of basis formula, we have
+    \[\alpha_s = \gamma_s \CbasisSub{s}{s} + \sum_{u > s}{\gamma_u \CbasisSub{u}{s}}.\]
+    Since \(\CbasisSub{u}{s} \in \pal(2)\) for every \(u > s\),
+    we have \(\sum_{u > s}{\gamma_u \CbasisSub{u}{s}} \in \pal(2)\) by using
+    the inductive hypothesis.
+    Since the remaining term \(\gamma_s \CbasisSub{s}{s}= \gamma_s\) is in \(\pal(0)\),
+    it must be the unique \(\pal(0)\) component of \(\alpha_s\)
+    by the decomposition in \ref{eqn:decompositionoflpoly}, i.e., \(\gamma_s = (\alpha_s)_0\).
+\end{proof}
+
+\subsection{Deletion of elements in the posets}
+Now we will consider only those posets that are geometric lattices.
+These are the posets that are isomorphic to the lattice of flats of a matroid.
+We will denote the lattice of flats of a matroid \(\M\) on a ground set \(E\) by \(\mathcal{L}(\M)\)
+and the rank function of \(\M\) by \(\rank_{\M}\).
+For a flat \(F \in \mathcal{L}(\M)\), we will denote the upper interval (the contraction)
+\([F, E]\) by \(M_F\) and the lower interval (the restriction)\([\emptyset, F]\) by \(M^F\).
+
+Let \(e\in E\) be an element.
+We will denote the deletion of \(e\) by \(\M \setminus e\). This is the matroid on the ground set \(E \setminus \{e\}\)
+whose flats are the sets \(F \setminus \{e\}\) for \(F \in \mathcal{L}(\M)\).
+There is a surjective map \(\calL(\M)\to\calL(\M\setminus e)\) given by \(F \mapsto F \setminus \{e\}\).
+
+\begin{definition}
+    For a flat \(F \in \calL(\M)\), we define the \emph{discrepancy} \(\delta(F)\) as:
+    \[ \delta(F) := \rank_{\M}(F) - \rank_{\M\setminus e}(F \setminus e). \]
+    We define an operator \(\Delta: \cH(\M) \to \cH(\M\setminus e)\) as the \(R\)-linear map given by:
+    \[ \Delta(\Ebasis{F}) := x^{-\delta(F)} \cdot \Ebasis{F \setminus e}. \]
+\end{definition}
+
+\begin{theorem}
+    Let \(H \in \calL(\M \setminus e)\) and denote the closure of \(H\) in \(\M\)
+    by \(\overline{H}\).
+    We have that \(S^{\M\setminus e}_H \circ \Delta =
+    S^{\M}_{\overline{H}}\).
+    In particular, \(\Delta(\Cbasis{F}) \in \cH'_p(\M \setminus e)\) for all \(F \in \calL(\M)\).
+\end{theorem}
+\begin{proof}
+    Let \(\alpha \in \cH(\M)\) be represented by \(\alpha = \sum_{F \in \calL(\M)} \alpha_F \cdot \Ebasis{F}\) in the standard basis.
+    We have that
+    \[S^{\M\setminus e}_H(\Delta(\alpha)) = \sum_{F \in \calL(\M)} \alpha_F S^{\M\setminus e}_H(x^{-\delta(F)} \cdot \Ebasis{F \setminus e}).\]
+    We can rewrite the sum as
+    \[S^{\M\setminus e}_H(\Delta(\alpha)) = \sum_{F \in \calL(\M)} \alpha_F S^{\M\setminus e}_H(x^{-\delta(F)} \cdot \Ebasis{F \setminus e})\]
+    \[S^{\M\setminus e}_H(\Delta(\alpha)) = \sum_{F \in \calL(\M)} \alpha_F S^{\M\setminus e}_H(x^{-\delta(F)} \cdot \Ebasis{F \setminus e})\]
+\end{proof}
 
 \bibliographystyle{amsalpha}
 \bibliography{references}

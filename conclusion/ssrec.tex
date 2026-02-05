@@ -204,8 +204,8 @@
 \newcommand{\Ebasis}[1]{\mathrm{#1}}
 \newcommand{\Cbasis}[1]{\mathrm{c}^{#1}}
 \newcommand{\CbasisSub}[2]{\mathrm{c}^{#1}_{#2}}
-\newcommand{\klbasis}[1]{\mathrm{z}^{#1}}
-\newcommand{\klbasisSub}[2]{\mathrm{z}^{#1}_{#2}}
+\newcommand{\klbasis}[1]{\mathrm{kl}^{#1}}
+\newcommand{\klbasisSub}[2]{\mathrm{kl}^{#1}_{#2}}
 \newcommand{\Ibasis}[2]{\mathfrak{b}^{#1}_{#2}}
 \newcommand{\pal}{\normalfont\text{Pal}}
 \newcommand{\klchowcoeff}{\mathfrak{a}}
@@ -234,7 +234,7 @@
 
 
 
-\title[Deletion Formulas for Chow Functions]{Deletion Formulas for Chow Functions of ??}
+\title[Deletion Formulas for Chow Functions]{Deletion Formulas for Chow Functions}
 
 \author[N.~Nepal]{Nutan Nepal}
 
@@ -451,7 +451,7 @@ two important bases for the module \(\calH(\calP)\).
         = \sum_{t \ge s} q_t \cdot S_s(\Cbasis{t}). \]
     Isolating the \(t=s\) term gives \(S_s(\alpha) = q_s \cdot S_s(\Cbasis{s}) + \sum_{t > s} q_t \cdot S_s(\Cbasis{t})\). Since \(S_s(\Cbasis{s})=1\), we rearrange to get:
     \[ q_s = S_s(\alpha) - \sum_{t > s} q_t \cdot S_s(\Cbasis{t}). \]
-    By the inductive hypothesis, each \(q_t\) is in \(\pal(0)\). By Proposition \ref{prop:cinHp}, each \(S_s(\Cbasis{t})\) is in \(\pal(0)\). Since \(\pal(0)\) is a ring, the entire sum is in \(\pal(0)\). Thus, \(q_s\) must also be in \(\pal(0)\).
+    By the inductive hypothesis, each \(q_t\) is in \(\pal(0)\). By Proposition \ref{prop:chow-basis-in-Hp}, each \(S_s(\Cbasis{t})\) is in \(\pal(0)\). Since \(\pal(0)\) is a ring, the entire sum is in \(\pal(0)\). Thus, \(q_s\) must also be in \(\pal(0)\).
 \end{proof}
 
 \begin{proposition}[Change of Basis Formula]\label{prop:changeofbasis}
