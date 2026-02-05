@@ -1,10 +1,11 @@
-\documentclass[11pt, letter, english]{amsart}
+\documentclass[11pt, letterpaper, english]{amsart}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath} % utilities for mathematics
 \usepackage{amsthm} % utilities for theorem environment
 \usepackage{amssymb} % loads mathematical fonts
 \usepackage[dvipsnames]{xcolor}
 \usepackage{amscd} % utilities for commutative diagrams
+
 
 \usepackage{mathtools}
 
@@ -400,7 +401,6 @@ two important bases for the module \(\calH(\calP)\).
 \begin{proposition}\label{prop:chow-basis-in-Hp}
     For all \(t \in \calP\), \(\Cbasis{t} \in \calH'_p(\calP)\), i.e.,
     it satisfies \(S_s(\Cbasis{t}) \in \pal(0)\) for all \(s \in \calP\).
-\end{proposition}
 \begin{proof}
     For any \(s \in \calP\), if \(s \not\le t\), then \(S_s(\Cbasis{t}) = 0\). If \(s \le t\), we have
     \begin{align*}
@@ -411,6 +411,7 @@ two important bases for the module \(\calH(\calP)\).
     \end{align*}
     We have that \(g^{\rev}_{st}(x)\in \pal(2\rho_{st})\) and \(G_{st}(x^{-2})\in \pal(-2\rho_{st})\). Their product is therefore in \(\pal(0)\), as required.
 \end{proof}
+\end{proposition}
 
 \begin{proposition}\label{prop:Hp_is_pal0_mod}
     The subgroup \(\calH'_p(\calP)\) is a \(\pal(0)\)-module.
@@ -425,10 +426,9 @@ two important bases for the module \(\calH(\calP)\).
 
 \begin{proposition}\label{prop:LPDecomposition}
     Any Laurent polynomial \(f\) can be uniquely written as a sum \(f = f_0 + f_2\) where
-    \(f_0 \in \pal(0)\) and \(f_2 \in \pal(2)\).The projections are given by
+    \(f_0 \in \pal(0)\) and \(f_2 \in \pal(2)\). The projections are given by
     \[ f_0(x) = \frac{x^2 f(x^{-1}) - f(x)}{x^2 - 1} \quad \text{and}
         \quad f_2(x) = \frac{f(x) - f(x^{-1})}{1 - x^{-2}}. \]
-
 \end{proposition}
 
 \begin{proposition}\label{prop:SisHp}
@@ -451,7 +451,7 @@ two important bases for the module \(\calH(\calP)\).
         = \sum_{t \ge s} q_t \cdot S_s(\Cbasis{t}). \]
     Isolating the \(t=s\) term gives \(S_s(\alpha) = q_s \cdot S_s(\Cbasis{s}) + \sum_{t > s} q_t \cdot S_s(\Cbasis{t})\). Since \(S_s(\Cbasis{s})=1\), we rearrange to get:
     \[ q_s = S_s(\alpha) - \sum_{t > s} q_t \cdot S_s(\Cbasis{t}). \]
-    By the inductive hypothesis, each \(q_t\) is in \(\pal(0)\). By Proposition \ref{prop:chow-basis-in-Hp}, each \(S_s(\Cbasis{t})\) is in \(\pal(0)\). Since \(\pal(0)\) is a ring, the entire sum is in \(\pal(0)\). Thus, \(q_s\) must also be in \(\pal(0)\).
+    By the inductive hypothesis, each \(q_t\) is in \(\pal(0)\). By Proposition~\ref{prop:chow-basis-in-Hp}, each \(S_s(\Cbasis{t})\) is in \(\pal(0)\). Since \(\pal(0)\) is a ring, the entire sum is in \(\pal(0)\). Thus, \(q_s\) must also be in \(\pal(0)\).
 \end{proof}
 
 \begin{proposition}[Change of Basis Formula]\label{prop:changeofbasis}
