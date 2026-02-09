@@ -283,7 +283,7 @@ for all \(s\leq t\) in \(\calP\).
 This subalgebra \(\inc_\rho(\calP)\) is equipped with an involution
 defined by \(\mathrm{a}\mapsto\mathrm{a}^{\rev}\) with
 \(\mathrm{a}^{\rev}_{st}:= x^{\rho_{st}}\mathrm{a}_{st}(x^{-1})\).
-Special elements \(\mathrm{a}\in\inc_\rho(\calP)\) that satisfy 
+Special elements \(\mathrm{a}\in\inc_\rho(\calP)\) that satisfy
 \(\mathrm{a}^{-1} = \mathrm{a}^{\rev}\) are known as \(\calP\)-kernel.
 We summarize some properties of these functions as follows:
 \begin{enumerate}
@@ -392,7 +392,7 @@ But we can have even more:
     \noindent\textbf{Base case:} When \(s=\hat{1}\),
     \(\alpha_{\hat{1}}=\beta_{\hat{1}}\klbasisSub{\hat{1}}
     {\hat{1}}=\beta_{\hat{1}}\).
-    
+
     Since \(\alpha\in\cH_p(\calP)\),
     we have that \(S_{\hat{1}}(\alpha) = \sum_{t\geq \hat{1}}
     {x^{-\rho_{\hat{1}t}}\alpha_{t} = \alpha_{\hat{1}}}\in\pal(0)\). But \(\alpha_{\hat{1}}\)
@@ -410,8 +410,8 @@ But we can have even more:
     Isolating the \(u=s\) term, we have,
     \[\beta_{s} = S_s(\alpha) - \sum_{u> s}{\beta_{u}S_s(\klbasis{u})}.\]
     The entire right-hand-side is in \(\pal(0)\) and thus \(\beta_{t}\in\pal(0)\).
-    
-    
+
+
     \noindent Using the change of basis formula in \ref{eqn:change-of-basis}, we also have
     \(\beta_{s}=\alpha_s-\sum_{t>s}{\beta_{t}\klbasisSub{t}{s}}.\)
     The right-hand-side here is just an expression of polynomials. Combining this fact with the previous,
@@ -422,7 +422,7 @@ But we can have even more:
     \(\alpha:=\sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}}\) be an element in
     \(\cH'_p(\calP)\) which we write as \(\sum_{t\in\calP}{\gamma_t\cdot\Cbasis{t}}\)
     in the Chow basis. We show that \(\gamma_t\in\pal(0)\) by induction on the corank of \(t\).
-    
+
     \noindent When \(t=\hat{1}\), we apply the map \(S_{\hat{1}}\) to \(\alpha\):
     \[S_{\hat{1}}(\alpha) = \sum_{u \in \calP} \gamma_u S_{\hat{1}}(\Cbasis{u})= \gamma_{\hat{1}} \cdot 1 = \gamma_{\hat{1}}.\]
     Since \(\alpha \in \cH'_p(\calP)\), we have \(S_{\hat{1}}(\alpha) \in \pal(0)\). Therefore, \(\gamma_{\hat{1}} \in \pal(0)\)
@@ -436,10 +436,10 @@ But we can have even more:
     \[ S_t(\alpha) = \gamma_t S_t(\Cbasis{t}) + \sum_{u > t} \gamma_u S_t(\Cbasis{u}). \]
     We observe that \(S_t(\Cbasis{t}) = x^{-\rho_{tt}}\CbasisSub{t}{t} = 1\). Solving for \(\gamma_t\), we obtain:
     \[ \gamma_t = S_t(\alpha) - \sum_{u > t} \gamma_u S_t(\Cbasis{u}). \]
-        On the right-hand side, we have that
-        \(S_t(\alpha) \in \pal(0)\), \(\gamma_u \in \pal(0)\) by the inductive hypothesis,
-        and \(S_t(\Cbasis{u}) \in \pal(0)\) because \(\Cbasis{u} \in \cH'_p(\calP)\), as established previously.
-        Since \(\pal(0)\) is a ring, the linear combination of these terms remains in \(\pal(0)\). Thus, \(\gamma_t \in \pal(0)\).
+    On the right-hand side, we have that
+    \(S_t(\alpha) \in \pal(0)\), \(\gamma_u \in \pal(0)\) by the inductive hypothesis,
+    and \(S_t(\Cbasis{u}) \in \pal(0)\) because \(\Cbasis{u} \in \cH'_p(\calP)\), as established previously.
+    Since \(\pal(0)\) is a ring, the linear combination of these terms remains in \(\pal(0)\). Thus, \(\gamma_t \in \pal(0)\).
 \end{proof}
 \noindent We continue our notes about the bases:
 \begin{enumerate}[resume]
@@ -468,6 +468,7 @@ where \(f_0\in\pal(0)\) and \(f_2\in\pal(2)\). The projections are given by
 \[ f_0(x) = \frac{x^2 f(x^{-1}) - f(x)}{x^2 - 1} \quad \text{and} \quad f_2(x) = \frac{f(x) - f(x^{-1})}{1 - x^{-2}}. \]
 
 \begin{theorem}
+    \label{thm:changeofbasis}
     If \(\alpha\in\cH'_p(\calP)\) is represented by
     \(\alpha = \sum_{s\in\calP}{\alpha_s\cdot\Ebasis{s}}\) in the standard basis,
     then it is represented by
@@ -514,7 +515,8 @@ There is a surjective map \(\calL(\M)\to\calL(\M\setminus e)\) given by \(F \map
     For a flat \(F \in \calL(\M)\), we define the \emph{discrepancy} \(\delta(F)\) as:
     \[ \delta(F) := \rank_{\M}(F) - \rank_{\M\setminus e}(F \setminus e). \]
     We define an operator \(\Delta: \cH(\M) \to \cH(\M\setminus e)\) as the \(R\)-linear map given by:
-    \[ \Delta(\Ebasis{F}) := x^{-\delta(F)} \cdot \Ebasis{F \setminus e}. \]
+    \[ \Delta(\Ebasis{F}) := x^{-\delta(F)} \cdot \Ebasis{F \setminus e}\]
+    and extended to all of \(\cH(\M)\) by linearity.
 \end{definition}
 
 \begin{theorem}
@@ -525,6 +527,52 @@ There is a surjective map \(\calL(\M)\to\calL(\M\setminus e)\) given by \(F \map
     In particular, \(\Delta(\Cbasis{F}) \in \cH'_p(\M \setminus e)\) for all \(F \in \calL(\M)\).
 \end{theorem}
 
+\begin{proposition}\label{prop:imageofDeltaCbasis}
+    For any flat \(F \in \mathcal{L}(\M)\), the following identities hold in \(\cH'_p(\M \setminus e)\):
+    \begin{enumerate}
+        \item If \(e\) is not a coloop in \(\M^F\), then
+              \begin{equation}\label{eq:imageofDeltaCbasisnoncoloop}
+                  \Delta(\Cbasis{F}) = \Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F)}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+              \end{equation}
+        \item If \(e\) is a coloop in \(\M^F\), then
+              \begin{equation}\label{eq:imageofDeltaCbasiscoloop}
+                  \Delta(\Cbasis{F}) = (x+x^{-1})\Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F), G \neq F\setminus e}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+              \end{equation}
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    By Theorem~\ref{thm:changeofbasis}, the coefficients
+    \(q_G\) in the expansion \(\Delta(\Cbasis{F}) = \sum q_G \cdot \Cbasis{G}\) are the unique \(\pal(0)\)
+    components of the standard-basis coefficients,
+    \[\beta_G = \sum_{L: L \le F, L\setminus e = G} \CbasisSub{F}{L} x^{-\delta(L)}.\]
+    Thus we analyze
+    \(q_G\) by considering different cases for the flat \(G\).
+
+    \textbf{Coefficients for \(G \neq F \setminus e\):}
+    For any flat \(G\) not equal to \(F \setminus e\), its preimages \(L \le F\) are a subset of
+    \(\{\overline{G}, G \cup e\}\) where \(\overline{G}\) is the closure of \(G\) in \(\M\).
+    \begin{itemize}
+        \item If \(G \in S_e(\M^F)\), \(\overline{G} = G\) and the standard-basis coefficient is \(\beta_G = \CbasisSub{F}{G} + x^{-1}\CbasisSub{F}{G\cup e}\). This is a sum of a \(\pal(2)\) term and a \(\pal(0)\) term. Its unique \(\pal(0)\) part is \(q_G = x^{-1}\CbasisSub{F}{G\cup e}\).
+        \item If \(G \notin S_e(\M^F)\), the only possible preimage is
+              \(L=\overline{G}\). The standard-basis coefficient is
+              \(\beta_G = \CbasisSub{F}{\overline{G}}\), which is in \(\pal(2)\). Its \(\pal(0)\) part is \(q_G = 0\).
+    \end{itemize}
+    These coefficients account for the summation in both formulas of the proposition.
+
+    \textbf{Coefficient for \(G = F \setminus e\):}
+    Here we analyze \(\beta_{F\setminus e}\) by considering the the following two cases:
+    \begin{itemize}
+        \item If \(e\) is \textbf{not a coloop} in \(\M^F\), the only flat \(L \le F\) that deletes to
+              \(F \setminus e\) is \(L=F\). The standard-basis coefficient is \(\beta_{F\setminus e} =
+              \CbasisSub{F}{F}x^{-0} = 1 \in \pal(0)\).
+              So \(q_{F\setminus e} = 1\), proving the first part of the proposition.
+
+        \item If \(e\) is \textbf{a coloop} in \(\M^F\), the preimages are \(L=F \setminus e\) and
+              \(L=F\). The standard-basis coefficient is
+              \(\beta_{F\setminus e} = \CbasisSub{F}{F\setminus e} + x^{-1}\CbasisSub{F}{F} = x+x^{-1}\in \pal(0)\).
+              So \(q_{F\setminus e} = x+x^{-1}\). This proves the second part of the proposition.
+    \end{itemize}
+\end{proof}
 
 \bibliographystyle{amsalpha}
 \bibliography{references}
