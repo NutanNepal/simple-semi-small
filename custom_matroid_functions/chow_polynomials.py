@@ -10,8 +10,10 @@ import os
 from sage.all import *
 from .core import characteristic_polynomial
 
-# Cache file path
-CACHE_FILE = "chow_polynomial_cache.json"
+# Cache file path: use notes/ in project root (robust to cwd)
+_pkg_dir = os.path.dirname(os.path.abspath(__file__))
+_project_root = os.path.dirname(_pkg_dir)
+CACHE_FILE = os.path.join(_project_root, "notes", "chow_polynomial_cache.json")
 
 def _load_cache():
     """
