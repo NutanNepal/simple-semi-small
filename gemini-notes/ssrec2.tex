@@ -1,0 +1,660 @@
+\documentclass[12pt,letterpaper,english]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}   % utilities for mathematics
+\usepackage{amsthm}    % utilities for theorem environment
+\usepackage{amssymb}   % loads mathematical fonts
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amscd} % utilities for commutative diagrams
+
+\usepackage{mathtools}
+
+\usepackage{subcaption}
+\usepackage{array} % core package
+\usepackage[sc]{mathpazo} % Palatino font with small caps
+\usepackage[scr=boondoxo]{mathalfa}
+
+\usepackage[unicode=true]{hyperref} % permits navigating on the pdf
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyBlue,
+    citecolor=OliveGreen,
+    urlcolor=blue,
+    pdfencoding=auto
+}
+\usepackage{cleveref} % smart referencing
+\usepackage{caption}
+
+\usepackage{graphics,graphicx} % permits putting images
+\usepackage{tikz,tikz-cd} % tool for diagrams
+\usepackage{enumitem}
+
+%\usetikzlibrary{graphdrawing.force}% quotes library is for the [""] edges
+\usetikzlibrary{graphs,graphs.standard,calc}
+
+\usetikzlibrary{decorations.pathreplacing,}%angles,quotes
+
+\DeclareMathAlphabet{\mathsf}{OT1}{\sfdefault}{m}{n}
+
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+%\usepackage[margin=1.30in]{geometry}
+%\usepackage[textwidth=360pt,textheight=615pt]{geometry}
+\linespread{1.3}
+\setlength\parindent{0.25in}
+\usepackage{verbatim}
+\usepackage{scalerel}
+
+\makeatletter
+\def\dual#1{\expandafter\dual@aux#1\@nil}
+\def\dual@aux#1/#2\@nil{\begin{tabular}{@{}c@{}}#1\\#2\end{tabular}}
+\makeatother
+
+\makeatletter
+\@namedef{subjclassname@2020}{\textup{2020} Mathematics Subject Classification}
+\makeatother
+
+
+\newcommand{\stirlingtwo}[2]{\biggl\{\genfrac{}{}{0pt}{}{#1}{#2}\biggr\}}
+\newcommand{\tstirlingtwo}[2]{\left\{\genfrac{}{}{0pt}{}{#1}{#2}\right\}}
+%\renewcommand{\tilde}{\widetilde}
+%\renewcommand{\widetilde}{\wwtilde}
+
+\DeclareMathAlphabet{\amathbb}{U}{bbold}{m}{n}
+
+
+\newcommand{\mfrak}[1]{\scaleobj{0.93}{\mathfrak{#1}}}
+
+\hypersetup{
+    colorlinks = true,
+    linkbordercolor = {white},
+    linkcolor = {BrickRed},
+    anchorcolor = {black},
+    citecolor = {BrickRed},
+    filecolor = {cyan},
+    menucolor = {BrickRed},
+    runcolor = {cyan},
+    urlcolor = {black}
+}
+
+\usetikzlibrary{automata}
+\usepackage{bbm}
+\usepackage{yfonts}
+
+\newtheoremstyle{teoremas}% <name>
+{11pt}% <Space above>
+{11pt}% <Space below>
+{\itshape}% <Body font>
+{}% <Indent amount>
+{\bfseries}% <Theorem head font>
+{}% <Punctuation after theorem head>
+{.5em}% <Space after theorem headi>
+{}% <Theorem head spec (can be left empty, meaning `normal')>
+
+
+
+\theoremstyle{teoremas}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newtheoremstyle{definition}% <name>
+{11pt}% <Space above>
+{11pt}% <Space below>
+{}% <Body font>
+{}% <Indent amount>
+{\bfseries}% <Theorem head font>
+{}% <Punctuation after theorem head>
+{.5em}% <Space after theorem headi>
+{}% <Theorem head spec (can be left empty, meaning `normal')>
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{thmdefinition}[theorem]{Theorem-Definition}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{openproblem}[theorem]{Open Problem}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\cusp}{cusp}
+\DeclareMathOperator{\Rel}{Rel}
+\DeclareMathOperator{\Poin}{Poin}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+
+\newcommand{\M}{\mathsf{M}}
+%\newcommand{\B}{\mathsf{B}} let us only write \U_{n,n} for boolean matroids
+\newcommand{\N}{\mathsf{N}}
+\newcommand{\U}{\mathsf{U}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\A}{\mathrm{A}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\LL}{\mathsf{\Lambda}}
+\newcommand{\PP}{\mathsf{\Pi}}
+\newcommand{\C}{\mathsf{C}}
+%\renewcommand{\lambda}{\lambda}
+
+\newcommand{\Hilb}{\operatorname{Hilb}}
+\newcommand{\rank}{\operatorname{rk}}
+\newcommand{\corank}{\operatorname{crk}}
+\newcommand{\cl}{\operatorname{cl}}
+\renewcommand{\H}{\mathrm{H}}
+\newcommand{\CH}{\mathrm{CH}}
+\newcommand{\aug}{\operatorname{aug}}
+\newcommand{\IH}{\mathrm{IH}}
+\newcommand{\uH}{\underline{\mathrm{H}}}
+\newcommand{\uCH}{\underline{\mathrm{CH}}}
+\newcommand\size[1]{|#1|}
+\DeclareMathOperator{\Pal}{\mathrm{Pal}}
+\DeclareMathOperator{\Poly}{\mathrm{Poly}}
+
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\PG}{\operatorname{PG}}
+\newcommand{\Rep}{\operatorname{Rep}}
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\VRep}{\operatorname{VRep}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\col}{\operatorname{col}}
+\newcommand{\asc}{\operatorname{asc}}
+\newcommand{\bad}{\operatorname{bad}}
+\newcommand{\des}{\operatorname{des}}
+\newcommand{\luis}{\textcolor{NavyBlue}}
+\newcommand{\qbinom}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}_q}
+
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\bz}{\mathbb{Z}}
+\newcommand{\rev}{\normalfont\text{rev}}
+\newcommand{\lt}{\normalfont\text{lt}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\ind}{\text{\normalfont Ind}}
+\newcommand{\stab}{\text{\normalfont Stab}}
+\newcommand{\chow}{\normalfont\text{\underline{H}}}
+\newcommand{\augchow}{\normalfont\text{H}}
+\newcommand{\klpoly}{\normalfont\text{P}}
+\newcommand{\invklpoly}{\normalfont\hat{\text{Q}}}
+\newcommand{\redchar}{\overline{\chi}}
+\newcommand{\flats}{\normalfont\text{Flats}}
+\newcommand{\flags}{\normalfont\text{Flags}}
+\newcommand{\matM}{\normalfont\text{M}}
+\newcommand{\hilbMmodF}{\normalfont\text{\underline{H}}_\text{M/F}}
+\newcommand{\chibar}{\overline{\chi}}
+\newcommand{\E}{\normalfont\text{E}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Ebasis}[1]{\mathrm{#1}}
+\newcommand{\Cbasis}[1]{\mathrm{c}^{#1}}
+\newcommand{\CbasisSub}[2]{\mathrm{c}^{#1}_{#2}}
+\newcommand{\klbasis}[1]{\mathrm{kl}^{#1}}
+\newcommand{\klbasisSub}[2]{\mathrm{kl}^{#1}_{#2}}
+\newcommand{\Ibasis}[2]{\mathfrak{b}^{#1}_{#2}}
+\newcommand{\pal}{\normalfont\text{Pal}}
+\newcommand{\klchowcoeff}{\mathfrak{a}}
+\newcommand{\IntP}{\normalfont\text{Int}}
+\newcommand{\inc}{\normalfont\text{I}}
+\newcommand{\barchi}{\overline{\chi}}
+
+
+%\newcommand\rev[1]{#1^{\operatorname{rev}}}
+
+\AtBeginDocument{%
+   \def\MR#1{}
+}
+
+
+%% preliminary version only
+\begin{comment}
+ \usepackage{prelim2e}
+ \renewcommand{\PrelimText}{\sf\scriptsize --- INCOMPLETE DRAFT of \today ---}
+ \marginparwidth=0.75in
+ \usepackage[notcite,notref]{showkeys}
+ \usepackage[colorinlistoftodos,bordercolor=orange,backgroundcolor=orange!20,linecolor=orange,textsize=scriptsize]{todonotes}
+
+ \usepackage{prelim2e}
+ \usepackage[us,24hr]{datetime}
+ \renewcommand{\PrelimText}{\sf\scriptsize ---\,Version of \today \,-\,\currenttime\,---}
+\end{comment}
+
+
+
+\title[\(\kappa\mathfrak{Chow\text{-}functions}\)]{\Huge\(\kappa\mathfrak{Chow\text{-}functions}\)}
+
+\author[Nutan Nepal]{Nutan Nepal}
+
+\address{(N. Nepal)
+Department of Mathematics, North Carolina State University, Raleigh, NC, USA.
+}
+\email{nnepal2@ncsu.edu}
+
+\subjclass[2020]{Primary: 05B35}
+
+\allowdisplaybreaks
+
+\begin{document}
+
+\begin{abstract}
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\subsection{Main results}
+
+\section{Framework}
+
+\subsection{Posets and Incidence Algebras}
+Let \(\calP\) be a \emph{finite partially ordered set} ranked by the function \(\rho\).
+We denote by \(\inc(\calP)\) the incidence algebra of the poset \(\calP\) over the ring
+\(\ZZ[x]\) with the algebra structure given by convolution.
+Some of the functions we consider in \(\inc(\calP)\) are the unit element \(\delta\);
+the zeta function \(\zeta\); its
+inverse, the M\"obius function, \(\mu\);
+the characteristic \(\calP\)-kernel \(\chi\) and its associated functions.
+Following \cite{ferroni-matherne-vecchi}, we study some functions associated to
+\(\chi\). For example, the left and the right Kazhdan--Lusztig--Stanley functions
+(\(g\) and \(f\) respectively); the \(\mathrm{Z}\) function;
+the reduced characteristic \(\calP\)-kernel  \(\overline{\chi}\);
+the characteristic Chow function \(\H\); and the left and the right
+augmented Chow functions (\(G\) and \(F\) respectively). All these
+functions live inside a special subalgebra \(\inc_{\rho}(\calP)\)
+which consists of all the functions \(\mathrm{a}\in\inc(\calP)\)
+that satisfy \(\deg(\mathrm{a}_{st}(x))\leq\rho_{st}:=\rho(t)-\rho(s)\)
+for all \(s\leq t\) in \(\calP\).
+This subalgebra \(\inc_\rho(\calP)\) is equipped with an involution
+defined by \(\mathrm{a}\mapsto\mathrm{a}^{\rev}\) with
+\(\mathrm{a}^{\rev}_{st}:= x^{\rho_{st}}\mathrm{a}_{st}(x^{-1})\).
+Special elements \(\mathrm{a}\in\inc_\rho(\calP)\) that satisfy
+\(\mathrm{a}^{-1} = \mathrm{a}^{\rev}\) are known as \(\calP\)-kernel.
+We summarize some properties of these functions as follows:
+\begin{enumerate}
+    \item \(\chi = \mu\cdot\zeta^{\rev}\) is a \(\calP\)-kernel,
+    \item \(g = \zeta^{\rev};\ \zeta^{\rev}_{st} = x^{\rho_{st}}\),
+    \item \(\mathrm{Z} = g^{\rev}f = gf^{\rev}\) satisfies \(\mathrm{Z}^{\rev}
+          = \mathrm{Z}\),
+    \item \(\displaystyle\barchi_{st}(x) =
+          \begin{cases}
+              \chi_{st}(x)/(x-1)\quad & \text{if } s<t,   \\
+              -1 \quad                & \text{if } s = t,
+          \end{cases}\)
+    \item \(\H:=-\left(\barchi\right)^{-1}\) satisfies \(\H_{st}(x) = x^{\rho_{st}-1}\H_{st}(x^{-1}),\)
+    \item \(F = \H\cdot f^{\rev}\) satisfies \(\mathrm{F}^{\rev}= \mathrm{F}\),
+    \item \(G = g^{\rev}\cdot \H\) satisfies \(\mathrm{G}^{\rev}= \mathrm{G}\).
+\end{enumerate}
+
+\subsection{The lorem ipsum modules}
+Let \(R:=\ZZ[x,x^{-1}]\) be the ring of Laurent polynomials with integer coefficients.
+This ring contains the additive subgroups \(\pal(n)\), for each \(n\in\ZZ\),
+consisting of all Laurent polynomials
+\(p\) satisfying \(p(x)=x^{n}p(x^{-1})\). We note that these subgroups satisfy
+\(\pal(n)\cdot\pal(m)\subset \pal(n+m)\) and, in particular, \(\pal(0)\) is a ring.
+
+We now consider the module \(\cH(\calP)\) of \(\calP\)
+which is defined as the free \(R\)-module
+on the set \(\{\Ebasis{s}\}_{s\in \calP}\). An element in \(\cH(\calP)\) is of the form
+\[\alpha = \sum_{s \in \calP}{\alpha_s\cdot \mathrm{s}},\hspace{10mm}\text{where }\alpha_s\in R.\]
+We also define a family of \(R\)-linear maps, \(\{S_s:\cH(\calP)\to R\}_{s\in\calP}\), given
+on the standard basis by
+\[S_s: \mathrm{t}\mapsto \begin{cases}x^{-\rho_{st}} & \text{if } t\geq s, \\ 0 & \text{otherwise}.\end{cases}\]
+and extended linearly to all of \(\cH(\calP)\).
+
+Using these maps, we introduce some `local' conditions to impose on the elements
+\(\alpha\in\cH(\calP)\):
+\begin{enumerate}
+    \item[\(\mathbf{C}1\):] \label{cond:p1}
+        \(\alpha_s\in\ZZ[x]\) for every \(s\in\calP\),
+    \item[\(\mathbf{C}2\):] \label{cond:p2}
+        \(S_s(\alpha)\in \pal(0)\) for every \(s\in\calP\).
+\end{enumerate}
+Let \(\cH_p(\calP)\) the subgroup consisting of all
+elements \(\alpha\in \cH(\calP)\) that satisfy both of the conditions
+and let \(\cH'_p(\calP)\) be the subgroup consisting of only those
+that satisfy~\(\mathbf{C}2\). We note that the subgroup
+\(\cH_p(\calP)\) is a \(\ZZ\)-module since multiplying by an element of \(\ZZ[x]\)
+preserves the conditions \(\mathbf{C}1\) and \(\mathbf{C}2\).
+Similarly, the subgroup
+\(\cH'_p(\calP)\) is a \(\pal(0)\)-module. To further study these
+modules, we consider two new \(R\)-bases of \(\cH(\calP)\) given by:
+\[\klbasis{t} = \sum_{s\leq t}{\klbasisSub{t}{s}(x)\cdot\Ebasis{s}}
+    :=\sum_{s\leq t}{x^{\rho_{st}}f_{st}(x^{-2})\cdot\Ebasis{s}},
+    \hspace{10mm}\text{and}\hspace{10mm}
+    \Cbasis{t}= \sum_{s\leq t}{\CbasisSub{t}{s}(x)\cdot\Ebasis{s}}
+    :=\sum_{s\leq t}{x^{\rho_{st}}\H_{st}(x^{-2})\cdot\Ebasis{s}}.
+\]
+Considering the functions they employ, we will name the first one the \textbf{Kazhdan--Lusztig basis} and the second
+the \textbf{Chow basis}.
+
+There are a few notes that we can make about these
+bases:
+\begin{enumerate}
+    \item \(\klbasis{t} \in \cH_p(\calP)\) for all \(t\in\calP\):
+          We need to show that \(\klbasis{t}\) satisfies the two conditions. Firstly,
+          since \(\deg(f_{st})<\rho_{st}/2\), we have \(\klbasisSub{t}{s}
+          \in\ZZ[x]\). Secondly, for a fixed \(s\in\calP\), we have
+          \begin{align*}
+              S_s(\klbasis{t}) & = \sum_{u\geq s}{x^{-\rho_{su}}\klbasisSub{t}{u}(x)}                  \\
+                               & = \sum_{u\geq s}{x^{-\rho_{su}}x^{\rho_{ut}}f_{ut}(x^{-2})}           \\
+                               & = x^{\rho_{st}}\sum_{u: s\leq u\leq t}{x^{-2\rho_{su}}f_{ut}(x^{-2})} \\
+                               & = x^{\rho_{st}}\mathrm{Z}_{st}(x^{-2}).
+          \end{align*}
+          The factor \(x^{\rho_{st}}\) is in \(\pal(2\rho_{st})\) and,
+          since \(\mathrm{Z}^{\rev}=\mathrm{Z}\),
+          the factor \(\mathrm{Z}_{st}(x^{-2})\)
+          is in \(\pal(-2\rho_{st})\). Thus their product \(S_s(\klbasis{t})\) is in
+          \(\pal(2\rho_{st}-2\rho_{st}) = \pal(0)\), as required.
+
+    \item \(\Cbasis{t} \in \cH'_p(\calP)\):
+          This requires \(S_s(\Cbasis{t})\) to be in \(\pal(0)\) for every \(s\in \calP\).
+          As in the previous
+          case, \(S_s(\Cbasis{t})\) now reduces to the product \(x^{\rho_{st}} \left(g^{\rev}\cdot \cH
+          \right)_{st}(x^{-2}) = x^{\rho_{st}}G_{st}(x^{-2})\) which is also in \(\pal(0)\)
+          since \(G^{\rev} = G\).
+\end{enumerate}
+Since the set \(\{\klbasis{t}\}_{t\in\calP}\) (resp. \(\{\Cbasis{t}\}_{t\in\calP}\))
+is \(R\)-independent, it is also a \(\ZZ\) (resp. \(\pal(0)\))-independent
+set in \(\cH_p(\calP)\) (resp. \(\cH'_p(\calP)\)).
+But we can have even more:
+\begin{theorem}
+    We have the following statements:
+    \begin{enumerate}
+        \item \(\{\klbasis{t}\}_{t\in \calP}\) forms a \(\ZZ\)-basis for \(\cH_p(\calP)\),
+        \item \(\{\Cbasis{t}\}_{t\in \calP}\) forms a \(\pal(0)\)-basis for \(\cH'_p(\calP)\).
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    We need to show that the sets span the respective modules.
+
+    Let \(\alpha:=\sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}}\) be an element in \(\cH_p(\calP)\).
+    We write it as
+    \(\sum_{t\in\calP}{\beta_t\cdot\klbasis{t}}\) in the Kazhdan--Lusztig basis.
+    Thus we have
+    \begin{equation}\label{eqn:change-of-basis}
+        \alpha = \sum_{t\in\calP}{\beta_t\cdot\klbasis{t}}
+        =\sum_{t\in\calP}{\beta_t\cdot\sum_{s\leq t}{\klbasisSub{t}{s}\cdot\Ebasis{s}}}
+        =\sum_{s\in\calP}{\left(\sum_{t\geq s}{\beta_{t}\klbasisSub{t}{s}}\right)\cdot\Ebasis{s}}
+        \implies\alpha_{s}=\sum_{t\geq s}{\beta_{t}\klbasisSub{t}{s}}.
+    \end{equation}
+    We will show that \(\beta_s\in\ZZ\) by induction on the corank of \(s\).
+
+    \noindent\textbf{Base case:} When \(s=\hat{1}\),
+    \(\alpha_{\hat{1}}=\beta_{\hat{1}}\klbasisSub{\hat{1}}
+    {\hat{1}}=\beta_{\hat{1}}\).
+
+    Since \(\alpha\in\cH_p(\calP)\),
+    we have that \(S_{\hat{1}}(\alpha) = \sum_{t\geq \hat{1}}
+    {x^{-\rho_{\hat{1}t}}\alpha_{t} = \alpha_{\hat{1}}}\in\pal(0)\). But \(\alpha_{\hat{1}}\)
+    also needs to be in \(\ZZ[x]\). Thus, \(\beta_{\hat{1}}=\alpha_{\hat{1}}\in\pal(0)\cap\ZZ[x] = \ZZ\)
+    as required.
+
+    \noindent\textbf{Inductive step:} Assume that for all \(t\in\calP\) with \(\rho(t)>\rho(s)\),
+    we have \(\beta_t\in\ZZ\). Then,
+    \[S_s(\alpha)=\sum_{t\geq s}{x^{-\rho_{st}}\alpha_{t}}.\]
+    Substituting for \(\alpha_t\) using the change of basis formula in \ref{eqn:change-of-basis},
+    we have
+    \[S_s(\alpha)=\sum_{t\geq s}{x^{-\rho_{st}}\sum_{u\geq t}{\beta_{u}\klbasisSub{u}{t}}}
+        =\sum_{u\geq s}{\beta_{u}\left(\sum_{t:s\leq t\leq u}{x^{-\rho_{st}}\klbasisSub{u}{t}}\right)}
+        =\sum_{u\geq s}{\beta_{u}S_s(\klbasis{u})}.\]
+    Isolating the \(u=s\) term, we have,
+    \[\beta_{s} = S_s(\alpha) - \sum_{u> s}{\beta_{u}S_s(\klbasis{u})}.\]
+    The entire right-hand-side is in \(\pal(0)\) and thus \(\beta_{t}\in\pal(0)\).
+
+
+    \noindent Using the change of basis formula in \ref{eqn:change-of-basis}, we also have
+    \(\beta_{s}=\alpha_s-\sum_{t>s}{\beta_{t}\klbasisSub{t}{s}}.\)
+    The right-hand-side here is just an expression of polynomials. Combining this fact with the previous,
+    \(\beta_s\in\pal(0)\cap\ZZ[x]=\ZZ\).
+
+    \noindent Let us now show that \(\{\Cbasis{t}\}_{t\in\calP}\) forms a
+    \(\pal(0)\)-basis for \(\cH'_p(\calP)\) using the same induction. Let
+    \(\alpha:=\sum_{t\in\calP}{\alpha_t\cdot\Ebasis{t}}\) be an element in
+    \(\cH'_p(\calP)\) which we write as \(\sum_{t\in\calP}{\gamma_t\cdot\Cbasis{t}}\)
+    in the Chow basis. We show that \(\gamma_t\in\pal(0)\) by induction on the corank of \(t\).
+
+    \noindent When \(t=\hat{1}\), we apply the map \(S_{\hat{1}}\) to \(\alpha\):
+    \[S_{\hat{1}}(\alpha) = \sum_{u \in \calP} \gamma_u S_{\hat{1}}(\Cbasis{u})= \gamma_{\hat{1}} \cdot 1 = \gamma_{\hat{1}}.\]
+    Since \(\alpha \in \cH'_p(\calP)\), we have \(S_{\hat{1}}(\alpha) \in \pal(0)\). Therefore, \(\gamma_{\hat{1}} \in \pal(0)\)
+    proving the base case.
+
+    \noindent Now assume that for all \(u \in \calP\) with
+    \(\rho(u) > \rho(t)\), we have that \(\gamma_u \in \pal(0)\).
+    We apply \(S_t\) to \(\alpha\):
+    \[ S_t(\alpha) = \sum_{u \in \calP} \gamma_u S_t(\Cbasis{u}). \]
+    Since \(S_t(\Cbasis{u})\) is non-zero only when \(u \ge t\). We split the sum into the term \(u=t\) and the terms \(u > t\):
+    \[ S_t(\alpha) = \gamma_t S_t(\Cbasis{t}) + \sum_{u > t} \gamma_u S_t(\Cbasis{u}). \]
+    We observe that \(S_t(\Cbasis{t}) = x^{-\rho_{tt}}\CbasisSub{t}{t} = 1\). Solving for \(\gamma_t\), we obtain:
+    \[ \gamma_t = S_t(\alpha) - \sum_{u > t} \gamma_u S_t(\Cbasis{u}). \]
+    On the right-hand side, we have that
+    \(S_t(\alpha) \in \pal(0)\), \(\gamma_u \in \pal(0)\) by the inductive hypothesis,
+    and \(S_t(\Cbasis{u}) \in \pal(0)\) because \(\Cbasis{u} \in \cH'_p(\calP)\), as established previously.
+    Since \(\pal(0)\) is a ring, the linear combination of these terms remains in \(\pal(0)\). Thus, \(\gamma_t \in \pal(0)\).
+\end{proof}
+\noindent We continue our notes about the bases:
+\begin{enumerate}[resume]
+    \item \(\klbasisSub{t}{t} = \CbasisSub{t}{t} = 1 \in \ZZ\subset\pal(0)\).
+    \item \(\klbasisSub{t}{s} \in x\ZZ[x]\) and \(\CbasisSub{t}{s} \in \pal(2)\)
+          for \(s<t\) in \(\calP\): The first part is true because \(\deg(f_{st}(x))
+          <\rho_{st}/2\). For the second assertion, using the fact that
+          \(\H_{st}(x)\) is a symmetric polynomial with center of symmetry
+          \((\rho_{st}-1)/2\), we note that
+          \[x^{\rho_{st}}\H_{st}(x^{-2}) \in \pal(2\rho_{st})\cdot\pal(-2(\rho_{st}-1))\subset\pal(2).\]
+\end{enumerate}
+So we have
+\(\klbasis{t}\in \ZZ\cdot \Ebasis{t} + \sum_{s<t}{x\ZZ[x]\cdot\Ebasis{s}}\) and
+\(\Cbasis{t}\in \pal(0)\cdot \Ebasis{t} + \sum_{s<t}{\pal(2)\cdot\Ebasis{s}}\).
+These decompositions are quite special because the pairs \((\ZZ, x\ZZ[x])\)
+and \((\pal(0), \pal(2))\) form complementary subspaces of \(\ZZ[x]\) and
+\(\ZZ[x,x^{-1}]\) respectively. In other words,
+\[\ZZ[x] = \ZZ \oplus x\ZZ[x]\hspace{10mm}\text{and}\hspace{10mm}\ZZ[x,x^{-1}]
+    = \pal(0)\oplus\pal(2)\]
+as \(\ZZ\)-modules and \(\pal(0)\)-modules respectively. An element
+\(f\in\ZZ[x, x^{-1}]\) can be uniquely written as
+\begin{equation} \label{eqn:decompositionoflpoly}
+    f = f_0 + f_2,
+\end{equation}
+where \(f_0\in\pal(0)\) and \(f_2\in\pal(2)\). The projections are given by
+\[ f_0(x) = \frac{x^2 f(x^{-1}) - f(x)}{x^2 - 1} \quad \text{and} \quad f_2(x) = \frac{f(x) - f(x^{-1})}{1 - x^{-2}}. \]
+
+\begin{theorem}
+    \label{thm:changeofbasis}
+    If \(\alpha\in\cH'_p(\calP)\) is represented by
+    \(\alpha = \sum_{s\in\calP}{\alpha_s\cdot\Ebasis{s}}\) in the standard basis,
+    then it is represented by
+    \(\alpha = \sum_{s\in\calP}{(\alpha_s)_0}\cdot\Cbasis{s}\) in the Chow basis
+    where \((\alpha_s)_0\) is the \(\pal(0)\) component of \(\alpha_s\)
+    from the decomposition in \ref{eqn:decompositionoflpoly}.
+\end{theorem}
+\begin{proof}
+    Let \(\alpha\in\cH'_p(\calP)\) be represented by
+    \(\alpha = \sum_{s\in\calP}{\gamma_s\cdot\Cbasis{s}}\) in the Chow basis.
+    We show that \(\gamma_s = (\alpha_s)_0\) by induction on the corank of \(s\).
+
+    For the base case, when \(s=\hat{1}\), we have
+    \[S_{\hat{1}}(\alpha) = \alpha_{\hat{1}}\quad\text{and}\quad S_{\hat{1}}(\alpha) = \sum_{u \in \calP} \gamma_u S_{\hat{1}}(\Cbasis{u})= \gamma_{\hat{1}} \cdot 1 = \gamma_{\hat{1}}.\]
+    Since \(S_{\hat{1}}(\alpha_{\hat{1}})\in\pal(0)\), we have \(\gamma_{\hat{1}} = \alpha_{\hat{1}} = (\alpha_{\hat{1}})_0\).
+
+    Now assume that for all \(u\in\calP\) with \(\rho(u) > \rho(s)\), we have that \(\gamma_u = (\alpha_u)_0\).
+    Using the change of basis formula, we have
+    \[\alpha_s = \gamma_s \CbasisSub{s}{s} + \sum_{u > s}{\gamma_u \CbasisSub{u}{s}}.\]
+    Since \(\CbasisSub{u}{s} \in \pal(2)\) for every \(u > s\),
+    we have \(\sum_{u > s}{\gamma_u \CbasisSub{u}{s}} \in \pal(2)\) by using
+    the inductive hypothesis.
+    Since the remaining term \(\gamma_s \CbasisSub{s}{s}= \gamma_s\) is in \(\pal(0)\),
+    it must be the unique \(\pal(0)\) component of \(\alpha_s\)
+    by the decomposition in \ref{eqn:decompositionoflpoly}, i.e., \(\gamma_s = (\alpha_s)_0\).
+\end{proof}
+
+\subsection{Deletion of elements in the posets}
+Now we will consider only those posets that are geometric lattices.
+These are the posets that are isomorphic to the lattice of flats of a matroid.
+We will denote the lattice of flats of a matroid \(\M\) on a ground set \(E\) by \(\mathcal{L}(\M)\)
+and the rank function of \(\M\) by \(\rank_{\M}\).
+For a flat \(F \in \mathcal{L}(\M)\), we will denote the upper interval (the contraction)
+\([F, E]\) by \(M_F\) and the lower interval (the restriction)\([\emptyset, F]\) by \(M^F\).
+
+Let \(e\in E\) be an element.
+We will denote the deletion of \(e\) by \(\M \setminus e\). This is the matroid on the ground set \(E \setminus \{e\}\)
+whose flats are the sets \(F \setminus \{e\}\) for \(F \in \mathcal{L}(\M)\).
+There is a surjective map \(\calL(\M)\to\calL(\M\setminus e)\) given by \(F \mapsto F \setminus \{e\}\).
+
+\begin{definition}
+    For a flat \(F \in \calL(\M)\), we define the \emph{discrepancy} \(\delta(F)\) as:
+    \[ \delta(F) := \rank_{\M}(F) - \rank_{\M\setminus e}(F \setminus e). \]
+    We define an operator \(\Delta: \cH(\M) \to \cH(\M\setminus e)\) as the \(R\)-linear map given by:
+    \[ \Delta(\Ebasis{F}) := x^{-\delta(F)} \cdot \Ebasis{F \setminus e}\]
+    and extended to all of \(\cH(\M)\) by linearity.
+\end{definition}
+
+\begin{theorem}
+    Let \(H \in \calL(\M \setminus e)\) and denote the closure of \(H\) in \(\M\)
+    by \(\overline{H}\).
+    We have that \(S^{\M\setminus e}_H \circ \Delta =
+    S^{\M}_{\overline{H}}\).
+    In particular, \(\Delta(\Cbasis{F}) \in \cH'_p(\M \setminus e)\) for all \(F \in \calL(\M)\).
+\end{theorem}
+
+\begin{proposition}\label{prop:imageofDeltaCbasis}
+    For any flat \(F \in \mathcal{L}(\M)\), the following identities hold in \(\cH'_p(\M \setminus e)\):
+    \begin{enumerate}
+        \item If \(e\) is not a coloop in \(\M^F\), then
+              \begin{equation}\label{eq:imageofDeltaCbasisnoncoloop}
+                  \Delta(\Cbasis{F}) = \Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F)}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+              \end{equation}
+        \item If \(e\) is a coloop in \(\M^F\), then
+              \begin{equation}\label{eq:imageofDeltaCbasiscoloop}
+                  \Delta(\Cbasis{F}) = (x+x^{-1})\Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F), G \neq F\setminus e}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+              \end{equation}
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    By Theorem~\ref{thm:changeofbasis}, the coefficients
+    \(q_G\) in the expansion \(\Delta(\Cbasis{F}) = \sum q_G \cdot \Cbasis{G}\) are the unique \(\pal(0)\)
+    components of the standard-basis coefficients,
+    \[\beta_G = \sum_{L: L \le F, L\setminus e = G} \CbasisSub{F}{L} x^{-\delta(L)}.\]
+    Thus we analyze
+    \(q_G\) by considering different cases for the flat \(G\).
+
+    \textbf{Coefficients for \(G \neq F \setminus e\):}
+    For any flat \(G\) not equal to \(F \setminus e\), its preimages \(L \le F\) are a subset of
+    \(\{\overline{G}, G \cup e\}\) where \(\overline{G}\) is the closure of \(G\) in \(\M\).
+    \begin{itemize}
+        \item If \(G \in S_e(\M^F)\), \(\overline{G} = G\) and the standard-basis coefficient is \(\beta_G = \CbasisSub{F}{G} + x^{-1}\CbasisSub{F}{G\cup e}\). This is a sum of a \(\pal(2)\) term and a \(\pal(0)\) term. Its unique \(\pal(0)\) part is \(q_G = x^{-1}\CbasisSub{F}{G\cup e}\).
+        \item If \(G \notin S_e(\M^F)\), the only possible preimage is
+              \(L=\overline{G}\). The standard-basis coefficient is
+              \(\beta_G = \CbasisSub{F}{\overline{G}}\), which is in \(\pal(2)\). Its \(\pal(0)\) part is \(q_G = 0\).
+    \end{itemize}
+    These coefficients account for the summation in both formulas of the proposition.
+
+    \textbf{Coefficient for \(G = F \setminus e\):}
+    Here we analyze \(\beta_{F\setminus e}\) by considering the the following two cases:
+    \begin{itemize}
+        \item If \(e\) is \textbf{not a coloop} in \(\M^F\), the only flat \(L \le F\) that deletes to
+              \(F \setminus e\) is \(L=F\). The standard-basis coefficient is \(\beta_{F\setminus e} =
+              \CbasisSub{F}{F}x^{-0} = 1 \in \pal(0)\).
+              So \(q_{F\setminus e} = 1\), proving the first part of the proposition.
+
+        \item If \(e\) is \textbf{a coloop} in \(\M^F\), the preimages are \(L=F \setminus e\) and
+              \(L=F\). The standard-basis coefficient is
+              \(\beta_{F\setminus e} = \CbasisSub{F}{F\setminus e} + x^{-1}\CbasisSub{F}{F} = x+x^{-1}\in \pal(0)\).
+              So \(q_{F\setminus e} = x+x^{-1}\). This proves the second part of the proposition.
+    \end{itemize}
+\end{proof}
+
+\section{Recovery of the Semi-Small Decomposition Formulas}
+
+We now show how the formulas in Proposition~\ref{prop:imageofDeltaCbasis} recover the known
+semi-small decomposition formulas for the Chow polynomial \(\H\) from [FMSV24]. This
+is achieved by equating the coefficients of the empty flat \(\Ebasis{\emptyset}\) on both sides of the identities.
+
+Let \(f = \rank(F)\). The coefficient of \(\Ebasis{\emptyset}\) in \(\Delta(\Cbasis{F})\) is:
+\[ \beta_\emptyset = \CbasisSub{F}{\emptyset}x^{-\delta(\emptyset)} + \CbasisSub{F}{\{e\}}x^{-\delta(\{e\})} = x^f \H_{\M^F}(x^{-2}) + x^{f-2}\H_{\M^F_e}(x^{-2}) \]
+
+\textbf{Case 1: \(e\) is not a coloop in \(\M^F\).}
+We take the coefficient of \(\Ebasis{\emptyset}\) in the formula \eqref{eq:imageofDeltaCbasisnoncoloop}.
+\[ x^{f}\H_{\M^F}(x^{-2}) + x^{f-2}\H_{\M^F_e}(x^{-2}) = x^{f}\H_{\M^F\setminus e}(x^{-2}) +
+    x^{-1}\sum_{G \in S_e(\M^F)}x^{f-g-1}\H_{\M^F_{G\cup e}}(x^{-2})\cdot x^g\H_{\M^G}(x^{-2}). \]
+Dividing by \(x^f\) and setting \(y=x^{-2}\), we get:
+\[ \H_{\M^F}(y) + y\H_{\M^F_e}(y) = \H_{\M^F\setminus e}(y) + y\sum_{G \in S_e(\M^F)}\H_{\M^F_{G\cup e}}(y)\cdot \H_{\M^G}(y)\]
+The sum on the right includes the term for \(G=\emptyset\), which is \(\H_{\M^F_e}(y) \cdot \H_{U_{0,0}}(y) = \H_{\M^F_e}(y)\). Separating this term and canceling it with the \(y\H_{\M^F_e}(y)\) from the LHS yields the semi-small decomposition formula:
+\begin{center}
+    When \(e\) is not a coloop in \(\M^F\),
+    \begin{equation} \label{eq:semi-small-decomposition-noncoloop}
+        \H_{\M^F}(y) = \H_{\M^F\setminus e}(y) + \sum_{G \in S_e(\M^F)\setminus\{\emptyset\}} y \H_{\M^F_{G\cup e}}(y) \cdot \H_{\M^G}(y).
+    \end{equation}
+\end{center}
+
+\textbf{Case 2: \(e\) is a coloop in \(\M^F\).}
+We take the coefficient of \(\Ebasis{\emptyset}\) in the formula \eqref{eq:imageofDeltaCbasiscoloop}.
+Equating the coefficients gives:
+\[ x^f \H_{\M^F}(x^{-2}) + x^{f-2}\H_{\M^F_e}(x^{-2}) = (x+x^{-1})x^{f-1}\H_{\M^F\setminus e}(x^{-2}) + x^{f-2}\sum_{\dots} \dots \]
+Dividing by \(x^f\) and setting \(y=x^{-2}\) leads to the known formula for adding a coloop:
+\begin{center}
+    When \(e\) is a coloop in \(\M^F\),
+    \begin{equation} \label{eq:semi-small-decomposition-coloop}
+        \H_{\M^F}(y) = (1+y)\H_{\M^F\setminus e}(y) +
+        \sum_{G \in \mathcal{L}(\M^F\setminus e)\setminus\{\emptyset\}}y \H_{\M^F_{G\cup e}}(y) \cdot
+        \H_{\M^G}(y).
+    \end{equation}
+\end{center}
+This completes the recovery of the known decomposition formulas of \(\H\).
+
+\subsection{Recovery of the known Augmented Chow Polynomial Decomposition Formulas}
+We consider another \(\ZZ[x, x^{-1}]\)-module homomorphism
+\(\Phi_{\M} : \calH(\M) \to \ZZ[x, x^{-1}]\) defined by
+\[\Phi_{\M}(\alpha) = \sum_{F \in \mathcal{L}(\M)} x^{-\rank(F)} \alpha_F,\]
+which satisfies \(\Phi_{\M\setminus e}\circ \Delta = \Phi_{\M}\).
+Applying this map to \(\Cbasis{F}\) gives
+\[\Phi_{\M}(\Cbasis{F}) = \sum_{G \le F} x^{-\rank(G)} \Cbasis{F}_G =
+    x^{\rank(F)}\sum_{G \le F} x^{-2\rank(G)} \H_{\M_G^F}(x^{-2}) =
+    x^{\rank(F)} G_{\M^F}(x^{-2}).\]
+Note that this element is in \(\pal(0)\) because \(G\) is palindromic.
+\begin{remark}
+    We see that \(\Phi_{\M} = S^{\M}_{\emptyset}\). Thus,
+    \(S^{\M\setminus e}_{\emptyset} \circ \Delta = S^{\M}_{\emptyset}\).
+\end{remark}
+
+Applying the \(\Phi_{\M\setminus e}\) map to \eqref{eq:imageofDeltaCbasisnoncoloop} yields the following identity:
+\[ x^f G_{\M^F}(x^{-2}) = x^f G_{\M^F\setminus e}(x^{-2}) +
+    x^{-1}\sum_{G \in S_e(\M^F)} x^{f-g-1}\H_{\M^F_{G\cup e}}(x^{-2}) \cdot x^g G_{\M^G}(x^{-2}). \]
+Simplifying the exponents and setting \(y=x^{-2}\), we get:
+\begin{center}
+    When \(e\) is not a coloop in \(\M^F\),
+    \begin{equation} \label{eq:augchow-decomposition-noncoloop}
+        G_{\M^F}(y) = G_{\M^F\setminus e}(y) +
+        \sum_{G \in S_e(\M^F)} y \H_{\M^F_{G\cup e}}(y) \cdot G_{\M^G}(y).
+    \end{equation}
+\end{center}
+Proceeding similarly for the coloop case, we get the following identity:
+\[ x^f G_{\M^F}(x^{-2}) = (x+x^{-1})x^{f-1}G_{\M^F\setminus e}(x^{-2}) +
+    x^{-1}\sum_{G \in S_e(\M^F)} x^{f-g-1}\H_{\M^F_{G\cup e}}(x^{-2}) \cdot x^g G_{\M^G}(x^{-2}). \]
+Simplifying the exponents and setting \(y=x^{-2}\), we get:
+\begin{center}
+    When \(e\) is a coloop in \(\M^F\),
+    \begin{equation} \label{eq:augchow-decomposition-coloop}
+        G_{\M^F}(y) = (1+y)G_{\M^F\setminus e}(y) +
+        \sum_{G \in S_e(\M^F)} y \H_{\M^F_{G\cup e}}(y) \cdot G_{\M^G}(y).
+    \end{equation}
+\end{center}
+
+\bibliographystyle{amsalpha}
+\bibliography{references}
+
+\end{document}

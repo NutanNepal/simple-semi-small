@@ -1,4 +1,4 @@
-\documentclass[11pt,letterpaper,english]{amsart}
+\documentclass[12pt,letterpaper,english]{amsart}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}   % utilities for mathematics
 \usepackage{amsthm}    % utilities for theorem environment
@@ -266,8 +266,8 @@ Department of Mathematics, North Carolina State University, Raleigh, NC, USA.
 Let \(\calP\) be a \emph{finite partially ordered set} ranked by the function \(\rho\).
 We denote by \(\inc(\calP)\) the incidence algebra of the poset \(\calP\) over the ring
 \(\ZZ[x]\) with the algebra structure given by convolution.
-Some of the functions we consider in \(\inc(\calP)\) are \(\delta\);
-the zeta function, \(\zeta\); its
+Some of the functions we consider in \(\inc(\calP)\) are the unit element \(\delta\);
+the zeta function \(\zeta\); its
 inverse, the M\"obius function, \(\mu\);
 the characteristic \(\calP\)-kernel \(\chi\) and its associated functions.
 Following \cite{ferroni-matherne-vecchi}, we study some functions associated to
@@ -312,32 +312,38 @@ We now consider the module \(\cH(\calP)\) of \(\calP\)
 which is defined as the free \(R\)-module
 on the set \(\{\Ebasis{s}\}_{s\in \calP}\). An element in \(\cH(\calP)\) is of the form
 \[\alpha = \sum_{s \in \calP}{\alpha_s\cdot \mathrm{s}},\hspace{10mm}\text{where }\alpha_s\in R.\]
-We also define a family of \(R\)-linear map, \(\{S_s:\cH(\calP)\to R\}_{s\in\calP}\), given by
-\[\sum_{t \in \calP}{\alpha_t\cdot \mathrm{t}} \mapsto \sum_{t\geq s}{x^{-\rho_{st}}\alpha_t}.\]
-Using these maps, we can now introduce some `local' conditions to impose on the elements
+We also define a family of \(R\)-linear maps, \(\{S_s:\cH(\calP)\to R\}_{s\in\calP}\), given
+on the standard basis by
+\[S_s: \mathrm{t}\mapsto \begin{cases}x^{-\rho_{st}} & \text{if } t\geq s, \\ 0 & \text{otherwise}.\end{cases}\]
+and extended linearly to all of \(\cH(\calP)\).
+
+Using these maps, we introduce some `local' conditions to impose on the elements
 \(\alpha\in\cH(\calP)\):
 \begin{enumerate}
-    \item \label{cond:p1}
-          \(\alpha_s\in\ZZ[x]\) for every \(s\in\calP\),
-    \item \label{cond:p2}
-          \(S_s(\alpha)\in \pal(0)\) for every \(s\in\calP\).
+    \item[\(\mathbf{C}1\):] \label{cond:p1}
+        \(\alpha_s\in\ZZ[x]\) for every \(s\in\calP\),
+    \item[\(\mathbf{C}2\):] \label{cond:p2}
+        \(S_s(\alpha)\in \pal(0)\) for every \(s\in\calP\).
 \end{enumerate}
 Let \(\cH_p(\calP)\) the subgroup consisting of all
 elements \(\alpha\in \cH(\calP)\) that satisfy both of the conditions
 and let \(\cH'_p(\calP)\) be the subgroup consisting of only those
-that satisfy \ref{cond:p2}. We remark that the subgroup
-\(\cH_p(\calP)\) is a \(\ZZ\)-module and the subgroup
+that satisfy~\(\mathbf{C}2\). We note that the subgroup
+\(\cH_p(\calP)\) is a \(\ZZ\)-module since multiplying by an element of \(\ZZ[x]\)
+preserves the conditions \(\mathbf{C}1\) and \(\mathbf{C}2\).
+Similarly, the subgroup
 \(\cH'_p(\calP)\) is a \(\pal(0)\)-module. To further study these
-modules, we define two new \(R\)-bases of \(\cH(\calP)\) given by:
+modules, we consider two new \(R\)-bases of \(\cH(\calP)\) given by:
 \[\klbasis{t} = \sum_{s\leq t}{\klbasisSub{t}{s}(x)\cdot\Ebasis{s}}
     :=\sum_{s\leq t}{x^{\rho_{st}}f_{st}(x^{-2})\cdot\Ebasis{s}},
     \hspace{10mm}\text{and}\hspace{10mm}
     \Cbasis{t}= \sum_{s\leq t}{\CbasisSub{t}{s}(x)\cdot\Ebasis{s}}
     :=\sum_{s\leq t}{x^{\rho_{st}}\H_{st}(x^{-2})\cdot\Ebasis{s}}.
 \]
-We will name the first one as the \textbf{Kazhdan--Lusztig basis} and the second
-as the \textbf{Chow basis}.
-There are a few notes that we can make about these new
+Considering the functions they employ, we will name the first one the \textbf{Kazhdan--Lusztig basis} and the second
+the \textbf{Chow basis}.
+
+There are a few notes that we can make about these
 bases:
 \begin{enumerate}
     \item \(\klbasis{t} \in \cH_p(\calP)\) for all \(t\in\calP\):
