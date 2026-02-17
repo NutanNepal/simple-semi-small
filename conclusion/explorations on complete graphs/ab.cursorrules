@@ -1,0 +1,70 @@
+# Summary: Derivation of the $K_{n+1} \to K_n$ Recurrence for Chow Polynomials
+
+This document summarizes the mathematical derivation of the recursive formula for the Chow polynomial $H_{K_n}(y)$ of a complete graph, derived by applying the edge deletion operator $\Delta_e$ to a star of edges.
+
+---
+
+## 1. The Core Operator Identity
+
+The goal is to reduce $K_{n+1}$ to $K_n$ by sequentially deleting the $n$ edges of a vertex star. The left-hand side (LHS) of the operator equation evaluates the atoms and the empty set contraction:
+
+$$n x^{-2} H_{K_n}(x^{-2}) + H_{K_{n+1}}(x^{-2})$$ 
+
+This is equated to a right-hand side (RHS) consisting of the surviving graph $K_n$, sums over specific lattice flats, and correction terms for degenerate structures.
+
+---
+
+## 2. The Dynamic Lattice Sum (The Primary Correction)
+
+The initial assumption that the RHS lattice sum iterates over a static complete lattice $L(K_{n-1})$ multiplied by $(n-1)$ was incorrect. The set of valid flats $S_i$ (where $F \cup \{e\}$ must be a flat in the *current* matroid) dynamically evolves as edges are deleted. 
+
+Because the presence of star edges locks the closure of paths in the base graph, flats are only "liberated" into the sum once their closing star edge is removed. See `COMBINATORIAL_TRANSLATION.md` for the "Component Isolation Rule" and the reformulation as a sum over set partitions $\Pi_n$ with weight $|\pi|$.
+
+**Example Progression ($K_5 \to K_4$):**
+* **$S_{10}$ (Edge 10 deleted):** Only the strictly disjoint triangle $\{1,2,3\}$ is valid. This sum operates over the lattice of **$K_3$**.
+* **$S_9$ (Edge 9 deleted):** Edge 10's removal liberates paths that were previously forced closed. The sum now includes a broken triangle (e.g., $\{1,4,5\}$) and new edges. This sum operates over an intermediate matroid **$M_4$**.
+* **$S_8$ (Edge 8 deleted):** Further edges are liberated, yielding matroid **$M_5$**.
+* **$S_7$ (Edge 7 deleted):** The final star edge is removed, liberating the full base graph. The sum operates over the full lattice of **$K_4$**.
+
+Therefore, the RHS lattice contribution is a progressive sum over a sequence of matroids $M_k$, not a simple multiple of $\Sigma_{n-1}$.
+
+---
+
+## 3. Resolving the Parity Mismatch (The $\sqrt{y}$ Error)
+
+The appearance of odd powers of $x^{-1}$ (which translate to non-polynomial $\sqrt{y}$ terms) in the degenerate correction term $\binom{n}{2}(x^{-1} + 2x^{-3})H_{K_{n-1}}$ indicates a calculation error in applying the empty set coefficient $[\emptyset]$.
+
+By strictly evaluating the coefficient of the empty set for the connected "Thagomizer" flats (broken triangles of rank 2), we find:
+* The invariant for independent edges in the boolean algebra $U_{2,2}$ is $H=1$.
+* The empty set extraction yields $x^{rk(T)} H_T(x^{-2}) = x^2 \cdot 1 = x^2$.
+
+When multiplied by the contraction factor $x^{-1} c(K_{n-1}) = x^{-1}(x^{n-2} H_{K_{n-1}})$, the resulting term is strictly $x^{n-1} H_{K_{n-1}}$. This odd power perfectly matches the parity of the LHS atom term ($n x^{n-1} H_{K_n}$ before dividing by $x^n$), eliminating the invalid $x^{-3}$ ($\sqrt{y}$) artifact.
+
+---
+
+## 4. Local Edge Correction Proof
+
+The coefficient for individual edges in the connected sums was verified via local expansion. Applying the deletion operator to a rank-2 flat $\{1, 7\}$ (where 7 is deleted):
+
+$$\Delta_7(c^{17}) = x c^{1} + x^{-1} \left( c^{17}_7 \cdot c^{\emptyset} + c^{17}_{17} \cdot c^1 \right)$$
+$$= (x + x^{-1}) c^1 + c^{\emptyset}$$
+
+This confirms the $(x + x^{-1})$ scalar naturally arises from the rank shifts during the contraction of edges within the filtered matroid sequence.
+
+---
+
+## 5. Current Implementation: Integer Partition Recurrence
+
+The derivation above leads to a sum over set partitions $\Pi_n$ (see `COMBINATORIAL_TRANSLATION.md`). By `INTEGER_PARTITION_FORMULA.md`, this is equivalent to summing over **integer partitions** $\lambda \vdash n$:
+
+$$H_{K_{n+1}}(y) = (1 - ny)\, H_{K_n}(y) + y \sum_{\lambda \vdash n} C_\lambda \cdot |\lambda| \cdot H_{K_{|\lambda|}}(y) \cdot H_{\oplus}(\lambda, y)$$
+
+where $C_\lambda$ counts set partitions with block sizes $\lambda$, and $H_{\oplus}(\lambda)$ is the Chow polynomial of $K_{\lambda_1} \oplus K_{\lambda_2} \oplus \cdots$.
+
+**Direct sum via Pielasa [arXiv:2511.10746 Thm 1.7]:** $H_{\oplus}(\lambda)$ is computed recursively (no matroid construction) using strictly proper flats. For shape $(a_1,\ldots,a_r)$:
+
+$$H(a_1,\ldots,a_r) = H(a_1) \cdot H(a_2,\ldots,a_r) + x \sum_{\pi \vdash a_1,\,|\pi|\ge 2 \atop (\pi_i \vdash a_i),\,\text{not all }|\pi_i|=1} C(\pi,a_1) \prod_{i=2}^r C(\pi_i,a_i) \cdot H(\pi \sqcup \cdots \sqcup \pi_r) \cdot H(|\pi|) \cdot H(|\pi_2|,\ldots,|\pi_r|)$$
+
+The contraction term $H(|\pi_2|,\ldots,|\pi_r|)$ is computed recursively, not as a product.
+
+**Implementation:** `complete_graph_recurrence_integer_partitions.ipynb` — uses integer partition recurrence + Pielasa direct sum; caches $H_{K_n}$ and $H_{\oplus}$ in `chowBraid.json`. See also `pielasa_direct_sum.ipynb` for standalone direct-sum population.

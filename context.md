@@ -14,11 +14,11 @@ The BV framework involves:
 - A special class of "perverse" elements in `H(M)` whose structure is key to deriving recursive formulas.
 
 **Our central hypothesis is that a similar structure exists for the Poincaré polynomials.** We have successfully implemented:
-- **Chow-Poincaré elements** in the module `H(M)` defined as `C[F] = Σ q^(rank(F)-rank(G)) * H_{M^F_G}(q^(-2)) * E[G]` where `H_{M^F_G}` is the Chow polynomial (Poincaré polynomial) of the minor `M^F_G` and `E[G]` are the standard basis elements of the natural basis
+- **Chow-Poincare basis elements** in the module `H(M)` defined as `C[F] = Σ q^(rank(F)-rank(G)) * H_{M^F_G}(q^(-2)) * E[G]` where `H_{M^F_G}` is the Chow polynomial (Poincaré polynomial) of the minor `M^F_G` and `E[G]` are the standard basis elements of the natural basis
 - A deletion homomorphism `Δ: H(M) -> H(M\e)` that preserves the algebraic structure
-- Perversity conditions that Chow-Poincaré elements satisfy under the action of the deletion homomorphism
+- Perversity conditions that Chow-Poincare basis elements satisfy under the action of the deletion homomorphism
 
-**Current experimental evidence confirms that Chow-Poincaré elements are indeed perverse elements of H(M) and that this perversity is preserved under deletion.** This provides strong computational support for the conjecture that should lead directly to the desired recursive formula for `H_M(t)`.
+**Current experimental evidence confirms that Chow-Poincare basis elements are indeed perverse elements of H(M) and that this perversity is preserved under deletion.** This provides strong computational support for the conjecture that should lead directly to the desired recursive formula for `H_M(t)`.
 
 ## 3. Key Mathematical Objects
 
@@ -27,8 +27,8 @@ The BV framework involves:
 - **Module H(M):** The free `Z[t, t⁻¹]`-module with basis `{F | F ∈ L(M)}`. This is our primary algebraic workspace.
 - **Deletion Homomorphism (Δ):** The map from `H(M)` to `H(M\e)` defined in the BV paper. Currently implemented as `delta(elem)` function that preserves the algebraic structure.
 - **Poincaré Polynomial of the Chow Ring (H_M(t)):** The target object of study from the BHMPW papers. It is a polynomial in `t` satisfying Poincaré duality: `H_M(t) = t^(d-1) * H_M(t⁻¹)`, where `d` is the rank of `M`.
-- **Chow-Poincaré Element (C[F]):** The central object we will define and study. It's an element in `H(M)` constructed as a sum: `C[F] = Σ q^(rank(F)-rank(G)) * H_{M^F_G}(q^(-2)) * E[G]`, where the sum is over all flats `G ≤ F` in the lattice order, `M^F_G` is the contraction of `M^F` at `G`, `H_{M^F_G}` is the Chow polynomial (Poincaré polynomial) of the minor `M^F_G`, and `E[G]` are the standard basis elements of the natural basis. These Chow-Poincaré elements are perverse elements of `H(M)`.
-- **Perverse Elements:** Elements in `H(M)` that satisfy palindromic conditions with respect to rank differences.
+- **Chow-Poincare basis element (C[F]):** The central object we will define and study. It's an element in `H(M)` constructed as a sum: `C[F] = Σ q^(rank(F)-rank(G)) * H_{M^F_G}(q^(-2)) * E[G]`, where the sum is over all flats `G ≤ F` in the lattice order, `M^F_G` is the contraction of `M^F` at `G`, `H_{M^F_G}` is the Chow polynomial (Poincaré polynomial) of the minor `M^F_G`, and `E[G]` are the standard basis elements of the natural basis. These Chow-Poincare basis elements are perverse elements of `H(M)`.
+- **Perverse Elements:** Elements in `H(M)` that satisfy certain palindromicity conditions. Check [BV20].
 
 ## 4. Primary Source Documents
 
@@ -37,7 +37,7 @@ The project synthesizes ideas from four main bodies of work, all of which are av
 - **[BV20]: "An algebraic deletion-contraction for Kazhdan-Lusztig polynomials"** by T. Braden and A. Vysogorets.
   - **Contribution:** Provides the core algebraic machinery (`H(M)`, `Δ`, the concept of perversity) that we will adapt.
   - **Source files:** `parsed_papers/texs/bv/KLdeletion.tex`
-- **[BHMPW-ssD]: The works on semi-small decomposition and Chow rings of matroids** by T. Braden, J. Huh, J. P. Matherne, N. Proudfoot, and B. Wang.
+- **[BHMPW]: The works on semi-small decomposition and Chow rings of matroids** by T. Braden, J. Huh, J. P. Matherne, N. Proudfoot, and B. Wang.
   - **Contribution:** Defines the object of study (`H_M(t)`), proves its properties using geometric methods, and provides the formula we aim to re-derive algebraically.
   - **Source files:** `parsed_papers/texs/bhmpw/augmentedchow.tex`
 - **[ANR24]: "Chow rings of matroids as permutation representations"** by R. Angarone, A. Nathanson, and V. Reiner.
@@ -46,6 +46,8 @@ The project synthesizes ideas from four main bodies of work, all of which are av
 - **[KL_deletion]: "Notes: Inverse Kazhdan-Lusztig Polynomials under Deletion"**
   - **Contribution:** Provides deletion formulas and the algebraic structure for inverse KL polynomials.
   - **Source files:** Available in parsed Markdown form
+- **[Pielasa]: "Decompositions and direct sums of matroids" (arXiv:2511.10746)**
+  - **Contribution:** Theorem 1.7 gives a recursive Hilbert series formula for direct sums $H_{M \oplus N}$ in terms of strictly proper flats; used to compute the polynomial $H_{\oplus}(\lambda)$ for the direct sum of complete graphs without explicit matroid construction.
 
 ## 5. Computational Resources
 
@@ -87,7 +89,7 @@ To address limitations in the standard SageMath matroids module, a custom packag
 A specialized module implementing the deformed Möbius algebra framework adapted for Chow ring computations:
 
 - **`DeformedMoebiusAlgebra`** - Quantum Möbius algebra with custom bases
-- **`ChowBasis`** - Basis adapted for Chow ring computations using Chow-Poincaré elements defined as `C[F] = Σ q^(rank(F)-rank(G)) * H_{M^F_G}(q^(-2)) * E[G]` where `E[G]` are the standard basis elements of the natural basis
+- **`ChowBasis`** - Basis adapted for Chow ring computations using Chow-Poincare basis elements defined as `C[F] = Σ q^(rank(F)-rank(G)) * H_{M^F_G}(q^(-2)) * E[G]` where `E[G]` are the standard basis elements of the natural basis
 - **`ZetaBasis`** - Classical zeta basis using Kazhdan-Lusztig polynomials
 - **`is_in_Hp`** - Method to check perversity conditions for elements in H(M)
 - **Utility functions** - `create_deformed_algebra()`, `create_deformed_algebra_from_lattice()`
@@ -96,7 +98,7 @@ A specialized module implementing the deformed Möbius algebra framework adapted
 - Base ring support (ZZ/QQ polynomial rings) with automatic coercion
 - Change-of-basis morphisms between all three bases
 - Integration with custom matroid functions for Poincaré polynomial computations
-- Perversity checking for Chow-Poincaré elements using palindromic conditions
+- Perversity checking for Chow-Poincare basis elements using palindromic conditions
 - Complete documentation and example usage
 
 **Usage:** 
@@ -126,7 +128,7 @@ The project involves:
 5.  **Derivation:** Showing how the proven conjecture directly implies the deletion-contraction formula for `H_M(t)`.
 
 **Current Experimental Results:**
-- Chow-Poincaré elements have been successfully implemented as perverse elements of H(M)
+- Chow-Poincare basis elements have been successfully implemented as perverse elements of H(M)
 - The deletion homomorphism Δ preserves the algebraic structure
 - Perversity conditions are being tested on concrete examples
 - Basis transformation issues are being resolved for computational efficiency
@@ -139,7 +141,8 @@ The project involves:
 - **Base Ring Issues**: All ZZ vs QQ polynomial ring problems resolved
 - **Documentation**: Comprehensive README files and usage examples
 - **Module Accessibility**: HM module can be imported and used from other files
-- **Perversity Conditions**: Successfully implemented and tested perversity checking for Chow-Poincaré elements
+- **Perversity Conditions**: Successfully implemented and tested perversity checking for Chow-Poincare basis elements
+- **Complete Graph Chow Recurrence**: Integer partition recurrence + Pielasa direct sum implemented; chowBraid cache for $H_{K_n}$ and $H_{\oplus}$ by shape
 
 ### 🔄 In Progress
 - **Deletion Homomorphism Implementation**: Working implementation of Δ: H(M) → H(M\e) for Chow basis
@@ -147,12 +150,44 @@ The project involves:
 - **Basis Transformation Issues**: Resolving infinite loop issues in complex basis conversions
 
 ### 📋 Next Steps
-- **Perversity Preservation**: Verify that Chow-Poincaré elements remain perverse under deletion homomorphism
+- **Perversity Preservation**: Verify that Chow-Poincare basis elements remain perverse under deletion homomorphism
 - **Recursive Formulas**: Develop deletion-contraction formulas for Chow polynomials
 - **Proof Development**: Use computational insights to guide theoretical proofs
 - **Optimization**: Improve computational efficiency for larger matroids
 
-## 8. Project Organization
+## 8. Complete Graph Chow Recurrence
+
+A parallel strand of work focuses on **fast computation of Chow polynomials for complete graphs** $K_n$ and their direct sums (braids of cliques), using an integer-partition recurrence and Pielasa's direct sum formula.
+
+### Main Recurrence
+
+$$H_{K_{n+1}}(y) = (1 - ny)\, H_{K_n}(y) + y \sum_{\lambda \vdash n} C_\lambda \cdot |\lambda| \cdot H_{K_{|\lambda|}}(y) \cdot H_{\oplus}(\lambda, y)$$
+
+where $\lambda \vdash n$ is an integer partition, $C_\lambda$ counts set partitions with block sizes $\lambda$, and $H_{\oplus}(\lambda)$ is the Chow polynomial of $K_{\lambda_1} \oplus K_{\lambda_2} \oplus \cdots$.
+
+### Direct Sum via Pielasa [arXiv:2511.10746 Thm 1.7]
+
+$H_{\oplus}(\lambda)$ is computed recursively (no matroid construction) using Pielasa's formula for strictly proper flats. For shape $(a_1,\ldots,a_r)$:
+
+$$H(a_1,\ldots,a_r) = H(a_1) \cdot H(a_2,\ldots,a_r) + x \sum_{\pi \vdash a_1,\,|\pi|\ge 2 \atop (\pi_i \vdash a_i),\,\text{not all }|\pi_i|=1} C(\pi,a_1) \prod_{i=2}^r C(\pi_i,a_i) \cdot H(\pi \sqcup \cdots \sqcup \pi_r) \cdot H(|\pi|) \cdot H(|\pi_2|,\ldots,|\pi_r|)$$
+
+The contraction term $H(|\pi_2|,\ldots,|\pi_r|)$ is computed recursively, not as a product.
+
+### Derivation Notes (`conclusion/explorations on complete graphs/`)
+
+- **`COMBINATORIAL_TRANSLATION.md`** — Flats of $K_n$ biject with set partitions; "Component Isolation Rule" for valid flats $S_i$; reformulated recurrence as sum over $\Pi_n$ with weight $|\pi|$.
+- **`INTEGER_PARTITION_FORMULA.md`** — Validity of summing over integer partitions $\lambda \vdash n$ instead of set partitions; $C_\lambda$ formula; $H_{\oplus}(\lambda)$ as direct sum of cliques.
+- **`ALGORITHM.md`** — Original flat-based recurrence; $S_i(M^i)$ filter; edge labelling and deletion order.
+- **`ALGORITHM_ANALYSIS.md`** — Complexity of flat-based vs partition-based algorithms; Bell number $B_n$ bottleneck; Chow caching recommendations.
+- **`ab.cursorrules`** — Derivation summary for $K_{n+1} \to K_n$ recurrence; links to integer partition formulation and Pielasa direct sum.
+
+### Notebooks & Caches
+
+- **`complete_graph_recurrence_integer_partitions.ipynb`** — Main implementation: integer partition recurrence + Pielasa direct sum; populates `chowBraid.json`.
+- **`pielasa_direct_sum.ipynb`** — Standalone Pielasa direct sum; computes and populates `chowBraid.json` for shapes from partitions of $1..N$.
+- **`chowBraid.json`** — Chow polynomial cache for complete graph braids: $H_{K_n}$ and $H_{\oplus}$ by shape (sorted tuple of clique sizes).
+
+## 9. Project Organization
 
 - **`definitions/`** - Mathematical definitions and computational framework
 - **`parsed_papers/`** - Full parsed Markdown versions of source papers
@@ -163,6 +198,11 @@ The project involves:
   - **`HM_module.py`** - Deformed Möbius algebra implementation
   - **`HM_module_README.md`** - Documentation for HM module
   - **`example_usage.sage`** - Example usage of HM module
+- **`conclusion/explorations on complete graphs/`** - Complete graph Chow recurrence (integer partitions + Pielasa direct sum)
+  - **`complete_graph_recurrence_integer_partitions.ipynb`** - Main recurrence implementation
+  - **`pielasa_direct_sum.ipynb`** - Standalone direct-sum population
+  - **`chowBraid.json`** - Chow cache for braids ($H_{K_n}$, $H_{\oplus}$ by shape)
+  - **`ab.cursorrules`**, **`COMBINATORIAL_TRANSLATION.md`**, **`INTEGER_PARTITION_FORMULA.md`**, **`ALGORITHM.md`**, **`ALGORITHM_ANALYSIS.md`** - Derivation notes
 - **`All_Matroid_Functions.md`** - Complete reference of all SageMath matroid functions
 - **`sagemath_matroids_reference.md`** - High-level SageMath matroid functionality overview
 - **`TODO_verification_checklist.md`** - Development progress tracking
