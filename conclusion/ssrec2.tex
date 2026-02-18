@@ -479,24 +479,23 @@ where \(f_0\in\pal(0)\) and \(f_2\in\pal(2)\). The projections are given by
     \(\alpha = \sum_{s\in\calP}{\alpha_s\cdot\Ebasis{s}}\) in the standard basis,
     then it is represented by
     \(\alpha = \sum_{s\in\calP}{(\alpha_s)_0}\cdot\Cbasis{s}\) in the Chow basis
-    where \((\alpha_s)_0\) is the \(\pal(0)\) component of \(\alpha_s\)
+    where \((\alpha_s)_0\) is the unique \(\pal(0)\) component of \(\alpha_s\)
     from the decomposition in \ref{eqn:decompositionoflpoly}.
 \end{theorem}
 \begin{proof}
     Let \(\alpha\in\cH'_p(\calP)\) be represented by
-    \(\alpha = \sum_{s\in\calP}{\alpha_s\cdot\Ebasis{s}}\) in the standard basis and
     \(\alpha = \sum_{s\in\calP}{\gamma_s\cdot\Cbasis{s}}\) in the Chow basis.
-    We need to show that \(\gamma_s = (\alpha_s)_0\).
-    We prove this by induction on the corank of \(s\).
+    We show that \(\gamma_s = (\alpha_s)_0\) by induction on the corank of \(s\).
 
     For the base case, when \(s=\hat{1}\), we have
     \[S_{\hat{1}}(\alpha) = \alpha_{\hat{1}}\quad\text{and}\quad S_{\hat{1}}(\alpha) = \sum_{u \in \calP} \gamma_u S_{\hat{1}}(\Cbasis{u})= \gamma_{\hat{1}} \cdot 1 = \gamma_{\hat{1}}.\]
-    Since \(\alpha_{\hat{1}}\in\pal(0)\), we have \(\gamma_{\hat{1}} = \alpha_{\hat{1}} = (\alpha_{\hat{1}})_0\).
+    Since \(S_{\hat{1}}(\alpha)\in\pal(0)\), we have \(\gamma_{\hat{1}} = \alpha_{\hat{1}} = (\alpha_{\hat{1}})_0\).
 
     Now assume that for all \(u\in\calP\) with \(\rho(u) > \rho(s)\), we have that \(\gamma_u = (\alpha_u)_0\).
     Using the change of basis formula, we have
     \[\alpha_s = \gamma_s \CbasisSub{s}{s} + \sum_{u > s}{\gamma_u \CbasisSub{u}{s}}.\]
-    Since \(\CbasisSub{u}{s} \in \pal(2)\) for every \(u > s\),
+    Since \(\CbasisSub{u}{s} \in \pal(2)\) and \(\gamma_u \in \pal(0)\)
+    for every \(u > s\),
     we have \(\sum_{u > s}{\gamma_u \CbasisSub{u}{s}} \in \pal(2)\) by using
     the inductive hypothesis.
     Since the remaining term \(\gamma_s \CbasisSub{s}{s}= \gamma_s\) is in \(\pal(0)\),
@@ -525,13 +524,36 @@ There is a surjective map \(\calL(\M)\to\calL(\M\setminus e)\) given by \(F \map
     and extended to all of \(\cH(\M)\) by linearity.
 \end{definition}
 
-\begin{theorem}
-    Let \(H \in \calL(\M \setminus e)\) and denote the closure of \(H\) in \(\M\)
-    by \(\overline{H}\).
-    We have that \(S^{\M\setminus e}_H \circ \Delta =
+\begin{lemma}
+    Let \(H \in \calL(\M \setminus e)\) and let \(\overline{H}\) be the closure of \(H\) in \(\M\).
+    Then, we have that \(S^{\M\setminus e}_H \circ \Delta =
     S^{\M}_{\overline{H}}\).
     In particular, \(\Delta(\Cbasis{F}) \in \cH'_p(\M \setminus e)\) for all \(F \in \calL(\M)\).
-\end{theorem}
+\end{lemma}
+\begin{proof}
+    We can check this on the standard basis elements.
+    \[
+        S^{\M\setminus e}_H \circ \Delta (\Ebasis{F})= S^{\M\setminus e}_H (x^{-\delta(F)} \Ebasis{F \setminus e})
+        = \begin{cases} x^{-\delta(F)+\rk(H)-\rk(F\setminus e)} & \text{if } H \le F \setminus e \\ 0 & \text{otherwise}. \end{cases}
+    \]
+    On the other hand,
+    \[
+        S^{\M}_{\overline{H}} (\Ebasis{F}) = \begin{cases} x^{\rk(\overline{H})-\rk(F)} & \text{if } \overline{H} \le F \\ 0 & \text{otherwise}. \end{cases}
+    \]
+    Since \(-\delta(F)+\rk(H)-\rk(F\setminus e) = \rk(\overline{H})-\rk(F)\) when \(\overline{H} \le F\),
+    we have that \(S^{\M\setminus e}_H \circ \Delta (\Ebasis{F}) = S^{\M}_{\overline{H}} (\Ebasis{F})\) for all \(F \in \calL(\M)\)
+    proving the first assertion.
+
+    \noindent For the second part, we note that if \(\alpha \in \cH'_p(\M)\),
+    then \(S^{\M\setminus e}_H(\Delta(\alpha)) = S^{\M}_{\overline{H}}(\alpha) \in \pal(0)\) for all
+    \(H \in \calL(\M\setminus e)\).
+    Thus, \(\Delta(\alpha) \in \cH'_p(\M \setminus e)\) and in particular,
+    \(\Delta(\Cbasis{F}) \in \cH'_p(\M \setminus e)\) for all \(F \in \calL(\M)\).   
+\end{proof}
+
+If \(F \in \calL(\M)\) is disjoint from \(e\), then clearly
+\(\Delta(\Cbasis{F}) = \Cbasis{F \setminus e}\in
+\cH'_p(\M \setminus e)\). If 
 
 \begin{proposition}\label{prop:imageofDeltaCbasis}
     For any flat \(F \in \mathcal{L}(\M)\), the following identities hold in \(\cH'_p(\M \setminus e)\):
@@ -548,7 +570,8 @@ There is a surjective map \(\calL(\M)\to\calL(\M\setminus e)\) given by \(F \map
 \end{proposition}
 \begin{proof}
     By Theorem~\ref{thm:changeofbasis}, the coefficients
-    \(q_G\) in the expansion \(\Delta(\Cbasis{F}) = \sum q_G \cdot \Cbasis{G}\) are the unique \(\pal(0)\)
+    \(q_G\) in the expansion \(\Delta(\Cbasis{F}) = \sum q_G \cdot \Cbasis{G}
+    = \sum \beta_G \cdot \Ebasis{G}\) are the unique \(\pal(0)\)
     components of the standard-basis coefficients,
     \[\beta_G = \sum_{L: L \le F, L\setminus e = G} \CbasisSub{F}{L} x^{-\delta(L)}.\]
     Thus we analyze

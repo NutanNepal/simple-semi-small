@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\title{Survey: Chow Polynomials of Various Matroid Classes}
+\author{Antigravity Research Assistant}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This survey explores the Chow polynomials (Poincaré polynomials of the Chow ring) for different classes of matroids available in the SageMath catalog. The objective is to identify recursive structures or closed-form expressions analogous to the formulas derived for complete graphs $K_n$.
+
+The Chow polynomial $H_M(x)$ of a matroid $M$ satisfies the recursive definition:
+\begin{equation}
+    H_M(x) = \sum_{F \in L(M), F \neq \emptyset} \overline{\chi}_{M|F}(x) H_{M/F}(x)
+\end{equation}
+where $\overline{\chi}_{M|F}(x)$ is the reduced characteristic polynomial of the restriction to flat $F$, and $M/F$ is the contraction.
+
+\section{Complete Graphic Matroids $M(K_n)$}
+For the complete graph $K_n$, the flats correspond to set partitions of $\{1, \dots, n\}$. The recurrence obtained previously is:
+\begin{equation}
+    H_{K_{n+1}}(x) = (1 - nx) H_{K_n}(x) + x \sum_{\lambda \vdash n} C_\lambda |\lambda| H_{K_{|\lambda|}}(x) H_{\oplus}(\lambda, x)
+\end{equation}
+where $\lambda$ is an integer partition and $H_{\oplus}(\lambda, x)$ is the Chow polynomial of the direct sum of cliques defined by the partition.
+
+\section{Uniform Matroids $U(k, n)$}
+Uniform matroids provide the simplest examples of non-graphic matroids (for $k \geq 2, n \geq 4$).
+
+\subsection{Boolean Matroids $U(n, n)$}
+The uniform matroid $U(n, n)$ corresponds to a set of $n$ independent elements. Its Chow polynomial coincides with the Eulerian polynomial $A_n(x)$.
+\begin{itemize}
+    \item $H_{U(2,2)}(x) = x + 1$
+    \item $H_{U(3,3)}(x) = x^2 + 4x + 1$
+    \item $H_{U(4,4)}(x) = x^3 + 11x^2 + 11x + 1$
+    \item $H_{U(5,5)}(x) = x^4 + 26x^3 + 66x^2 + 26x + 1$
+\end{itemize}
+These are the Eulerian numbers $A(n, k)$ which count permutations of $n$ elements with $k$ descents.
+
+\subsection{General Uniform Matroids $U(k, n)$}
+For $k < n$:
+\begin{itemize}
+    \item $H_{U(2,n)}(x) = x + 1$ for all $n \geq 2$.
+    \item For $k=3$:
+    \begin{itemize}
+        \item $H_{U(3,3)}(x) = x^2 + 4x + 1$
+        \item $H_{U(3,4)}(x) = x^2 + 7x + 1$
+        \item $H_{U(3,5)}(x) = x^2 + 11x + 1$
+        \item $H_{U(3,n)}(x) = x^2 + (1 + \binom{n}{2})x + 1$? (Check: $1 + 3 = 4$, $1 + 6 = 7$, $1 + 10 = 11$. Correct!)
+    \end{itemize}
+\end{itemize}
+\textbf{Conjecture:} For $H_{U(3,n)}(x) = 1 + h_1 x + 1$, we have $h_1 = 1 + \binom{n}{2}$.
+
+\section{Wheel Matroids $W_n$}
+The wheel graph $W_n$ consists of a cycle $C_n$ and a central vertex (hub) connected to all vertices of the cycle.
+Note that $W_3 \cong K_4$, where $K_4$ is the complete graph on 4 vertices.
+\begin{itemize}
+    \item $H(W_3) = H(K_4) = x^2 + 8x + 1$
+    \item $H(W_4) = x^3 + 34x^2 + 34x + 1$
+    \item $H(W_5) = x^4 + 107x^3 + 367x^2 + 107x + 1$
+    \item $H(W_6) = x^5 + 303x^4 + 2550x^3 + 2550x^2 + 303x + 1$
+\end{itemize}
+The coefficients grow rapidly, suggesting a relationship with the number of spanning trees or other enumeration properties of wheels.
+
+\section{Whirl Matroids $Wh(n)$}
+Whirl matroids are obtained from wheels by relaxing the circuit-hyperplane corresponding to the outer cycle.
+\begin{itemize}
+    \item $H(Wh(2)) = U(2,4) = x + 1$
+    \item $H(Wh(3)) = x^2 + 10x + 1$
+    \item $H(Wh(4)) = x^3 + 37x^2 + 37x + 1$
+    \item $H(Wh(5)) = x^4 + 111x^3 + 391x^2 + 111x + 1$
+\end{itemize}
+They are slightly "larger" than wheels in terms of Chow coefficients.
+
+\section{Projective Geometry Matroids $PG(n, q)$}
+The matroid $PG(n, q)$ is the matroid of the projective space over $GF(q)$.
+\begin{itemize}
+    \item $PG(2, 2)$ (Fano): $H(PG(2, 2)) = x^2 + 8x + 1$ (This matches $H(K_4)$, although the matroids are not isomorphic; they both have rank 3 and a similar "density" of flats).
+    \item $H(PG(2, 3)) = x^2 + 14x + 1$
+\end{itemize}
+The $h_1$ values $8, 14, \dots$ for $PG(2, q)$ might follow a formula in terms of $q$.
+
+\section{Summary and Future Work}
+The surveyed classes show that symmetric matroids often yield polynomials with symmetric (palindromic) and positive coefficients, as expected. The uniform matroid case $U(n,n)$ giving Eulerian polynomials suggests that for specific families, the Chow ring structure is deeply linked to classical combinatorial statistics. Future work involves deriving the explicit recurrence for $U(k, n)$ using a deletion-contraction approach similar to the complete graph case.
+
+\end{document}

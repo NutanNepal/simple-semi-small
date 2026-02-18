@@ -1,0 +1,16 @@
+// Git specific locks/temp files
+.git/*.lock
+.git/index.lock
+.git/refs/heads/*.lock
+
+// LaTeX build artifacts
+*.aux
+*.log
+*.pdf
+*.toc
+*.out
+*.synctex.gz
+
+// OS specific clutter
+.DS_Store
+Thumbs.db
