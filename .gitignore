@@ -225,4 +225,9 @@ references/*.tmp
 references/*.temp
 
 # Ignore the matroids folder (copied from source)
-matroids/ 
+matroids/
+
+# Syncthing
+.stfolder/
+.stversions/
+*.sync-conflict-*
