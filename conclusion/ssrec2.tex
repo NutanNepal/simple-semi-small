@@ -262,7 +262,7 @@ Department of Mathematics, North Carolina State University, Raleigh, NC, USA.
 
 \section{Framework}
 
-\subsection{Posets and Incidence Algebras}
+\subsection{Posets and Incidence Algebras} (needs expansion)
 Let \(\calP\) be a \emph{finite partially ordered set} ranked by the function \(\rho\).
 We denote by \(\inc(\calP)\) the incidence algebra of the poset \(\calP\) over the ring
 \(\ZZ[x]\) with the algebra structure given by convolution.
@@ -395,7 +395,7 @@ But we can have even more:
     \end{equation}
     We will show that \(\beta_s\in\ZZ\) by induction on the corank of \(s\).
 
-    \noindent\textbf{Base case:} When \(s=\hat{1}\),
+    \noindent For the base case, when \(s=\hat{1}\),
     \(\alpha_{\hat{1}}=\beta_{\hat{1}}\klbasisSub{\hat{1}}
     {\hat{1}}=\beta_{\hat{1}}\).
 
@@ -405,7 +405,7 @@ But we can have even more:
     also needs to be in \(\ZZ[x]\). Thus, \(\beta_{\hat{1}}=\alpha_{\hat{1}}\in\pal(0)\cap\ZZ[x] = \ZZ\)
     as required.
 
-    \noindent\textbf{Inductive step:} Assume that for all \(t\in\calP\) with \(\rho(t)>\rho(s)\),
+    \noindent For the inductive step, assume that for all \(t\in\calP\) with \(\rho(t)>\rho(s)\),
     we have \(\beta_t\in\ZZ\). Then,
     \[S_s(\alpha)=\sum_{t\geq s}{x^{-\rho_{st}}\alpha_{t}}.\]
     Substituting for \(\alpha_t\) using the change of basis formula in \ref{eqn:change-of-basis},
@@ -553,18 +553,31 @@ There is a surjective map \(\calL(\M)\to\calL(\M\setminus e)\) given by \(F \map
 
 If \(F \in \calL(\M)\) is disjoint from \(e\), then clearly
 \(\Delta(\Cbasis{F}) = \Cbasis{F \setminus e}\in
-\cH'_p(\M \setminus e)\). If 
+\cH'_p(\M \setminus e)\). For the other case when \(e\in F\),
+we first define the set \(S_e(F)\):
+
+\begin{definition}
+    Let \(F \in \calL(\M)\) and let \(e \in F\).
+    We define \(S_e(F)\) as the set of all flats \(G \leq F\) that
+    satisfy \(G \in \calL(M)\) and \(G \cup e \in \calL(\M)\).
+\end{definition}
+
+\begin{remark}
+    We can also think of \(S_e(F)\) as the set of all flats
+    \(G \leq F\setminus e \in \calL(\M\setminus e)\) that
+    satisfy \(\overline{G} = G\), where \(\overline{G}\) is the closure of \(G\) in \(\M\).
+\end{remark}
 
 \begin{proposition}\label{prop:imageofDeltaCbasis}
     For any flat \(F \in \mathcal{L}(\M)\), the following identities hold in \(\cH'_p(\M \setminus e)\):
     \begin{enumerate}
         \item If \(e\) is not a coloop in \(\M^F\), then
               \begin{equation}\label{eq:imageofDeltaCbasisnoncoloop}
-                  \Delta(\Cbasis{F}) = \Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F)}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+                  \Delta(\Cbasis{F}) = \Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(F)}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
               \end{equation}
         \item If \(e\) is a coloop in \(\M^F\), then
               \begin{equation}\label{eq:imageofDeltaCbasiscoloop}
-                  \Delta(\Cbasis{F}) = (x+x^{-1})\Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(\M^F), G \neq F\setminus e}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
+                  \Delta(\Cbasis{F}) = (x+x^{-1})\Cbasis{F \setminus e} + x^{-1}\sum_{G \in S_e(F), G \neq F\setminus e}\CbasisSub{F}{G\cup e} \cdot \Cbasis{G}
               \end{equation}
     \end{enumerate}
 \end{proposition}
@@ -572,17 +585,20 @@ If \(F \in \calL(\M)\) is disjoint from \(e\), then clearly
     By Theorem~\ref{thm:changeofbasis}, the coefficients
     \(q_G\) in the expansion \(\Delta(\Cbasis{F}) = \sum q_G \cdot \Cbasis{G}
     = \sum \beta_G \cdot \Ebasis{G}\) are the unique \(\pal(0)\)
-    components of the standard-basis coefficients,
-    \[\beta_G = \sum_{L: L \le F, L\setminus e = G} \CbasisSub{F}{L} x^{-\delta(L)}.\]
-    Thus we analyze
-    \(q_G\) by considering different cases for the flat \(G\).
+    components of the standard-basis coefficients \(\beta_G\). These coefficients are given as
+    \[\beta_G = \sum_{L: L \le F, L\setminus e = G} \CbasisSub{F}{L} x^{-\delta(L)}\]
+    which are obtained by simply plugging in the definition of \(\Delta\) and \(\Cbasis{F}\).
+    We analyze \(q_G\) by considering different cases for the flat \(G\).
 
     \textbf{Coefficients for \(G \neq F \setminus e\):}
-    For any flat \(G\) not equal to \(F \setminus e\), its preimages \(L \le F\) are a subset of
-    \(\{\overline{G}, G \cup e\}\) where \(\overline{G}\) is the closure of \(G\) in \(\M\).
+    For any flat \(G\) not equal to \(F \setminus e\), its preimage \(L \le F\)
+    under \(\Delta\) is the set \(\{\overline{G}, G \cup e\}\)
+    where \(\overline{G}\) is the closure of \(G\) in \(\M\).
     \begin{itemize}
-        \item If \(G \in S_e(\M^F)\), \(\overline{G} = G\) and the standard-basis coefficient is \(\beta_G = \CbasisSub{F}{G} + x^{-1}\CbasisSub{F}{G\cup e}\). This is a sum of a \(\pal(2)\) term and a \(\pal(0)\) term. Its unique \(\pal(0)\) part is \(q_G = x^{-1}\CbasisSub{F}{G\cup e}\).
-        \item If \(G \notin S_e(\M^F)\), the only possible preimage is
+        \item If \(G \in S_e(F)\), the preimage consists of both \(G\) and \(G \cup e\).
+        The standard-basis coefficient is \(\beta_G = \CbasisSub{F}{G} + x^{-1}\CbasisSub{F}{G\cup e}\).
+        This is a sum of a \(\pal(2)\) term and a \(\pal(0)\) term. Its unique \(\pal(0)\) part is \(q_G = x^{-1}\CbasisSub{F}{G\cup e}\).
+        \item If \(G \notin S_e(F)\), the only possible preimage is
               \(L=\overline{G}\). The standard-basis coefficient is
               \(\beta_G = \CbasisSub{F}{\overline{G}}\), which is in \(\pal(2)\). Its \(\pal(0)\) part is \(q_G = 0\).
     \end{itemize}
