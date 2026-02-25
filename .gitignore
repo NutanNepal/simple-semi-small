@@ -119,7 +119,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
-*Zone.Identifier
 
 # Linux
 *~
@@ -226,11 +225,4 @@ references/*.tmp
 references/*.temp
 
 # Ignore the matroids folder (copied from source)
-matroids/
-
-# Syncthing
-.stfolder/
-.stfolder.*/
-.stignore
-.stversions/
-.sync-conflict-*
+matroids/ 
