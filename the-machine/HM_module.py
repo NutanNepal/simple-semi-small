@@ -84,11 +84,47 @@ class ZetaBasis(BasisAbstract):
         E = M.E()
         q = M._q
         rank = L.rank_function()
+        R = M.base_ring()
         return E.sum_of_terms(
-            (y, q**(rank(x) - rank(y)) *
-            L.kazhdan_lusztig_polynomial(y, x)(q=q**-2))
+            (y, q**(rank(x) - rank(y)) * R(L.kazhdan_lusztig_polynomial(y, x)(q=q**-2)))
             for y in L.order_ideal([x])
         )
+
+class invFBasis(BasisAbstract):
+    """
+    The invF basis for the Quantum Möbius Algebra.
+    """
+    def __init__(self, M, prefix='invF') -> None:
+        self._basis_name = "invF"
+        CombinatorialFreeModule.__init__(self, M.base_ring(),
+                                        tuple(M._lattice),
+                                        prefix=prefix,
+                                        category=MoebiusAlgebraBases(M))
+
+        # Change of basis:
+        E = M.E()
+        phi = self.module_morphism(self._to_natural_basis,
+                                codomain=E, category=self.category(),
+                                triangular='upper', unitriangular=True,
+                                key=M._lattice._element_to_vertex)
+
+        phi.register_as_coercion()
+        (~phi).register_as_coercion()
+
+    def _to_natural_basis(self, x):
+        M = self.realization_of()
+        L = M._lattice
+        E = M.E()
+        q = M._q
+        rank = L.rank_function()
+        matroid = M._matroid
+        R = M.base_ring()
+        mu_rev_x = convolve(rev(mu), convolve(chow_polynomial, rev(kl_poly)))
+        res = E.sum_of_terms(
+            (G, q**(rank(x) - rank(G)) * R(mu_rev_x(matroid.delete(matroid.groundset() - x).contract(G)))(q**-2))
+            for G in L.order_ideal([x])
+        )
+        return res
 
 class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
     """
@@ -113,6 +149,7 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
         super().__init__(self._lattice, x)
         self._chow_basis = ChowBasis(self)
         self._zeta_basis = ZetaBasis(self)
+        self._invF_basis = invFBasis(self)
 
     def C(self):
         """
@@ -125,6 +162,12 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
         Return the zeta basis for this algebra.
         """
         return self._zeta_basis
+
+    def invF(self):
+        """
+        Return the invF basis for this algebra.
+        """
+        return self._invF_basis
 
     def is_in_Hp(self, alpha):
         """

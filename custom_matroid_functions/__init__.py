@@ -14,7 +14,7 @@ Main modules:
 from .core import cmp_elements_key, characteristic_polynomial, whitney_numbers
 from .polynomials import (
     inverse_kazhdan_lustig_uniform, kazhdan_lustig_uniform, inverse_kazhdan_lustig_polynomial, invkl,
-    kl_inverse_paving, kl_inverse_copaving
+    kl_inverse_paving, kl_inverse_copaving, rev, convolve, mu, kl_poly
 )
 from .chow_polynomials import (
     chow_polynomial, get_chow_polynomial, reduced_characteristic_polynomial,
@@ -31,7 +31,7 @@ __all__ = [
     
     # Polynomial functions
     'inverse_kazhdan_lustig_uniform', 'kazhdan_lustig_uniform', 'inverse_kazhdan_lustig_polynomial', 'invkl',
-    'kl_inverse_paving', 'kl_inverse_copaving',
+    'kl_inverse_paving', 'kl_inverse_copaving', 'rev', 'convolve', 'mu', 'kl_poly',
     
     # Chow polynomial functions
     'chow_polynomial', 'get_chow_polynomial', 'reduced_characteristic_polynomial',

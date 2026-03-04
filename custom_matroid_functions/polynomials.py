@@ -65,8 +65,9 @@ def get_kl_polynomial(M):
         r, n = M.rank(), M.size()
         poly = kazhdan_lustig_uniform(r, n)
     else:
-        # For non-uniform, use the general KL polynomial if implemented
-        raise NotImplementedError("KL polynomial for non-uniform matroids not implemented.")
+        R = LaurentPolynomialRing(ZZ, 't')
+        t = R.gen()
+        poly = M.lattice_of_flats().kazhdan_lusztig_polynomial()(t)
     _kl_poly_cache[matroid_key] = poly
     _save_cache(_kl_poly_cache, KL_POLY_CACHE_FILE)
     return poly
@@ -354,4 +355,55 @@ def lorenzo(k, h, n):
     c = n - h
     ans1 = kazhdan_lustig_uniform(k, n) + kazhdan_lustig_uniform(k-c+1, h) * kazhdan_lustig_uniform(c-1, c)
     ans2 = helper3(c, k, n)
-    return ans1 - ans2 
+    return ans1 - ans2
+
+# --- Global Cache for Polynomials ---
+global_poly_cache = {}
+
+def get_cache_key(func_name, M):
+    return (func_name, tuple(sorted(M.lattice_of_flats())))
+
+def convolve(f, g):
+    from sage.rings.polynomial.laurent_polynomial_ring import LaurentPolynomialRing
+    from sage.rings.integer_ring import ZZ
+    x = LaurentPolynomialRing(ZZ, 'x').gen()
+    
+    def memoized_conv(M):
+        # f and g are functions. We can't easily hash them, so we just run them
+        # Note: convolve itself returns a function. We'll cache the result
+        # based on id of f and g to distinguish
+        key = ("convolve", id(f), id(g), tuple(sorted(M.lattice_of_flats())))
+        if key not in global_poly_cache:
+            global_poly_cache[key] = sum(f(M.delete(M.groundset() - F))(x) * g(M.contract(F))(x) for F in list(M.lattice_of_flats()))
+        return global_poly_cache[key]
+    return memoized_conv
+
+def rev(f):
+    from sage.rings.polynomial.laurent_polynomial_ring import LaurentPolynomialRing
+    from sage.rings.integer_ring import ZZ
+    LPoly = LaurentPolynomialRing(ZZ, 'x')
+    x = LPoly.gen()
+    
+    def memoized_rev(M):
+        # Use a more robust key than id(f) if f is a local lambda
+        key = ("rev", f.__name__ if hasattr(f, '__name__') else id(f), tuple(sorted(M.lattice_of_flats())))
+        
+        if key not in global_poly_cache:
+            poly = f(M)
+            # Use substitution instead of __call__ to be explicit
+            # This avoids issues if 'x' is shadowed in this scope
+            rev_poly = poly.subs({poly.parent().gen(): x**-1}) * x**M.rank()
+            global_poly_cache[key] = rev_poly
+            
+        return global_poly_cache[key]
+    return memoized_rev
+
+def kl_poly(M):
+    return get_kl_polynomial(M)
+
+def mu(M):
+    from .core import characteristic_polynomial
+    key = ("mu", tuple(sorted(M.lattice_of_flats())))
+    if key not in global_poly_cache:
+        global_poly_cache[key] = characteristic_polynomial(M)(0)
+    return global_poly_cache[key]
