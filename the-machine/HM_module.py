@@ -126,6 +126,49 @@ class invFBasis(BasisAbstract):
         )
         return res
 
+class MuBasis(BasisAbstract):
+    """
+    The mu basis for the Quantum Möbius Algebra.
+    """
+    def __init__(self, M, prefix='mu') -> None:
+        self._basis_name = "mu"
+        CombinatorialFreeModule.__init__(self, M.base_ring(),
+                                        tuple(M._lattice),
+                                        prefix=prefix,
+                                        category=MoebiusAlgebraBases(M))
+
+        # Change of basis:
+        E = M.E()
+        phi = self.module_morphism(self._to_natural_basis,
+                                codomain=E, category=self.category(),
+                                triangular='upper', unitriangular=True,
+                                key=M._lattice._element_to_vertex)
+
+        phi.register_as_coercion()
+        (~phi).register_as_coercion()
+
+    def _to_natural_basis(self, F):
+        M = self.realization_of()
+        L = M._lattice
+        E = M.E()
+        q = M._q
+        rank = L.rank_function()
+        matroid = M._matroid
+        R = M.base_ring()
+        
+        # mu^F = sum_{G <= F} x^{g-f} * mu(M^F_G) * G
+        # Therefore x^{g-f} corresponds to q^{rank(G) - rank(F)} (keeping in mind q = x, though in the module q represents the parameter).
+        # We need the mu polynomial (characteristic polynomial evaluated at 0).
+        def mu_val(m_matroid):
+            from custom_matroid_functions import characteristic_polynomial
+            return characteristic_polynomial(m_matroid)(0)
+            
+        res = E.sum_of_terms(
+            (G, q**(rank(G) - rank(F)) * R(mu_val(matroid.delete(matroid.groundset() - F).contract(G))))
+            for G in L.order_ideal([F])
+        )
+        return res
+
 class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
     """
     A class representing the Deformed Möbius Algebra with the Zeta basis.
@@ -150,6 +193,7 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
         self._chow_basis = ChowBasis(self)
         self._zeta_basis = ZetaBasis(self)
         self._invF_basis = invFBasis(self)
+        self._mu_basis = MuBasis(self)
 
     def C(self):
         """
@@ -168,6 +212,12 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
         Return the invF basis for this algebra.
         """
         return self._invF_basis
+
+    def mu(self):
+        """
+        Return the mu basis for this algebra.
+        """
+        return self._mu_basis
 
     def is_in_Hp(self, alpha):
         """
@@ -254,6 +304,8 @@ def create_deformed_algebra_from_lattice(lattice, base_ring=None):
 __all__ = [
     'ChowBasis',
     'ZetaBasis', 
+    'invFBasis',
+    'MuBasis',
     'DeformedMoebiusAlgebra',
     'create_deformed_algebra',
     'create_deformed_algebra_from_lattice'
