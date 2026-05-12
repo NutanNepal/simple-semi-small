@@ -1,0 +1,244 @@
+\documentclass{article}
+\usepackage[letterpaper,margin=0.85in]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath, amsthm, amssymb}
+\raggedright
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sc]{mathpazo}
+\usepackage[scr=euler]{mathalfa}
+\usepackage[euler-digits]{eulervm}
+\usepackage{hyperref}
+\title{Algebraic derivation of semi-small decomposition of
+the Chow ring of a matroid}
+\author{Nutan Nepal}
+\date{May 2026}
+
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\rk}{\text{rk}}
+\newcommand{\M}{\mathrm{M}}
+\newcommand{\chow}{\normalfont{H}}
+\newcommand{\Pal}[1]{\mathrm{Pal}(#1)}
+\newcommand{\KLbasis}[1]{\mathrm{kl}^{#1}}
+\newcommand{\Cbasis}[1]{\mathrm{c}^{#1}}
+\newcommand{\CbasisSub}[2]{\mathrm{c}^{#1}_{#2}}
+\newcommand{\hbasis}[1]{\mathcal{H}_{#1}(P)}
+\newcommand{\cbasis}[1]{\mathcal{H}'_{#1}(P)}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Introduce the context.
+
+\section{Algebraic Framework}
+
+\subsection{Incidence algebra and factorizations}
+
+Let \(P\) be a graded bounded poset with rank function \(\rk: P \to \mathbb{Z}_{\ge 0}\).
+The \emph{incidence algebra} \(I(P, R)\) of \(P\) over the commutative ring \(R\)
+consists of all functions \(h: P \times P \to R\) such that
+\[
+h(s, t) = 0 \text{ unless } s \leq t.
+\]
+With appropriate indexing, we view these functions as \(|P|\times |P|\)
+upper triangular matrices with entries \(h_{s,t} = h(s, t)\) in \(R\).
+The product on \(I(P, R)\) is given by matrix multiplication. In our case, we will
+focus on \(\mathcal{I}:=I(P, \mathbb{Z}[x])\)
+which admits an involution \((\cdot)^{\rev}: \mathcal{I} \to \mathcal{I}\) given by
+\[
+  h^\rev_{st}(x) = x^{\rk(t)-\rk(s)}h_{st}(x^{-1}).
+\]
+
+The incidence algebra works as a hub for all
+the polynomial invariants of the poset \(P\).
+The Kazhdan--Lusztig--Stanley function \(f\) and
+the Chow function \(\chow\) are defined as
+unique functions in the incidence algebra satisfying
+certain conditions.
+
+\begin{definition}
+    For every poset \(P\), there exists a unique function
+    \(f\in \mathcal{I}\) that satisfies
+    \begin{itemize}
+        \item \(f_{ss}(x) = 1\),
+        \item \(\deg(f_{st}(x))<\frac{\rk(t)-\rk(s)}{2}\) for all \(s < t\),
+        \item \(Z:= \zeta^{\rev} f\) satisfies
+            \(Z^{\rev} = Z\).
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    For every poset \(P\), there exists a unique function \(\chow\in \mathcal{I}\) that satisfies
+    \begin{itemize}
+        \item \(\chow_{ss}(x) = 1\),
+        \item \(\chow_{st}(x) = x^{\rk(t)-\rk(s)-1}\chow_{st}(x^{-1})\) for all \(s < t\),
+        \item \(G:= \zeta^{\rev} \chow\) satisfies
+            \(G^{\rev} = G\).
+    \end{itemize}
+\end{definition}
+
+Let \(R:=\mathbb{Z}[x, x^{-1}]\) be the ring of Laurent polynomials with integer coefficients.
+We define an injective map \((\cdot)^{\diamond}\colon \mathcal{I} \to I(P, R)\)
+as follows.
+\begin{align*}
+  h^{\diamond}_{s, t}(x) = x^{\rk(t)-\rk(s)} h_{s,t}(x^{-2}).
+\end{align*}
+\begin{remark}
+This map is an algebra homomorphism, i.e. it satisfies
+\((gh)^{\diamond} = g^{\diamond} h^{\diamond}\), and is invertible on its image.
+For any integer \(n\), we denote by \(\Pal{n}\) the additive group of polynomials \(p(x) \in R\)
+satisfying \(p(x) = x^n p(x^{-1})\). While \(\Pal{0}\) is a subring of \(R\), we note that
+\(\Pal{n}\) for \(n \neq 0\) is not, as \(\Pal{n} \cdot \Pal{m} \subseteq \Pal{n+m}\).
+\end{remark}
+
+\begin{lemma}
+    Every Laurent polynomial \(p(x) \in R\) can be written as \(p(x) = p_0(x) + p_2(x)\)
+    where \(p_0(x) \in \Pal{0}\) and \(p_2(x) \in \Pal{2}\).
+\end{lemma}
+\begin{proof}
+    For each \(k\ge 0\), the \((2k+1)\)-dimensional vector space
+    \(R_{\le k}\)
+    of Laurent polynomials with exponents in \([-k,k]\)
+    has complementary subspaces spanned by \(\{1, x^{-1}+x, \ldots, x^{-k}+x^k\}\)
+    and \(\{x, 1 + x^2, x^{-1} + x^{3}, \ldots, x^{-k+2} + x^{k}\}\),
+    which are \(\Pal{0}\) and \(\Pal{2}\) respectively.
+\end{proof}
+
+With the diamond map and the $\Pal{0}$ decomposition established,
+we note the following properties of $f$ and $\chow$:
+\begin{itemize}
+  \item \(f^\diamond_{ss} = 1 \in \mathbb{Z}\) and
+        \(f^\diamond_{st}(x) \in x\mathbb{Z}[x]\) for all \(s < t\).
+  \item \(\chow^\diamond_{ss} = 1 \in \mathbb{Z} \subset \Pal{0}\) and
+        \(\chow^\diamond_{st}(x) \in \Pal{2}\) for all \(s < t\).
+\end{itemize}
+
+These properties lead to the following factorizations:
+
+  \begin{lemma} \label{thm:kl_chow_factorization}
+    If $h \in \mathcal{I}$ satisfies
+    $(\zeta^\rev h)^\diamond \in I(P, \Pal{0})$,
+    then $h^\diamond = H^\diamond \cdot a^\diamond$
+    where $a^\diamond$ is the entry-wise $\Pal{0}$ projection of $h^\diamond$.
+    If $h \in \mathcal{I}$ further satisfies
+    $h^{\diamond}_{st}(x) \in \mathbb{Z}[x]$ for all $s \le t$,
+    then $h^\diamond = f^\diamond \cdot a^\diamond$
+    where $a^\diamond_{st} = h_{st}^\diamond(0)$ for all $s \le t$.
+  \end{lemma}
+
+  \subsection{The column space}
+
+  Let \(\mathcal{H}(P)\) be the free \(R\)-module of column vectors
+  indexed by the elements of \(P\).
+  The standard basis of \(\mathcal{H}(P)\) is given by the
+  indicator vectors \(\{e_t\}_{t \in P}\). Any matrix in
+  \(I(P, R)\) acts naturally on \(\mathcal{H}(P)\) by left
+  multiplication. Using the diamond map, we can push elements of
+  \(\mathcal{I}\) forward to act on this column space.
+
+  \begin{definition}
+    For \(t \in P\), the \emph{Kazhdan--Lusztig basis element} \(\KLbasis{t}\) is the \(t\)-th column of the matrix \(f^\diamond\), i.e., \(\KLbasis{t} := f^\diamond e_t\). 
+    Similarly, the \emph{Chow basis element} \(\Cbasis{t}\) is the \(t\)-th column of the matrix \(\chow^\diamond\), i.e., \(\Cbasis{t} := \chow^\diamond e_t\).
+\end{definition}
+
+\begin{definition}
+    The \emph{perverse submodule} \(\hbasis{p}\) consists of all column vectors \(v \in \mathcal{H}(P)\) satisfying two conditions:
+    \begin{enumerate}
+        \item \(v \in (\mathbb{Z}[x])^{|P|}\) (its entries are polynomials in \(x\)).
+        \item \((\zeta^\rev)^\diamond v \in (\Pal{0})^{|P|}\) (its evaluation yields palindromic polynomials of degree zero).
+    \end{enumerate}
+    The relaxed submodule \(\cbasis{p}\) consists of all vectors \(v \in \mathcal{H}(P)\) satisfying only the second condition.
+\end{definition}
+
+Because \(\Pal{0}\) is a ring, \(\cbasis{p}\) is a \(\Pal{0}\)-module. Since multiplying by an element of \(\mathbb{Z}\) preserves both polynomiality and \(\Pal{0}\) symmetry, \(\hbasis{p}\) is a \(\mathbb{Z}\)-module. 
+
+The algebraic factorizations in Theorems \ref{thm:kl_chow_factorization} translate directly into change-of-basis theorems for these column spaces. If we treat a vector \(v \in \cbasis{p}\) as a column of a larger matrix \(h^\diamond\), the incidence algebra factorizations isolate the coefficients into the required rings.
+
+\begin{theorem} \label{thm:kl_basis}
+    The Kazhdan--Lusztig elements \(\{\KLbasis{t}\}_{t \in P}\) form a \(\mathbb{Z}\)-basis for \(\hbasis{p}\). 
+\end{theorem}
+
+\begin{theorem} \label{thm:chow_basis}
+    The Chow elements \(\{\Cbasis{t}\}_{t \in P}\) form a \(\Pal{0}\)-basis for \(\cbasis{p}\). Furthermore, for any \(v = \sum \alpha_s e_s \in \cbasis{p}\), its expansion in the Chow basis is \(v = \sum (\alpha_s)_0 \Cbasis{s}\), where \((\alpha_s)_0\) is the \(\Pal{0}\) projection of the standard coordinate \(\alpha_s\).
+\end{theorem}
+
+\section{Deletion in Geometric Lattices}
+
+We now restrict our attention to the case where the poset \(P\) is the lattice of flats \(\mathcal{L}(\M)\) of a matroid \(\M\) on a finite ground set \(E\). For any element \(e \in E\), the deletion \(\M \setminus e\) is a matroid on \(E \setminus \{e\}\). The map \(\pi: \mathcal{L}(\M) \to \mathcal{L}(\M \setminus e)\) defined by \(\pi(F) = F \setminus \{e\}\) is surjective.
+
+\begin{definition}
+    The \emph{discrepancy} of a flat \(F \in \mathcal{L}(\M)\) with respect to \(e\) is the integer
+    \[ \delta(F) := \rk_{\M}(F) - \rk_{\M \setminus e}(F \setminus \{e\}). \]
+\end{definition}
+
+We define a linear map between the column spaces that reflects this geometric deletion.
+
+\begin{definition}
+    The \emph{deletion operator} \(\Delta: \mathcal{H}(\M) \to \mathcal{H}(\M \setminus e)\) is the \(R\)-linear map defined on the standard basis by
+    \[ \Delta(e_F) := x^{-\delta(F)} e_{F \setminus \{e\}}. \]
+\end{definition}
+
+The fundamental property of \(\Delta\) is that it intertwines with the evaluation map (left-multiplication by \((\zeta^\rev)^\diamond\)) by tracking the closure operator in \(\M\).
+
+\begin{lemma} \label{lem:intertwining}
+    Let \(H \in \mathcal{L}(\M \setminus e)\) and let \(\overline{H}\) be the closure of \(H\) in \(\M\). For any vector \(v \in \mathcal{H}(\M)\), the \(H\)-th coordinate of the evaluation of \(\Delta(v)\) matches the \(\overline{H}\)-th coordinate of the evaluation of \(v\):
+    \[ \left( (\zeta^\rev_{\M \setminus e})^\diamond \Delta(v) \right)_H = \left( (\zeta^\rev_{\M})^\diamond v \right)_{\overline{H}} \]
+\end{lemma}
+
+\begin{theorem}
+    The deletion operator restricts to a \(\Pal{0}\)-module homomorphism \(\Delta: \cbasis{p}(\M) \to \cbasis{p}(\M \setminus e)\). In particular, for any flat \(F \in \mathcal{L}(\M)\), \(\Delta(\Cbasis{F}) \in \cbasis{p}(\M \setminus e)\).
+\end{theorem}
+
+\subsection{Expansion of the Deletion Image}
+
+To compute the explicit expansion of \(\Delta(\Cbasis{F})\) in the Chow basis of \(\mathcal{H}(\M \setminus e)\), we must analyze the standard coordinates of the deleted vector. By Theorem \ref{thm:chow_basis}, the coefficient of \(\Cbasis{G}\) in this expansion is exactly the \(\Pal{0}\) projection of the \(G\)-th standard coordinate of \(\Delta(\Cbasis{F})\). 
+
+First, we define a specific subset of flats that will index our summation.
+
+\begin{definition}
+    For any flat \(F \in \mathcal{L}(\M)\) containing \(e\), we define the set 
+    \[ S_e(F) := \{ G \in \mathcal{L}(\M \setminus e) \mid G \le F \setminus \{e\} \text{ and } G \cup \{e\} \in \mathcal{L}(\M) \}. \]
+\end{definition}
+
+\begin{theorem} \label{thm:deletion_expansion}
+    For any flat \(F \in \mathcal{L}(\M)\), the following identities hold in \(\cbasis{p}(\M \setminus e)\):
+    \begin{enumerate}
+        \item If \(e\) is not a coloop in \(\M^F\), then
+              \begin{equation} \label{eq:delta_noncoloop}
+                  \Delta(\Cbasis{F}) = \Cbasis{F \setminus \{e\}} + \sum_{G \in S_e(F)} x^{-1} \CbasisSub{F}{G \cup \{e\}} \Cbasis{G}
+              \end{equation}
+        \item If \(e\) is a coloop in \(\M^F\), then
+              \begin{equation} \label{eq:delta_coloop}
+                  \Delta(\Cbasis{F}) = (x+x^{-1})\Cbasis{F \setminus \{e\}} + \sum_{\substack{G \in S_e(F) \\ G \neq F \setminus \{e\}}} x^{-1} \CbasisSub{F}{G \cup \{e\}} \Cbasis{G}
+              \end{equation}
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let \(\Delta(\Cbasis{F}) = \sum \beta_G e_G\) be the expansion in the standard basis, and \(\Delta(\Cbasis{F}) = \sum q_G \Cbasis{G}\) be the expansion in the Chow basis. By Theorem \ref{thm:chow_basis}, \(q_G = (\beta_G)_0\).
+    
+    Applying the definition of \(\Delta\) to \(\Cbasis{F} = \sum_{L \le F} \CbasisSub{F}{L} e_L\), the standard coordinate \(\beta_G\) is the sum over all preimages of \(G\):
+    \[ \beta_G = \sum_{\substack{L \le F \\ L \setminus \{e\} = G}} x^{-\delta(L)} \CbasisSub{F}{L} \]
+    
+    We determine \(q_G\) by analyzing the preimages \(L \in \{\overline{G}, G \cup \{e\}\}\).
+    
+    \textbf{Case 1: \(G \neq F \setminus \{e\}\).} 
+    If \(G \in S_e(F)\), both \(\overline{G} = G\) and \(G \cup \{e\}\) are valid flats in \(\M\). The standard coordinate is \(\beta_G = \CbasisSub{F}{G} + x^{-1}\CbasisSub{F}{G\cup \{e\}}\). Since \(\CbasisSub{F}{G} \in \Pal{2}\) and \(x^{-1}\CbasisSub{F}{G\cup \{e\}} \in \Pal{0}\), the projection yields \(q_G = x^{-1}\CbasisSub{F}{G\cup \{e\}}\). 
+    If \(G \notin S_e(F)\), the only valid preimage is \(\overline{G}\). Thus, \(\beta_G = \CbasisSub{F}{\overline{G}} \in \Pal{2}\), which projects to \(q_G = 0\).
+
+    \textbf{Case 2: \(G = F \setminus \{e\}\).} 
+    If \(e\) is not a coloop in \(\M^F\), the only preimage is \(L=F\). Thus \(\beta_{F\setminus \{e\}} = x^0 \CbasisSub{F}{F} = 1 \in \Pal{0}\), giving \(q_{F \setminus \{e\}} = 1\).
+    If \(e\) is a coloop in \(\M^F\), the preimages are \(F\) and \(F \setminus \{e\}\). Thus \(\beta_{F\setminus \{e\}} = \CbasisSub{F}{F\setminus \{e\}} + x^{-1}\CbasisSub{F}{F} = x + x^{-1} \in \Pal{0}\), giving \(q_{F \setminus \{e\}} = x + x^{-1}\).
+\end{proof}
+\end{document}
+
