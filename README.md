@@ -61,8 +61,3 @@ Root-level `test.ipynb`, `tester-nb.ipynb`, `test_inv_kl.sage`, and
 - `matroids/` is a locally copied SageMath source/reference tree, retained with
   its existing ignore rule. It is not included in a fresh clone. Local editor
   and Syncthing settings also remain unchanged.
-
-For new work, use descriptive filenames and record the question, assumptions,
-date, SageMath version, and whether the outcome is a proof, conjecture, or finite
-computation. Keep meaningful earlier attempts. The [cleanup record](docs/cleanup.md)
-explains what was removed and what remains uncertain.
