@@ -56,6 +56,9 @@ celerybeat-schedule
 
 # SageMath
 *.sage.py
+# Preserve generated research scripts whose original .sage source is missing
+!/test.sage.py
+!/the-machine/test_perverse_chow.sage.py
 .sage/
 
 # Environments
@@ -105,6 +108,7 @@ Temporary Items
 .apdisk
 
 # Windows
+*:Zone.Identifier
 Thumbs.db
 Thumbs.db:encryptable
 ehthumbs.db
@@ -140,8 +144,9 @@ $RECYCLE.BIN/
 *.sublime-workspace
 
 # LaTeX
+*.brf
 *.aux
-*.bbl
+# Keep .bbl bibliography snapshots, including sources without their .bib file
 *.blg
 *.fdb_latexmk
 *.fls
@@ -180,13 +185,8 @@ $RECYCLE.BIN/
 *.log
 logs/
 
-# Data files (if any)
-*.csv
-*.dat
-*.json
-*.xml
-*.yaml
-*.yml
+# Research data and configuration formats are intentionally not ignored.
+# Computed polynomial tables can be expensive to reproduce.
 
 # Compiled files
 *.com
@@ -231,3 +231,5 @@ matroids/
 .stfolder/
 .stversions/
 *.sync-conflict-*
+# Keep divergent computed tables as research snapshots; do not merge automatically.
+!*_polynomial_cache.sync-conflict-*.json

@@ -1,0 +1,130 @@
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{B71}{article}{
+      author={Brylawski, Thomas~H.},
+       title={A combinatorial model for series-parallel networks},
+        date={1971},
+     journal={Trans. Amer. Math. Soc.},
+      volume={154},
+       pages={1\ndash 22},
+}
+
+\bib{EPW}{article}{
+      author={Elias, Ben},
+      author={Proudfoot, Nicholas},
+      author={Wakefield, Max},
+       title={The {K}azhdan-{L}usztig polynomial of a matroid},
+        date={2016},
+        ISSN={0001-8708},
+     journal={Adv. Math.},
+      volume={299},
+       pages={36\ndash 70},
+}
+
+\bib{G}{article}{
+      author={Gedeon, Katie~R.},
+       title={Kazhdan-{L}usztig polynomials of thagomizer matroids},
+        date={2017},
+     journal={Electron. J. Combin.},
+      volume={24},
+      number={3},
+       pages={Paper 3.12, 10},
+}
+
+\bib{GLXYZ}{unpublished}{
+      author={Gao, Alice L.~L.},
+      author={Lu, Linyuan},
+      author={Xie, Matthew H.~Y.},
+      author={Yang, Arthur L.~B.},
+      author={Zhang, Philip~B.},
+       title={The {K}azhdan-{L}usztig polynomials of uniform matroids},
+        note={preprint \tt{arXiv:1806.10852}},
+}
+
+\bib{GPY}{article}{
+      author={Gedeon, Katie},
+      author={Proudfoot, Nicholas},
+      author={Young, Benjamin},
+       title={The equivariant {K}azhdan-{L}usztig polynomial of a matroid},
+        date={2017},
+        ISSN={0097-3165},
+     journal={J. Combin. Theory Ser. A},
+      volume={150},
+       pages={267\ndash 294},
+}
+
+\bib{H}{book}{
+      author={Humphreys, James~E.},
+       title={Reflection groups and {C}oxeter groups},
+      series={Cambridge Studies in Advanced Mathematics},
+   publisher={Cambridge University Press, Cambridge},
+        date={1990},
+      volume={29},
+        ISBN={0-521-37510-X},
+}
+
+\bib{KL}{article}{
+      author={Kazhdan, David},
+      author={Lusztig, George},
+       title={Representations of {C}oxeter groups and {H}ecke algebras},
+        date={1979},
+     journal={Invent. Math.},
+      volume={53},
+      number={2},
+       pages={165\ndash 184},
+}
+
+\bib{LXY}{unpublished}{
+      author={Lu, Linyuan},
+      author={Xie, Matthew H.~Y.},
+      author={Yang, Arthur L.~B.},
+       title={{K}azhdan-{L}usztig polynomials of fan matroids, wheel matroids
+  and whirl matroids},
+        note={preprint \tt{arXiv:1802.03711}},
+}
+
+\bib{OEIS}{unpublished}{
+      editor={Sloane, N. J.~A.},
+       title={The on-line encyclopedia of integer sequences},
+        note={published electronically at \tt{https://oeis.org}},
+}
+
+\bib{P}{article}{
+      author={Proudfoot, Nicholas},
+       title={The algebraic geometry of {K}azhdan-{L}usztig-{S}tanley
+  polynomials},
+        date={2018},
+     journal={EMS Surv. Math. Sci.},
+      volume={5},
+      number={1},
+       pages={99\ndash 127},
+}
+
+\bib{PWY}{article}{
+      author={Proudfoot, Nicholas},
+      author={Wakefield, Max},
+      author={Young, Ben},
+       title={Intersection cohomology of the symmetric reciprocal plane},
+        date={2016},
+     journal={J. Algebraic Combin.},
+      volume={43},
+      number={1},
+       pages={129\ndash 138},
+}
+
+\bib{PXY}{article}{
+      author={Proudfoot, Nicholas},
+      author={Xu, Yuan},
+      author={Young, Ben},
+       title={The {$Z$}-polynomial of a matroid},
+        date={2018},
+     journal={Electron. J. Combin.},
+      volume={25},
+      number={1},
+       pages={Paper 1.26, 21},
+}
+
+\end{biblist}
+\end{bibdiv}

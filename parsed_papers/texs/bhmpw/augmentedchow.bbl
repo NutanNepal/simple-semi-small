@@ -1,0 +1,276 @@
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{AHK}{article}{
+      author={Adiprasito, Karim},
+      author={Huh, June},
+      author={Katz, Eric},
+       title={Hodge theory for combinatorial geometries},
+        date={2018},
+        ISSN={0003-486X},
+     journal={Ann. of Math. (2)},
+      volume={188},
+      number={2},
+       pages={381\ndash 452},
+         url={https://doi.org/10.4007/annals.2018.188.2.1},
+      review={\MR{3862944}},
+}
+
+\bib{BDF}{unpublished}{
+      author={Bibby, Christin},
+      author={Denham, Graham},
+      author={Feichtner, Eva~Maria},
+       title={A {L}eray model for the {O}rlik-{S}olomon algebra},
+        note={arXiv:1910.10001},
+}
+
+\bib{BES}{unpublished}{
+      author={Backman, Spencer},
+      author={Eur, Christopher},
+      author={Simpson, Connor},
+       title={Simplicial generation of {C}how rings of matroids},
+        note={arXiv:1905.07114},
+}
+
+\bib{BHMPW}{unpublished}{
+      author={Braden, Tom},
+      author={Huh, June},
+      author={Matherne, Jacob~P.},
+      author={Proudfoot, Nicholas},
+      author={Wang, Botong},
+       title={Singular {H}odge theory for combinatorial geometries},
+        note={arXiv:2010.06088},
+}
+
+\bib{Bjorner}{incollection}{
+      author={Bj{\"o}rner, Anders},
+       title={The homology and shellability of matroids and geometric
+  lattices},
+        date={1992},
+   booktitle={Matroid applications},
+      series={Encyclopedia Math. Appl.},
+      volume={40},
+   publisher={Cambridge Univ. Press, Cambridge},
+       pages={226\ndash 283},
+         url={https://doi.org/10.1017/CBO9780511662041.008},
+      review={\MR{1165544}},
+}
+
+\bib{Brion}{incollection}{
+      author={Brion, Michel},
+       title={Piecewise polynomial functions, convex polytopes and enumerative
+  geometry},
+        date={1996},
+   booktitle={Parameter spaces ({W}arsaw, 1994)},
+      series={Banach Center Publ.},
+      volume={36},
+   publisher={Polish Acad. Sci. Inst. Math., Warsaw},
+       pages={25\ndash 44},
+      review={\MR{1481477}},
+}
+
+\bib{CD}{article}{
+      author={Carr, Michael~P.},
+      author={Devadoss, Satyan~L.},
+       title={Coxeter complexes and graph-associahedra},
+        date={2006},
+        ISSN={0166-8641},
+     journal={Topology Appl.},
+      volume={153},
+      number={12},
+       pages={2155\ndash 2168},
+         url={https://doi.org/10.1016/j.topol.2005.08.010},
+      review={\MR{2239078}},
+}
+
+\bib{CF}{article}{
+      author={Camillo, V.~P.},
+      author={Fuller, K.~R.},
+       title={On graded rings with finiteness conditions},
+        date={1982},
+        ISSN={0002-9939},
+     journal={Proc. Amer. Math. Soc.},
+      volume={86},
+      number={1},
+       pages={1\ndash 5},
+         url={https://doi.org/10.2307/2044382},
+      review={\MR{663852}},
+}
+
+\bib{CLS}{book}{
+      author={Cox, David~A.},
+      author={Little, John~B.},
+      author={Schenck, Henry~K.},
+       title={Toric varieties},
+      series={Graduate Studies in Mathematics},
+   publisher={American Mathematical Society, Providence, RI},
+        date={2011},
+      volume={124},
+        ISBN={978-0-8218-4819-7},
+         url={https://doi.org/10.1090/gsm/124},
+      review={\MR{2810322}},
+}
+
+\bib{dCM2}{article}{
+      author={de~Cataldo, Mark Andrea~A.},
+      author={Migliorini, Luca},
+       title={The hard {L}efschetz theorem and the topology of semismall maps},
+        date={2002},
+        ISSN={0012-9593},
+     journal={Ann. Sci. \'{E}cole Norm. Sup. (4)},
+      volume={35},
+      number={5},
+       pages={759\ndash 772},
+         url={https://doi.org/10.1016/S0012-9593(02)01108-4},
+      review={\MR{1951443}},
+}
+
+\bib{dCM1}{article}{
+      author={de~Cataldo, Mark Andrea~A.},
+      author={Migliorini, Luca},
+       title={The decomposition theorem, perverse sheaves and the topology of
+  algebraic maps},
+        date={2009},
+        ISSN={0273-0979},
+     journal={Bull. Amer. Math. Soc. (N.S.)},
+      volume={46},
+      number={4},
+       pages={535\ndash 633},
+         url={https://doi.org/10.1090/S0273-0979-09-01260-9},
+      review={\MR{2525735}},
+}
+
+\bib{Devadoss}{article}{
+      author={Devadoss, Satyan~L.},
+       title={A realization of graph associahedra},
+        date={2009},
+        ISSN={0012-365X},
+     journal={Discrete Math.},
+      volume={309},
+      number={1},
+       pages={271\ndash 276},
+         url={https://doi.org/10.1016/j.disc.2007.12.092},
+      review={\MR{2479448}},
+}
+
+\bib{Fulton}{book}{
+      author={Fulton, William},
+       title={Intersection theory},
+     edition={Second},
+      series={Ergebnisse der Mathematik und ihrer Grenzgebiete. 3. Folge. A
+  Series of Modern Surveys in Mathematics [Results in Mathematics and Related
+  Areas. 3rd Series. A Series of Modern Surveys in Mathematics]},
+   publisher={Springer-Verlag, Berlin},
+        date={1998},
+      volume={2},
+        ISBN={3-540-62046-X; 0-387-98549-2},
+         url={https://doi.org/10.1007/978-1-4612-1700-8},
+      review={\MR{1644323}},
+}
+
+\bib{FY}{article}{
+      author={Feichtner, Eva~Maria},
+      author={Yuzvinsky, Sergey},
+       title={Chow rings of toric varieties defined by atomic lattices},
+        date={2004},
+        ISSN={0020-9910},
+     journal={Invent. Math.},
+      volume={155},
+      number={3},
+       pages={515\ndash 536},
+         url={https://doi.org/10.1007/s00222-003-0327-2},
+      review={\MR{2038195}},
+}
+
+\bib{GG}{article}{
+      author={Gordon, Robert},
+      author={Green, Edward~L.},
+       title={Graded {A}rtin algebras},
+        date={1982},
+        ISSN={0021-8693},
+     journal={J. Algebra},
+      volume={76},
+      number={1},
+       pages={111\ndash 137},
+         url={https://doi.org/10.1016/0021-8693(82)90240-X},
+      review={\MR{659212}},
+}
+
+\bib{Kung}{incollection}{
+      author={Kung, Joseph P.~S.},
+       title={Strong maps},
+        date={1986},
+   booktitle={Theory of matroids},
+      series={Encyclopedia Math. Appl.},
+      volume={26},
+   publisher={Cambridge Univ. Press, Cambridge},
+       pages={224\ndash 253},
+         url={https://doi.org/10.1017/CBO9780511629563.011},
+      review={\MR{849397}},
+}
+
+\bib{McMullen}{article}{
+      author={McMullen, Peter},
+       title={On simple polytopes},
+        date={1993},
+        ISSN={0020-9910},
+     journal={Invent. Math.},
+      volume={113},
+      number={2},
+       pages={419\ndash 444},
+         url={https://doi.org/10.1007/BF01244313},
+      review={\MR{1228132}},
+}
+
+\bib{Nelson}{article}{
+      author={Nelson, Peter},
+       title={Almost all matroids are nonrepresentable},
+        date={2018},
+        ISSN={0024-6093},
+     journal={Bull. Lond. Math. Soc.},
+      volume={50},
+      number={2},
+       pages={245\ndash 248},
+         url={https://doi.org/10.1112/blms.12141},
+      review={\MR{3830117}},
+}
+
+\bib{Oxley}{book}{
+      author={Oxley, James},
+       title={Matroid theory},
+     edition={Second},
+      series={Oxford Graduate Texts in Mathematics},
+   publisher={Oxford University Press, Oxford},
+        date={2011},
+      volume={21},
+        ISBN={978-0-19-960339-8},
+         url={https://doi.org/10.1093/acprof:oso/9780198566946.001.0001},
+      review={\MR{2849819}},
+}
+
+\bib{Petersen}{book}{
+      author={Petersen, T.~Kyle},
+       title={Eulerian numbers},
+      series={Birkh\"{a}user Advanced Texts: Basler Lehrb\"{u}cher.
+  [Birkh\"{a}user Advanced Texts: Basel Textbooks]},
+   publisher={Birkh\"{a}user/Springer, New York},
+        date={2015},
+        ISBN={978-1-4939-3090-6; 978-1-4939-3091-3},
+         url={https://doi.org/10.1007/978-1-4939-3091-3},
+        note={With a foreword by Richard Stanley},
+      review={\MR{3408615}},
+}
+
+\bib{Welsh}{book}{
+      author={Welsh, D. J.~A.},
+       title={Matroid theory},
+   publisher={Academic Press [Harcourt Brace Jovanovich, Publishers],
+  London-New York},
+        date={1976},
+        note={L. M. S. Monographs, No. 8},
+      review={\MR{0427112}},
+}
+
+\end{biblist}
+\end{bibdiv}

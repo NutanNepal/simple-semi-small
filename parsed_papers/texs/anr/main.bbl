@@ -1,0 +1,1612 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{ADH}{article}{}
+      \name{author}{3}{}{%
+        {{hash=c75a8f34bdf35822851737503918baa9}{%
+           family={Ardila},
+           familyi={A\bibinitperiod},
+           given={Federico},
+           giveni={F\bibinitperiod}}}%
+        {{hash=d6855aae6a8bc2e0397d01da1ab2fa2b}{%
+           family={Denham},
+           familyi={D\bibinitperiod},
+           given={Graham},
+           giveni={G\bibinitperiod}}}%
+        {{hash=cf81a98d9178abe3dd76e8d7e1b7f976}{%
+           family={Huh},
+           familyi={H\bibinitperiod},
+           given={June},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{9a6af916900631da1f5f609e702ace50}
+      \strng{fullhash}{9a6af916900631da1f5f609e702ace50}
+      \strng{bibnamehash}{9a6af916900631da1f5f609e702ace50}
+      \strng{authorbibnamehash}{9a6af916900631da1f5f609e702ace50}
+      \strng{authornamehash}{9a6af916900631da1f5f609e702ace50}
+      \strng{authorfullhash}{9a6af916900631da1f5f609e702ace50}
+      \field{labelalpha}{ADH23}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0894-0347,1088-6834}
+      \field{journaltitle}{Journal of the American Mathematical Society}
+      \field{number}{3}
+      \field{title}{Lagrangian geometry of matroids}
+      \field{volume}{36}
+      \field{year}{2023}
+      \field{pages}{727\bibrangedash 794}
+      \range{pages}{68}
+      \verb{doi}
+      \verb 10.1090/jams/1009
+      \endverb
+    \endentry
+    \entry{AHK}{article}{}
+      \name{author}{3}{}{%
+        {{hash=89a6e6a2b08876e6a0f8fb56b6495cda}{%
+           family={Adiprasito},
+           familyi={A\bibinitperiod},
+           given={Karim},
+           giveni={K\bibinitperiod}}}%
+        {{hash=cf81a98d9178abe3dd76e8d7e1b7f976}{%
+           family={Huh},
+           familyi={H\bibinitperiod},
+           given={June},
+           giveni={J\bibinitperiod}}}%
+        {{hash=791d53f58ebdd91b0289d0cd9224b207}{%
+           family={Katz},
+           familyi={K\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{410c60f8dee66e9809888742c339dcb2}
+      \strng{fullhash}{410c60f8dee66e9809888742c339dcb2}
+      \strng{bibnamehash}{410c60f8dee66e9809888742c339dcb2}
+      \strng{authorbibnamehash}{410c60f8dee66e9809888742c339dcb2}
+      \strng{authornamehash}{410c60f8dee66e9809888742c339dcb2}
+      \strng{authorfullhash}{410c60f8dee66e9809888742c339dcb2}
+      \field{labelalpha}{AHK18}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0003-486X,1939-8980}
+      \field{journaltitle}{Annals of Mathematics. Second Series}
+      \field{number}{2}
+      \field{title}{Hodge theory for combinatorial geometries}
+      \field{volume}{188}
+      \field{year}{2018}
+      \field{pages}{381\bibrangedash 452}
+      \range{pages}{72}
+      \verb{doi}
+      \verb 10.4007/annals.2018.188.2.1
+      \endverb
+    \endentry
+    \entry{ArdilaKlivans}{article}{}
+      \name{author}{2}{}{%
+        {{hash=c75a8f34bdf35822851737503918baa9}{%
+           family={Ardila},
+           familyi={A\bibinitperiod},
+           given={Federico},
+           giveni={F\bibinitperiod}}}%
+        {{hash=d61535710c7e01b7d2b87db5f2d44c05}{%
+           family={Klivans},
+           familyi={K\bibinitperiod},
+           given={Caroline\bibnamedelima J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{e0fabcd5bb05ec4be4a5a58a6f2f0acc}
+      \strng{fullhash}{e0fabcd5bb05ec4be4a5a58a6f2f0acc}
+      \strng{bibnamehash}{e0fabcd5bb05ec4be4a5a58a6f2f0acc}
+      \strng{authorbibnamehash}{e0fabcd5bb05ec4be4a5a58a6f2f0acc}
+      \strng{authornamehash}{e0fabcd5bb05ec4be4a5a58a6f2f0acc}
+      \strng{authorfullhash}{e0fabcd5bb05ec4be4a5a58a6f2f0acc}
+      \field{labelalpha}{AK06}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0095-8956,1096-0902}
+      \field{journaltitle}{Journal of Combinatorial Theory. Series B}
+      \field{number}{1}
+      \field{title}{The {B}ergman complex of a matroid and phylogenetic trees}
+      \field{volume}{96}
+      \field{year}{2006}
+      \field{pages}{38\bibrangedash 49}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/j.jctb.2005.06.004
+      \endverb
+    \endentry
+    \entry{Anderson}{book}{}
+      \name{author}{1}{}{%
+        {{hash=113ad0b1693a127a0b17a27ea0ae3692}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Dover Publications Inc. Mineola, NY}%
+      }
+      \strng{namehash}{113ad0b1693a127a0b17a27ea0ae3692}
+      \strng{fullhash}{113ad0b1693a127a0b17a27ea0ae3692}
+      \strng{bibnamehash}{113ad0b1693a127a0b17a27ea0ae3692}
+      \strng{authorbibnamehash}{113ad0b1693a127a0b17a27ea0ae3692}
+      \strng{authornamehash}{113ad0b1693a127a0b17a27ea0ae3692}
+      \strng{authorfullhash}{113ad0b1693a127a0b17a27ea0ae3692}
+      \field{labelalpha}{And02}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0-486-42257-7}
+      \field{note}{Corrected reprint of the 1989 edition}
+      \field{title}{Combinatorics of finite sets}
+      \field{year}{2002}
+      \field{pages}{xvi+250}
+      \range{pages}{-1}
+    \endentry
+    \entry{icm_matroids}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=7b9f51069cdd4c4d9fd2a3b570422132}{%
+           family={Ardila-Mantilla},
+           familyi={A\bibinithyphendelim M\bibinitperiod},
+           given={Federico},
+           giveni={F\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {EMS Press, Berlin}%
+      }
+      \strng{namehash}{7b9f51069cdd4c4d9fd2a3b570422132}
+      \strng{fullhash}{7b9f51069cdd4c4d9fd2a3b570422132}
+      \strng{bibnamehash}{7b9f51069cdd4c4d9fd2a3b570422132}
+      \strng{authorbibnamehash}{7b9f51069cdd4c4d9fd2a3b570422132}
+      \strng{authornamehash}{7b9f51069cdd4c4d9fd2a3b570422132}
+      \strng{authorfullhash}{7b9f51069cdd4c4d9fd2a3b570422132}
+      \field{labelalpha}{Ard23}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{I{CM}---{I}nternational {C}ongress of {M}athematicians. {V}ol. {VI}. {S}ections 12--14}
+      \field{isbn}{978-3-98547-064-8; 978-3-98547-564-3; 978-3-98547-058-7}
+      \field{title}{The geometry of geometries: matroid theory, old and new}
+      \field{year}{[2023] ©2023}
+      \field{pages}{4510\bibrangedash 4541}
+      \range{pages}{32}
+    \endentry
+    \entry{Athanasiadis}{article}{}
+      \name{author}{1}{}{%
+        {{hash=31402ca26e24ffc6efbed93d4044697b}{%
+           family={Athanasiadis},
+           familyi={A\bibinitperiod},
+           given={Christos\bibnamedelima A.},
+           giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{31402ca26e24ffc6efbed93d4044697b}
+      \strng{fullhash}{31402ca26e24ffc6efbed93d4044697b}
+      \strng{bibnamehash}{31402ca26e24ffc6efbed93d4044697b}
+      \strng{authorbibnamehash}{31402ca26e24ffc6efbed93d4044697b}
+      \strng{authornamehash}{31402ca26e24ffc6efbed93d4044697b}
+      \strng{authorfullhash}{31402ca26e24ffc6efbed93d4044697b}
+      \field{labelalpha}{Ath18}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1286-4889}
+      \field{journaltitle}{Séminaire Lotharingien de Combinatoire}
+      \field{title}{Gamma-positivity in combinatorics and geometry}
+      \field{volume}{77}
+      \field{year}{[2016-2018]}
+      \field{pages}{Art. B77i\bibrangessep 64}
+      \range{pages}{-1}
+    \endentry
+    \entry{Bouc}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=c81430ff268f4100f1da2ae266540666}{%
+           family={Bouc},
+           familyi={B\bibinitperiod},
+           given={Serge},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier/North-Holland, Amsterdam}%
+      }
+      \strng{namehash}{c81430ff268f4100f1da2ae266540666}
+      \strng{fullhash}{c81430ff268f4100f1da2ae266540666}
+      \strng{bibnamehash}{c81430ff268f4100f1da2ae266540666}
+      \strng{authorbibnamehash}{c81430ff268f4100f1da2ae266540666}
+      \strng{authornamehash}{c81430ff268f4100f1da2ae266540666}
+      \strng{authorfullhash}{c81430ff268f4100f1da2ae266540666}
+      \field{labelalpha}{Bou00}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Handbook of algebra, {V}ol. 2}
+      \field{isbn}{0-444-50396-X}
+      \field{series}{Handb. Algebr.}
+      \field{title}{Burnside rings}
+      \field{volume}{2}
+      \field{year}{2000}
+      \field{pages}{739\bibrangedash 804}
+      \range{pages}{66}
+      \verb{doi}
+      \verb 10.1016/S1570-7954(00)80043-1
+      \endverb
+    \endentry
+    \entry{BHMPW}{article}{}
+      \name{author}{5}{}{%
+        {{hash=e85130124c549dd4d5a1f089f11f8336}{%
+           family={Braden},
+           familyi={B\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=cf81a98d9178abe3dd76e8d7e1b7f976}{%
+           family={Huh},
+           familyi={H\bibinitperiod},
+           given={June},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a1a270214805f2ec9802de202d109e97}{%
+           family={Matherne},
+           familyi={M\bibinitperiod},
+           given={Jacob\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=6f88f0a852679de50f93717383a3cd1f}{%
+           family={Proudfoot},
+           familyi={P\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=e862c40ef95401f9ecdd5c01e531ffc6}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Botong},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{ddf20456dcf1dfc8d7e75cf6394584b7}
+      \strng{fullhash}{94c4a7e68ce915ecb37004073eaa1925}
+      \strng{bibnamehash}{ddf20456dcf1dfc8d7e75cf6394584b7}
+      \strng{authorbibnamehash}{ddf20456dcf1dfc8d7e75cf6394584b7}
+      \strng{authornamehash}{ddf20456dcf1dfc8d7e75cf6394584b7}
+      \strng{authorfullhash}{94c4a7e68ce915ecb37004073eaa1925}
+      \field{labelalpha}{Bra+22}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0001-8708,1090-2082}
+      \field{journaltitle}{Advances in Mathematics}
+      \field{title}{A semi-small decomposition of the {C}how ring of a matroid}
+      \field{volume}{409}
+      \field{year}{2022}
+      \field{pages}{Paper No. 108646\bibrangessep 49}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1016/j.aim.2022.108646
+      \endverb
+    \endentry
+    \entry{Brenti}{article}{}
+      \name{author}{1}{}{%
+        {{hash=030f282d581dcf337909ac4009f583de}{%
+           family={Brenti},
+           familyi={B\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{030f282d581dcf337909ac4009f583de}
+      \strng{fullhash}{030f282d581dcf337909ac4009f583de}
+      \strng{bibnamehash}{030f282d581dcf337909ac4009f583de}
+      \strng{authorbibnamehash}{030f282d581dcf337909ac4009f583de}
+      \strng{authornamehash}{030f282d581dcf337909ac4009f583de}
+      \strng{authorfullhash}{030f282d581dcf337909ac4009f583de}
+      \field{labelalpha}{Bre89}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0065-9266,1947-6221}
+      \field{journaltitle}{Memoirs of the American Mathematical Society}
+      \field{number}{413}
+      \field{title}{Unimodal, log-concave and {P}ólya frequency sequences in combinatorics}
+      \field{volume}{81}
+      \field{year}{1989}
+      \field{pages}{viii+106}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1090/memo/0413
+      \endverb
+    \endentry
+    \entry{BjornerWachs}{article}{}
+      \name{author}{2}{}{%
+        {{hash=daefd6e6c8d09987fee6ab8b6292d570}{%
+           family={Björner},
+           familyi={B\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod}}}%
+        {{hash=48af18048f5a26eab7e77db0e80bd8e5}{%
+           family={Wachs},
+           familyi={W\bibinitperiod},
+           given={Michelle\bibnamedelima L.},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{7bd205f1a222959cc522d05146814115}
+      \strng{fullhash}{7bd205f1a222959cc522d05146814115}
+      \strng{bibnamehash}{7bd205f1a222959cc522d05146814115}
+      \strng{authorbibnamehash}{7bd205f1a222959cc522d05146814115}
+      \strng{authornamehash}{7bd205f1a222959cc522d05146814115}
+      \strng{authorfullhash}{7bd205f1a222959cc522d05146814115}
+      \field{labelalpha}{BW89}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0097-3165,1096-0899}
+      \field{journaltitle}{J. Combin. Theory Ser. A}
+      \field{number}{2}
+      \field{title}{{$q$}-hook length formulas for forests}
+      \field{volume}{52}
+      \field{year}{1989}
+      \field{pages}{165\bibrangedash 187}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1016/0097-3165(89)90028-9
+      \endverb
+    \endentry
+    \entry{CLO}{book}{}
+      \name{author}{3}{}{%
+        {{hash=bc0b42f4eec960b52a2496b25fbb4ec7}{%
+           family={Cox},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8a72cf3903e931ba6c47c32f8d97825d}{%
+           family={Little},
+           familyi={L\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7b115c829c11f9161b7d7d62ffa17444}{%
+           family={O'Shea},
+           familyi={O\bibinitperiod},
+           given={Donal},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer, New York}%
+      }
+      \strng{namehash}{9a0a6644fac35affc6feed24cd4663a3}
+      \strng{fullhash}{9a0a6644fac35affc6feed24cd4663a3}
+      \strng{bibnamehash}{9a0a6644fac35affc6feed24cd4663a3}
+      \strng{authorbibnamehash}{9a0a6644fac35affc6feed24cd4663a3}
+      \strng{authornamehash}{9a0a6644fac35affc6feed24cd4663a3}
+      \strng{authorfullhash}{9a0a6644fac35affc6feed24cd4663a3}
+      \field{labelalpha}{CLO07}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Third}
+      \field{isbn}{978-0-387-35650-1; 0-387-35650-9}
+      \field{series}{Undergraduate Texts in Mathematics}
+      \field{title}{Ideals, varieties, and algorithms}
+      \field{year}{2007}
+      \field{pages}{xvi+551}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1007/978-0-387-35651-8
+      \endverb
+    \endentry
+    \entry{Conlon}{article}{}
+      \name{author}{1}{}{%
+        {{hash=e72f6ec5fb92738570f69bbede4e1f09}{%
+           family={Conlon},
+           familyi={C\bibinitperiod},
+           given={Samuel\bibnamedelima B.},
+           giveni={S\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{e72f6ec5fb92738570f69bbede4e1f09}
+      \strng{fullhash}{e72f6ec5fb92738570f69bbede4e1f09}
+      \strng{bibnamehash}{e72f6ec5fb92738570f69bbede4e1f09}
+      \strng{authorbibnamehash}{e72f6ec5fb92738570f69bbede4e1f09}
+      \strng{authornamehash}{e72f6ec5fb92738570f69bbede4e1f09}
+      \strng{authorfullhash}{e72f6ec5fb92738570f69bbede4e1f09}
+      \field{labelalpha}{Con69}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0021-8693}
+      \field{journaltitle}{Journal of Algebra}
+      \field{title}{Monomial representations under integral similarity}
+      \field{volume}{13}
+      \field{year}{1969}
+      \field{pages}{496\bibrangedash 508}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1016/0021-8693(69)90111-2
+      \endverb
+    \endentry
+    \entry{dotsenko}{article}{}
+      \name{author}{1}{}{%
+        {{hash=01755abe4a0b30de30e92a3409701e46}{%
+           family={Dotsenko},
+           familyi={D\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{01755abe4a0b30de30e92a3409701e46}
+      \strng{fullhash}{01755abe4a0b30de30e92a3409701e46}
+      \strng{bibnamehash}{01755abe4a0b30de30e92a3409701e46}
+      \strng{authorbibnamehash}{01755abe4a0b30de30e92a3409701e46}
+      \strng{authornamehash}{01755abe4a0b30de30e92a3409701e46}
+      \strng{authorfullhash}{01755abe4a0b30de30e92a3409701e46}
+      \field{labelalpha}{Dot22}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0020-9910,1432-1297}
+      \field{journaltitle}{Inventiones Mathematicae}
+      \field{number}{1}
+      \field{title}{Homotopy invariants for {$\overline{M_{0,n}}$} via {K}oszul duality}
+      \field{volume}{228}
+      \field{year}{2022}
+      \field{pages}{77\bibrangedash 106}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.1007/s00222-021-01081-x
+      \endverb
+    \endentry
+    \entry{DCP}{article}{}
+      \name{author}{2}{}{%
+        {{hash=86eab7a6f84c12781661d076e9ffbd0f}{%
+           family={De\bibnamedelima Concini},
+           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Corrado},
+           giveni={C\bibinitperiod}}}%
+        {{hash=3271f309c0effca6307597d1a7913f6f}{%
+           family={Procesi},
+           familyi={P\bibinitperiod},
+           given={Claudio},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a140d7afe250c2e082fea698bcce2c6}
+      \strng{fullhash}{1a140d7afe250c2e082fea698bcce2c6}
+      \strng{bibnamehash}{1a140d7afe250c2e082fea698bcce2c6}
+      \strng{authorbibnamehash}{1a140d7afe250c2e082fea698bcce2c6}
+      \strng{authornamehash}{1a140d7afe250c2e082fea698bcce2c6}
+      \strng{authorfullhash}{1a140d7afe250c2e082fea698bcce2c6}
+      \field{labelalpha}{DP95}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1022-1824,1420-9020}
+      \field{journaltitle}{Selecta Mathematica. New Series}
+      \field{number}{3}
+      \field{title}{Wonderful models of subspace arrangements}
+      \field{volume}{1}
+      \field{year}{1995}
+      \field{pages}{459\bibrangedash 494}
+      \range{pages}{36}
+      \verb{doi}
+      \verb 10.1007/BF01589496
+      \endverb
+    \endentry
+    \entry{EHL}{article}{}
+      \name{author}{3}{}{%
+        {{hash=5f357ee5775cda8008f83d66e00fa4d9}{%
+           family={Eur},
+           familyi={E\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+        {{hash=cf81a98d9178abe3dd76e8d7e1b7f976}{%
+           family={Huh},
+           familyi={H\bibinitperiod},
+           given={June},
+           giveni={J\bibinitperiod}}}%
+        {{hash=829052fc722531940b76f53ec7a29a9f}{%
+           family={Larson},
+           familyi={L\bibinitperiod},
+           given={Matt},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{214ffbe445c449d2374df9faa2cf1a18}
+      \strng{fullhash}{214ffbe445c449d2374df9faa2cf1a18}
+      \strng{bibnamehash}{214ffbe445c449d2374df9faa2cf1a18}
+      \strng{authorbibnamehash}{214ffbe445c449d2374df9faa2cf1a18}
+      \strng{authornamehash}{214ffbe445c449d2374df9faa2cf1a18}
+      \strng{authorfullhash}{214ffbe445c449d2374df9faa2cf1a18}
+      \field{labelalpha}{EHL23}
+      \field{sortinit}{E}
+      \field{sortinithash}{c554bd1a0b76ea92b9f105fe36d9c7b0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2050-5086}
+      \field{journaltitle}{Forum of Mathematics. Pi}
+      \field{title}{Stellahedral geometry of matroids}
+      \field{volume}{11}
+      \field{year}{2023}
+      \field{pages}{Paper No. e24\bibrangessep 48}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1017/fmp.2023.24
+      \endverb
+    \endentry
+    \entry{FMSV}{article}{}
+      \name{author}{4}{}{%
+        {{hash=ad47148609d550979edddc378a6a9b87}{%
+           family={Ferroni},
+           familyi={F\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod}}}%
+        {{hash=a1a270214805f2ec9802de202d109e97}{%
+           family={Matherne},
+           familyi={M\bibinitperiod},
+           given={Jacob\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=a684708f0588e7ac77cb2d3e129d0a9a}{%
+           family={Stevens},
+           familyi={S\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d7fe7d058043e6738fee2c3164f35fbe}{%
+           family={Vecchi},
+           familyi={V\bibinitperiod},
+           given={Lorenzo},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{d18aeb1b6864c3b2f49572f61162258b}
+      \strng{fullhash}{6b15604ebe6edc031a94013d1359ae2b}
+      \strng{bibnamehash}{d18aeb1b6864c3b2f49572f61162258b}
+      \strng{authorbibnamehash}{d18aeb1b6864c3b2f49572f61162258b}
+      \strng{authornamehash}{d18aeb1b6864c3b2f49572f61162258b}
+      \strng{authorfullhash}{6b15604ebe6edc031a94013d1359ae2b}
+      \field{labelalpha}{Fer+24}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0001-8708,1090-2082}
+      \field{journaltitle}{Advances in Mathematics}
+      \field{title}{Hilbert-{P}oincaré{} series of matroid {C}how rings and intersection cohomology}
+      \field{volume}{449}
+      \field{year}{2024}
+      \field{pages}{Paper No. 109733\bibrangessep 55}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1016/j.aim.2024.109733
+      \endverb
+    \endentry
+    \entry{FK}{article}{}
+      \name{author}{2}{}{%
+        {{hash=8dacdf6f88f3953640f3ce9fcd4a73a4}{%
+           family={Feichtner},
+           familyi={F\bibinitperiod},
+           given={Eva-Maria},
+           giveni={E\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=1cc4b9f6f3f4bfa70af80524381483b1}{%
+           family={Kozlov},
+           familyi={K\bibinitperiod},
+           given={Dmitry\bibnamedelima N.},
+           giveni={D\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{51248454007bd3f09e864d1620bc7dba}
+      \strng{fullhash}{51248454007bd3f09e864d1620bc7dba}
+      \strng{bibnamehash}{51248454007bd3f09e864d1620bc7dba}
+      \strng{authorbibnamehash}{51248454007bd3f09e864d1620bc7dba}
+      \strng{authornamehash}{51248454007bd3f09e864d1620bc7dba}
+      \strng{authorfullhash}{51248454007bd3f09e864d1620bc7dba}
+      \field{labelalpha}{FK04}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1022-1824,1420-9020}
+      \field{journaltitle}{Selecta Mathematica. New Series}
+      \field{number}{1}
+      \field{title}{Incidence combinatorics of resolutions}
+      \field{volume}{10}
+      \field{year}{2004}
+      \field{pages}{37\bibrangedash 60}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1007/s00029-004-0298-1
+      \endverb
+    \endentry
+    \entry{FerayR}{article}{}
+      \name{author}{2}{}{%
+        {{hash=776f7d80fa4d997e9c3eaa8ce59f8870}{%
+           family={Féray},
+           familyi={F\bibinitperiod},
+           given={Valentin},
+           giveni={V\bibinitperiod}}}%
+        {{hash=4a44edd94141e3585000862e399e7b20}{%
+           family={Reiner},
+           familyi={R\bibinitperiod},
+           given={Victor},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{065538dfc5c9391b1a2aa849083aab91}
+      \strng{fullhash}{065538dfc5c9391b1a2aa849083aab91}
+      \strng{bibnamehash}{065538dfc5c9391b1a2aa849083aab91}
+      \strng{authorbibnamehash}{065538dfc5c9391b1a2aa849083aab91}
+      \strng{authornamehash}{065538dfc5c9391b1a2aa849083aab91}
+      \strng{authorfullhash}{065538dfc5c9391b1a2aa849083aab91}
+      \field{labelalpha}{FR12}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1939-0807,1939-2346}
+      \field{journaltitle}{Journal of Commutative Algebra}
+      \field{number}{1}
+      \field{title}{{$P$}-partitions revisited}
+      \field{volume}{4}
+      \field{year}{2012}
+      \field{pages}{101\bibrangedash 152}
+      \range{pages}{52}
+      \verb{doi}
+      \verb 10.1216/JCA-2012-4-1-101
+      \endverb
+    \endentry
+    \entry{FeichtnerSturmfels}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b6c1a4d41fc15e1f9ac505ff531a4c05}{%
+           family={Feichtner},
+           familyi={F\bibinitperiod},
+           given={Eva\bibnamedelima Maria},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=1146827b08c62c2c18700dd73b1dc482}{%
+           family={Sturmfels},
+           familyi={S\bibinitperiod},
+           given={Bernd},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{3be4ea846751359bed75229f7a408667}
+      \strng{fullhash}{3be4ea846751359bed75229f7a408667}
+      \strng{bibnamehash}{3be4ea846751359bed75229f7a408667}
+      \strng{authorbibnamehash}{3be4ea846751359bed75229f7a408667}
+      \strng{authornamehash}{3be4ea846751359bed75229f7a408667}
+      \strng{authorfullhash}{3be4ea846751359bed75229f7a408667}
+      \field{labelalpha}{FS05}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0032-5155,1662-2758}
+      \field{journaltitle}{Portugaliae Mathematica. Nova Série}
+      \field{number}{4}
+      \field{title}{Matroid polytopes, nested sets and {B}ergman fans}
+      \field{volume}{62}
+      \field{year}{2005}
+      \field{pages}{437\bibrangedash 468}
+      \range{pages}{32}
+    \endentry
+    \entry{Faugere}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=5aa0e4146638eda5a0cdf23f0535ca17}{%
+           family={Faugère},
+           familyi={F\bibinitperiod},
+           given={Jean-Charles},
+           giveni={J\bibinithyphendelim C\bibinitperiod}}}%
+        {{hash=ce5e8ef809daa32f079b6b013668d488}{%
+           family={Svartz},
+           familyi={S\bibinitperiod},
+           given={Jules},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM, New York}%
+      }
+      \strng{namehash}{23788da2fe77dadb6c6602957328e2eb}
+      \strng{fullhash}{23788da2fe77dadb6c6602957328e2eb}
+      \strng{bibnamehash}{23788da2fe77dadb6c6602957328e2eb}
+      \strng{authorbibnamehash}{23788da2fe77dadb6c6602957328e2eb}
+      \strng{authornamehash}{23788da2fe77dadb6c6602957328e2eb}
+      \strng{authorfullhash}{23788da2fe77dadb6c6602957328e2eb}
+      \field{labelalpha}{FS13}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{I{SSAC} 2013---{P}roceedings of the 38th {I}nternational {S}ymposium on {S}ymbolic and {A}lgebraic {C}omputation}
+      \field{isbn}{978-1-4503-2059-7}
+      \field{title}{Gröbner bases of ideals invariant under a commutative group: the non-modular case}
+      \field{year}{2013}
+      \field{pages}{347\bibrangedash 354}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/2465506.2465944
+      \endverb
+    \endentry
+    \entry{FerroniSchroter}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ad47148609d550979edddc378a6a9b87}{%
+           family={Ferroni},
+           familyi={F\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod}}}%
+        {{hash=9a39f7bd8affc32b833967fa1dd0decc}{%
+           family={Schröter},
+           familyi={S\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{8f7918511f044b5199aeefe419eb5c1a}
+      \strng{fullhash}{8f7918511f044b5199aeefe419eb5c1a}
+      \strng{bibnamehash}{8f7918511f044b5199aeefe419eb5c1a}
+      \strng{authorbibnamehash}{8f7918511f044b5199aeefe419eb5c1a}
+      \strng{authornamehash}{8f7918511f044b5199aeefe419eb5c1a}
+      \strng{authorfullhash}{8f7918511f044b5199aeefe419eb5c1a}
+      \field{labelalpha}{FS24}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0024-6107,1469-7750}
+      \field{journaltitle}{Journal of the London Mathematical Society. Second Series}
+      \field{number}{3}
+      \field{title}{Valuative invariants for large classes of matroids}
+      \field{volume}{110}
+      \field{year}{2024}
+      \field{pages}{Paper No. e12984}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1112/jlms.12984
+      \endverb
+    \endentry
+    \entry{FY}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b6c1a4d41fc15e1f9ac505ff531a4c05}{%
+           family={Feichtner},
+           familyi={F\bibinitperiod},
+           given={Eva\bibnamedelima Maria},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=de1e8d8b65334cfa10e71a2dba7a4d9f}{%
+           family={Yuzvinsky},
+           familyi={Y\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{ec9f36d4701e502b708291415f296b59}
+      \strng{fullhash}{ec9f36d4701e502b708291415f296b59}
+      \strng{bibnamehash}{ec9f36d4701e502b708291415f296b59}
+      \strng{authorbibnamehash}{ec9f36d4701e502b708291415f296b59}
+      \strng{authornamehash}{ec9f36d4701e502b708291415f296b59}
+      \strng{authorfullhash}{ec9f36d4701e502b708291415f296b59}
+      \field{labelalpha}{FY04}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0020-9910,1432-1297}
+      \field{journaltitle}{Inventiones Mathematicae}
+      \field{number}{3}
+      \field{title}{Chow rings of toric varieties defined by atomic lattices}
+      \field{volume}{155}
+      \field{year}{2004}
+      \field{pages}{515\bibrangedash 536}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1007/s00222-003-0327-2
+      \endverb
+    \endentry
+    \entry{GK}{article}{}
+      \name{author}{2}{}{%
+        {{hash=49c76b4d166da1d701bc9482ee19f656}{%
+           family={Greene},
+           familyi={G\bibinitperiod},
+           given={Curtis},
+           giveni={C\bibinitperiod}}}%
+        {{hash=f302c44e52249a863bd290c6b39d84b9}{%
+           family={Kleitman},
+           familyi={K\bibinitperiod},
+           given={Daniel\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{65fb6855c062a22e0aec2fd6cb253f4a}
+      \strng{fullhash}{65fb6855c062a22e0aec2fd6cb253f4a}
+      \strng{bibnamehash}{65fb6855c062a22e0aec2fd6cb253f4a}
+      \strng{authorbibnamehash}{65fb6855c062a22e0aec2fd6cb253f4a}
+      \strng{authornamehash}{65fb6855c062a22e0aec2fd6cb253f4a}
+      \strng{authorfullhash}{65fb6855c062a22e0aec2fd6cb253f4a}
+      \field{labelalpha}{GK76}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0097-3165}
+      \field{journaltitle}{Journal of Combinatorial Theory. Series A}
+      \field{number}{1}
+      \field{title}{Strong versions of {S}perner's theorem}
+      \field{volume}{20}
+      \field{year}{1976}
+      \field{pages}{80\bibrangedash 88}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/0097-3165(76)90079-0
+      \endverb
+    \endentry
+    \entry{GibneyMaclagan}{article}{}
+      \name{author}{2}{}{%
+        {{hash=84b5fe99758772493a10e8f6646fe431}{%
+           family={Gibney},
+           familyi={G\bibinitperiod},
+           given={Angela},
+           giveni={A\bibinitperiod}}}%
+        {{hash=feca43b7d81300e892ffbb29e7770412}{%
+           family={Maclagan},
+           familyi={M\bibinitperiod},
+           given={Diane},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{f4713076bc17eb9700bd94a8141c6e87}
+      \strng{fullhash}{f4713076bc17eb9700bd94a8141c6e87}
+      \strng{bibnamehash}{f4713076bc17eb9700bd94a8141c6e87}
+      \strng{authorbibnamehash}{f4713076bc17eb9700bd94a8141c6e87}
+      \strng{authornamehash}{f4713076bc17eb9700bd94a8141c6e87}
+      \strng{authorfullhash}{f4713076bc17eb9700bd94a8141c6e87}
+      \field{labelalpha}{GM10}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1937-0652,1944-7833}
+      \field{journaltitle}{Algebra \& Number Theory}
+      \field{number}{7}
+      \field{title}{Equations for {C}how and {H}ilbert quotients}
+      \field{volume}{4}
+      \field{year}{2010}
+      \field{pages}{855\bibrangedash 885}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.2140/ant.2010.4.855
+      \endverb
+    \endentry
+    \entry{GPY}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a1a477387df02a3bad0848659f97a7d7}{%
+           family={Gedeon},
+           familyi={G\bibinitperiod},
+           given={Katie},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6f88f0a852679de50f93717383a3cd1f}{%
+           family={Proudfoot},
+           familyi={P\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=d885f2b0f408e5ccfead722fae285a8f}{%
+           family={Young},
+           familyi={Y\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{cbb51b4621ccf80de850b8ccedb19106}
+      \strng{fullhash}{cbb51b4621ccf80de850b8ccedb19106}
+      \strng{bibnamehash}{cbb51b4621ccf80de850b8ccedb19106}
+      \strng{authorbibnamehash}{cbb51b4621ccf80de850b8ccedb19106}
+      \strng{authornamehash}{cbb51b4621ccf80de850b8ccedb19106}
+      \strng{authorfullhash}{cbb51b4621ccf80de850b8ccedb19106}
+      \field{labelalpha}{GPY17}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1286-4889}
+      \field{journaltitle}{Séminaire Lotharingien de Combinatoire}
+      \field{title}{Kazhdan-{L}usztig polynomials of matroids: a survey of results and conjectures}
+      \field{volume}{78B}
+      \field{year}{2017}
+      \field{pages}{Art. 80\bibrangessep 12}
+      \range{pages}{-1}
+    \endentry
+    \entry{Gui2022}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b25a5d5a8d6747402f334b2819331749}{%
+           family={Gui},
+           familyi={G\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{b25a5d5a8d6747402f334b2819331749}
+      \strng{fullhash}{b25a5d5a8d6747402f334b2819331749}
+      \strng{bibnamehash}{b25a5d5a8d6747402f334b2819331749}
+      \strng{authorbibnamehash}{b25a5d5a8d6747402f334b2819331749}
+      \strng{authornamehash}{b25a5d5a8d6747402f334b2819331749}
+      \strng{authorfullhash}{b25a5d5a8d6747402f334b2819331749}
+      \field{labelalpha}{Gui22}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.RT}
+      \field{eprinttype}{arXiv}
+      \field{title}{On the equivariant log-concavity for the cohomology of the flag varieties}
+      \field{year}{2022}
+      \verb{eprint}
+      \verb 2205.05408
+      \endverb
+    \endentry
+    \entry{GuiXiong}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b25a5d5a8d6747402f334b2819331749}{%
+           family={Gui},
+           familyi={G\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c08b738fa5e5b14004bb2bad22960d7a}{%
+           family={Xiong},
+           familyi={X\bibinitperiod},
+           given={Rui},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{508ba2d5ce01c4e1e380e8178abd87cb}
+      \strng{fullhash}{508ba2d5ce01c4e1e380e8178abd87cb}
+      \strng{bibnamehash}{508ba2d5ce01c4e1e380e8178abd87cb}
+      \strng{authorbibnamehash}{508ba2d5ce01c4e1e380e8178abd87cb}
+      \strng{authornamehash}{508ba2d5ce01c4e1e380e8178abd87cb}
+      \strng{authorfullhash}{508ba2d5ce01c4e1e380e8178abd87cb}
+      \field{labelalpha}{GX24}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0021-8693,1090-266X}
+      \field{journaltitle}{Journal of Algebra}
+      \field{title}{Equivariant log-concavity and equivariant {K}ähler packages}
+      \field{volume}{657}
+      \field{year}{2024}
+      \field{pages}{379\bibrangedash 401}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1016/j.jalgebra.2024.05.018
+      \endverb
+    \endentry
+    \entry{Hibi}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=014a8937669f0ba5d129931d8d5338e6}{%
+           family={Hibi},
+           familyi={H\bibinitperiod},
+           given={Takayuki},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {North-Holland, Amsterdam}%
+      }
+      \strng{namehash}{014a8937669f0ba5d129931d8d5338e6}
+      \strng{fullhash}{014a8937669f0ba5d129931d8d5338e6}
+      \strng{bibnamehash}{014a8937669f0ba5d129931d8d5338e6}
+      \strng{authorbibnamehash}{014a8937669f0ba5d129931d8d5338e6}
+      \strng{authornamehash}{014a8937669f0ba5d129931d8d5338e6}
+      \strng{authorfullhash}{014a8937669f0ba5d129931d8d5338e6}
+      \field{labelalpha}{Hib87}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Commutative algebra and combinatorics ({K}yoto, 1985)}
+      \field{isbn}{0-444-70314-4}
+      \field{series}{Adv. Stud. Pure Math.}
+      \field{title}{Distributive lattices, affine semigroup rings and algebras with straightening laws}
+      \field{volume}{11}
+      \field{year}{1987}
+      \field{pages}{93\bibrangedash 109}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.2969/aspm/01110093
+      \endverb
+    \endentry
+    \entry{Keel}{article}{}
+      \name{author}{1}{}{%
+        {{hash=0c8e7936d879fbffa8123d56429c79d3}{%
+           family={Keel},
+           familyi={K\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{0c8e7936d879fbffa8123d56429c79d3}
+      \strng{fullhash}{0c8e7936d879fbffa8123d56429c79d3}
+      \strng{bibnamehash}{0c8e7936d879fbffa8123d56429c79d3}
+      \strng{authorbibnamehash}{0c8e7936d879fbffa8123d56429c79d3}
+      \strng{authornamehash}{0c8e7936d879fbffa8123d56429c79d3}
+      \strng{authorfullhash}{0c8e7936d879fbffa8123d56429c79d3}
+      \field{labelalpha}{Kee92}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0002-9947,1088-6850}
+      \field{journaltitle}{Transactions of the American Mathematical Society}
+      \field{number}{2}
+      \field{title}{Intersection theory of moduli space of stable {$n$}-pointed curves of genus zero}
+      \field{volume}{330}
+      \field{year}{1992}
+      \field{pages}{545\bibrangedash 574}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.2307/2153922
+      \endverb
+    \endentry
+    \entry{Li2022}{article}{}
+      \name{author}{1}{}{%
+        {{hash=5478bd4bdf44112e6e4ba1dcc65a4a92}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Shiyue},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{5478bd4bdf44112e6e4ba1dcc65a4a92}
+      \strng{fullhash}{5478bd4bdf44112e6e4ba1dcc65a4a92}
+      \strng{bibnamehash}{5478bd4bdf44112e6e4ba1dcc65a4a92}
+      \strng{authorbibnamehash}{5478bd4bdf44112e6e4ba1dcc65a4a92}
+      \strng{authornamehash}{5478bd4bdf44112e6e4ba1dcc65a4a92}
+      \strng{authorfullhash}{5478bd4bdf44112e6e4ba1dcc65a4a92}
+      \field{labelalpha}{Li23}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2589-5486}
+      \field{journaltitle}{Algebr. Comb.}
+      \field{number}{3}
+      \field{title}{Equivariant log-concavity of graph matchings}
+      \field{volume}{6}
+      \field{year}{2023}
+      \field{pages}{615\bibrangedash 622}
+      \range{pages}{8}
+    \endentry
+    \entry{Liao}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b3d8d47f48b3efad9bd843714e5d42cb}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Hsin-Chieh},
+           giveni={H\bibinithyphendelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{fullhash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{bibnamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authorbibnamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authornamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authorfullhash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \field{extraname}{1}
+      \field{labelalpha}{Lia23}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1286-4889}
+      \field{journaltitle}{Séminaire Lotharingien de Combinatoire}
+      \field{title}{Stembridge codes and {C}how rings}
+      \field{volume}{89B}
+      \field{year}{2023}
+      \field{pages}{Art. 88\bibrangessep 12}
+      \range{pages}{-1}
+    \endentry
+    \entry{liao-q-uniform}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b3d8d47f48b3efad9bd843714e5d42cb}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Hsin-Chieh},
+           giveni={H\bibinithyphendelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{fullhash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{bibnamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authorbibnamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authornamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authorfullhash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \field{extraname}{2}
+      \field{labelalpha}{Lia24}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extraalpha}{1}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.CO}
+      \field{eprinttype}{arXiv}
+      \field{title}{Chow rings and augmented Chow rings of uniform matroids and their $q$-analogs}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2406.19660
+      \endverb
+    \endentry
+    \entry{Liao_new}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b3d8d47f48b3efad9bd843714e5d42cb}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Hsin-Chieh},
+           giveni={H\bibinithyphendelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{fullhash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{bibnamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authorbibnamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authornamehash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \strng{authorfullhash}{b3d8d47f48b3efad9bd843714e5d42cb}
+      \field{extraname}{3}
+      \field{labelalpha}{Lia24}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extraalpha}{2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.CO}
+      \field{eprinttype}{arXiv}
+      \field{title}{Stembridge codes, permutahedral varieties, and their extensions}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2403.10577
+      \endverb
+    \endentry
+    \entry{MMPR}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a1a270214805f2ec9802de202d109e97}{%
+           family={Matherne},
+           familyi={M\bibinitperiod},
+           given={Jacob\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=b094054fd40565d7914d857c8850e0c8}{%
+           family={Miyata},
+           familyi={M\bibinitperiod},
+           given={Dane},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6f88f0a852679de50f93717383a3cd1f}{%
+           family={Proudfoot},
+           familyi={P\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=a684d0269c6bef280dce345d8921de61}{%
+           family={Ramos},
+           familyi={R\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{d01c310fda34e7f2fbb8861f0db245e1}
+      \strng{fullhash}{3674fba78177bc5eaf5a65740e7476e4}
+      \strng{bibnamehash}{d01c310fda34e7f2fbb8861f0db245e1}
+      \strng{authorbibnamehash}{d01c310fda34e7f2fbb8861f0db245e1}
+      \strng{authornamehash}{d01c310fda34e7f2fbb8861f0db245e1}
+      \strng{authorfullhash}{3674fba78177bc5eaf5a65740e7476e4}
+      \field{labelalpha}{Mat+23}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1073-7928,1687-0247}
+      \field{journaltitle}{International Mathematics Research Notices. IMRN}
+      \field{number}{5}
+      \field{title}{Equivariant log concavity and representation stability}
+      \field{year}{2023}
+      \field{pages}{3885\bibrangedash 3906}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1093/imrn/rnab352
+      \endverb
+    \endentry
+    \entry{MaestroniMcCullough}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9453feea01a43b9d24952e33f5d4ffbc}{%
+           family={Mastroeni},
+           familyi={M\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7ab8a3f11bb3a83a9b21c7cfd4621d67}{%
+           family={McCullough},
+           familyi={M\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{7c012272b4b7a143b6c7c9c6c8f7109e}
+      \strng{fullhash}{7c012272b4b7a143b6c7c9c6c8f7109e}
+      \strng{bibnamehash}{7c012272b4b7a143b6c7c9c6c8f7109e}
+      \strng{authorbibnamehash}{7c012272b4b7a143b6c7c9c6c8f7109e}
+      \strng{authornamehash}{7c012272b4b7a143b6c7c9c6c8f7109e}
+      \strng{authorfullhash}{7c012272b4b7a143b6c7c9c6c8f7109e}
+      \field{labelalpha}{MM23}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0025-5831,1432-1807}
+      \field{journaltitle}{Mathematische Annalen}
+      \field{number}{3-4}
+      \field{title}{Chow rings of matroids are {K}oszul}
+      \field{volume}{387}
+      \field{year}{2023}
+      \field{pages}{1819\bibrangedash 1851}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.1007/s00208-022-02506-5
+      \endverb
+    \endentry
+    \entry{oxley}{book}{}
+      \name{author}{1}{}{%
+        {{hash=953c0877c843583029dbe12813ce9dad}{%
+           family={Oxley},
+           familyi={O\bibinitperiod},
+           given={James\bibnamedelima G.},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Clarendon Press, Oxford University Press, New York}%
+      }
+      \strng{namehash}{953c0877c843583029dbe12813ce9dad}
+      \strng{fullhash}{953c0877c843583029dbe12813ce9dad}
+      \strng{bibnamehash}{953c0877c843583029dbe12813ce9dad}
+      \strng{authorbibnamehash}{953c0877c843583029dbe12813ce9dad}
+      \strng{authornamehash}{953c0877c843583029dbe12813ce9dad}
+      \strng{authorfullhash}{953c0877c843583029dbe12813ce9dad}
+      \field{labelalpha}{Oxl92}
+      \field{sortinit}{O}
+      \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0-19-853563-5}
+      \field{series}{Oxford Science Publications}
+      \field{title}{Matroid theory}
+      \field{year}{1992}
+      \field{pages}{xii+532}
+      \range{pages}{-1}
+    \endentry
+    \entry{PP}{book}{}
+      \name{author}{2}{}{%
+        {{hash=73607a0ded445abece92dece0b78e03e}{%
+           family={Polishchuk},
+           familyi={P\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c4bea3f2b4f350064fe66b238429d6fb}{%
+           family={Positselski},
+           familyi={P\bibinitperiod},
+           given={Leonid},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Mathematical Society, Providence, RI}%
+      }
+      \strng{namehash}{c88eca0fd8514094b0ef47ccaffe72b0}
+      \strng{fullhash}{c88eca0fd8514094b0ef47ccaffe72b0}
+      \strng{bibnamehash}{c88eca0fd8514094b0ef47ccaffe72b0}
+      \strng{authorbibnamehash}{c88eca0fd8514094b0ef47ccaffe72b0}
+      \strng{authornamehash}{c88eca0fd8514094b0ef47ccaffe72b0}
+      \strng{authorfullhash}{c88eca0fd8514094b0ef47ccaffe72b0}
+      \field{labelalpha}{PP05}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0-8218-3834-2}
+      \field{series}{University Lecture Series}
+      \field{title}{Quadratic algebras}
+      \field{volume}{37}
+      \field{year}{2005}
+      \field{pages}{xii+159}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1090/ulect/037
+      \endverb
+    \endentry
+    \entry{PagariaPezzoli}{article}{}
+      \name{author}{2}{}{%
+        {{hash=6d6a8a6d02d1d31f83ca43fa27fbaddd}{%
+           family={Pagaria},
+           familyi={P\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+        {{hash=f6ddb91fc3fa3f0e1a4782857aa59302}{%
+           family={Pezzoli},
+           familyi={P\bibinitperiod},
+           given={Gian\bibnamedelima Marco},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{a49864a6addf35550ba550dfb64afe72}
+      \strng{fullhash}{a49864a6addf35550ba550dfb64afe72}
+      \strng{bibnamehash}{a49864a6addf35550ba550dfb64afe72}
+      \strng{authorbibnamehash}{a49864a6addf35550ba550dfb64afe72}
+      \strng{authornamehash}{a49864a6addf35550ba550dfb64afe72}
+      \strng{authorfullhash}{a49864a6addf35550ba550dfb64afe72}
+      \field{labelalpha}{PP23}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1073-7928,1687-0247}
+      \field{journaltitle}{Int. Math. Res. Not. IMRN}
+      \field{number}{23}
+      \field{title}{Hodge theory for polymatroids}
+      \field{year}{2023}
+      \field{pages}{20118\bibrangedash 20168}
+      \range{pages}{51}
+      \verb{doi}
+      \verb 10.1093/imrn/rnad001
+      \endverb
+    \endentry
+    \entry{Sagan}{book}{}
+      \name{author}{1}{}{%
+        {{hash=2b1601ffc02a16c070aba1cb8902d4a6}{%
+           family={Sagan},
+           familyi={S\bibinitperiod},
+           given={Bruce\bibnamedelima E.},
+           giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag, New York}%
+      }
+      \strng{namehash}{2b1601ffc02a16c070aba1cb8902d4a6}
+      \strng{fullhash}{2b1601ffc02a16c070aba1cb8902d4a6}
+      \strng{bibnamehash}{2b1601ffc02a16c070aba1cb8902d4a6}
+      \strng{authorbibnamehash}{2b1601ffc02a16c070aba1cb8902d4a6}
+      \strng{authornamehash}{2b1601ffc02a16c070aba1cb8902d4a6}
+      \strng{authorfullhash}{2b1601ffc02a16c070aba1cb8902d4a6}
+      \field{labelalpha}{Sag01}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Second}
+      \field{isbn}{0-387-95067-2}
+      \field{note}{Representations, combinatorial algorithms, and symmetric functions}
+      \field{series}{Graduate Texts in Mathematics}
+      \field{title}{The symmetric group}
+      \field{volume}{203}
+      \field{year}{2001}
+      \field{pages}{xvi+238}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1007/978-1-4757-6804-6
+      \endverb
+    \endentry
+    \entry{Scott}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=0bf1c3eb5ccefc205c819dbdb91b1a94}{%
+           family={Scott},
+           familyi={S\bibinitperiod},
+           given={Leonard\bibnamedelima L.},
+           giveni={L\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {World Sci. Publ., River Edge, NJ}%
+      }
+      \strng{namehash}{0bf1c3eb5ccefc205c819dbdb91b1a94}
+      \strng{fullhash}{0bf1c3eb5ccefc205c819dbdb91b1a94}
+      \strng{bibnamehash}{0bf1c3eb5ccefc205c819dbdb91b1a94}
+      \strng{authorbibnamehash}{0bf1c3eb5ccefc205c819dbdb91b1a94}
+      \strng{authornamehash}{0bf1c3eb5ccefc205c819dbdb91b1a94}
+      \strng{authorfullhash}{0bf1c3eb5ccefc205c819dbdb91b1a94}
+      \field{labelalpha}{Sco93}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Group theory ({G}ranville, {OH}, 1992)}
+      \field{title}{Integral equivalence of permutation representations}
+      \field{year}{1993}
+      \field{pages}{262\bibrangedash 274}
+      \range{pages}{13}
+    \endentry
+    \entry{Stanley-EC1}{book}{}
+      \name{author}{1}{}{%
+        {{hash=a61a7c4d8f4b467437038b8bc2aee208}{%
+           family={Stanley},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima P.},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press, Cambridge}%
+      }
+      \strng{namehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{fullhash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{bibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authorbibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authornamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authorfullhash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \field{extraname}{1}
+      \field{labelalpha}{Sta12}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Second}
+      \field{isbn}{978-1-107-60262-5}
+      \field{series}{Cambridge Studies in Advanced Mathematics}
+      \field{title}{Enumerative combinatorics. {V}olume 1}
+      \field{volume}{49}
+      \field{year}{2012}
+      \field{pages}{xiv+626}
+      \range{pages}{-1}
+    \endentry
+    \entry{Stanley-EC2}{book}{}
+      \name{author}{1}{}{%
+        {{hash=a61a7c4d8f4b467437038b8bc2aee208}{%
+           family={Stanley},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima P.},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press, Cambridge}%
+      }
+      \strng{namehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{fullhash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{bibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authorbibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authornamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authorfullhash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \field{extraname}{2}
+      \field{labelalpha}{Sta24}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{annotation}{For {V}olume {I} see [2868112\endremfr]}
+      \field{edition}{Second}
+      \field{isbn}{978-1-009-26249-1; 978-1-009-26248-4}
+      \field{note}{With an appendix by Sergey Fomin}
+      \field{series}{Cambridge Studies in Advanced Mathematics}
+      \field{title}{Enumerative combinatorics. {V}ol. 2}
+      \field{volume}{208}
+      \field{year}{[2024] ©2024}
+      \field{pages}{xvi+783}
+      \range{pages}{-1}
+    \endentry
+    \entry{Stanley-log-concavity}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=a61a7c4d8f4b467437038b8bc2aee208}{%
+           family={Stanley},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima P.},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {New York Acad. Sci., New York}%
+      }
+      \strng{namehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{fullhash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{bibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authorbibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authornamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authorfullhash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \field{extraname}{3}
+      \field{labelalpha}{Sta89}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Graph theory and its applications: {E}ast and {W}est ({J}inan, 1986)}
+      \field{isbn}{0-89766-579-1}
+      \field{series}{Ann. New York Acad. Sci.}
+      \field{title}{Log-concave and unimodal sequences in algebra, combinatorics, and geometry}
+      \field{volume}{576}
+      \field{year}{1989}
+      \field{pages}{500\bibrangedash 535}
+      \range{pages}{36}
+      \verb{doi}
+      \verb 10.1111/j.1749-6632.1989.tb16434.x
+      \endverb
+    \endentry
+    \entry{Stembridge}{article}{}
+      \name{author}{1}{}{%
+        {{hash=7bbc94a31cb11e55133dd9023b8023b7}{%
+           family={Stembridge},
+           familyi={S\bibinitperiod},
+           given={John\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{7bbc94a31cb11e55133dd9023b8023b7}
+      \strng{fullhash}{7bbc94a31cb11e55133dd9023b8023b7}
+      \strng{bibnamehash}{7bbc94a31cb11e55133dd9023b8023b7}
+      \strng{authorbibnamehash}{7bbc94a31cb11e55133dd9023b8023b7}
+      \strng{authornamehash}{7bbc94a31cb11e55133dd9023b8023b7}
+      \strng{authorfullhash}{7bbc94a31cb11e55133dd9023b8023b7}
+      \field{labelalpha}{Ste92}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0012-365X,1872-681X}
+      \field{journaltitle}{Discrete Mathematics}
+      \field{number}{1-3}
+      \field{title}{Eulerian numbers, tableaux, and the {B}etti numbers of a toric variety}
+      \field{volume}{99}
+      \field{year}{1992}
+      \field{pages}{307\bibrangedash 320}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1016/0012-365X(92)90378-S
+      \endverb
+    \endentry
+    \entry{Sturmfels}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1146827b08c62c2c18700dd73b1dc482}{%
+           family={Sturmfels},
+           familyi={S\bibinitperiod},
+           given={Bernd},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SpringerWienNewYork, Vienna}%
+      }
+      \strng{namehash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{fullhash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{bibnamehash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{authorbibnamehash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{authornamehash}{1146827b08c62c2c18700dd73b1dc482}
+      \strng{authorfullhash}{1146827b08c62c2c18700dd73b1dc482}
+      \field{labelalpha}{Stu08}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Second}
+      \field{isbn}{978-3-211-77416-8}
+      \field{series}{Texts and Monographs in Symbolic Computation}
+      \field{title}{Algorithms in invariant theory}
+      \field{year}{2008}
+      \field{pages}{vi+197}
+      \range{pages}{-1}
+    \endentry
+    \entry{ShareshianWachs}{article}{}
+      \name{author}{2}{}{%
+        {{hash=79c42b68885852b07c08d7eb8f5c2204}{%
+           family={Shareshian},
+           familyi={S\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=48af18048f5a26eab7e77db0e80bd8e5}{%
+           family={Wachs},
+           familyi={W\bibinitperiod},
+           given={Michelle\bibnamedelima L.},
+           giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b1b80ce031e320052bcf8fa1a33b380}
+      \strng{fullhash}{4b1b80ce031e320052bcf8fa1a33b380}
+      \strng{bibnamehash}{4b1b80ce031e320052bcf8fa1a33b380}
+      \strng{authorbibnamehash}{4b1b80ce031e320052bcf8fa1a33b380}
+      \strng{authornamehash}{4b1b80ce031e320052bcf8fa1a33b380}
+      \strng{authorfullhash}{4b1b80ce031e320052bcf8fa1a33b380}
+      \field{labelalpha}{SW20}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2156-3527,2150-959X}
+      \field{journaltitle}{Journal of Combinatorics}
+      \field{number}{1}
+      \field{title}{Gamma-positivity of variations of {E}ulerian polynomials}
+      \field{volume}{11}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 33}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.4310/JOC.2020.v11.n1.a1
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

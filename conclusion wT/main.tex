@@ -1,0 +1,1657 @@
+\documentclass[12pt,letterpaper,english]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}   % utilities for mathematics
+\usepackage{amsthm}    % utilities for theorem environment
+\usepackage{amssymb}   % loads mathematical fonts
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amscd}     % utilities for commutative diagrams
+
+\usepackage{mathtools}
+
+\usepackage{subcaption}
+\usepackage{array}     % core package
+\usepackage[sc]{mathpazo} % Palatino font with small caps
+\usepackage[scr=boondoxo]{mathalfa}
+
+\usepackage[unicode=true]{hyperref} % permits navigating on the pdf
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyBlue,
+    citecolor=OliveGreen,
+    urlcolor=blue,
+    pdfencoding=auto
+}
+\usepackage{cleveref}  % smart referencing
+\usepackage{caption}
+
+\usepackage{graphics,graphicx} % permits putting images
+\usepackage{tikz,tikz-cd}     % tool for diagrams
+\usepackage{enumitem}
+
+\usetikzlibrary{graphs,graphs.standard,calc}
+\usetikzlibrary{decorations.pathreplacing}
+
+\DeclareMathAlphabet{\mathsf}{OT1}{\sfdefault}{m}{n}
+
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+\linespread{1.3}
+\setlength\parindent{0.25in}
+\usepackage{verbatim}
+\usepackage{scalerel}
+\usepackage{bbm}
+
+\makeatletter
+\@namedef{subjclassname@2020}{\textup{2020} Mathematics Subject Classification}
+\makeatother
+
+
+%%% -----------------------------------------------------------
+%%% Theorem styles
+%%% -----------------------------------------------------------
+\newtheoremstyle{teoremas}%
+{11pt}{11pt}{\itshape}{}{\bfseries}{}{.5em}{}
+
+\theoremstyle{teoremas}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newtheoremstyle{definition}%
+{11pt}{11pt}{}{}{\bfseries}{}{.5em}{}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+
+
+%%% -----------------------------------------------------------
+%%% Operators and shortcuts
+%%% -----------------------------------------------------------
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\crk}{crk}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\PG}{PG}
+
+\newcommand{\M}{\mathsf{M}}
+\newcommand{\N}{\mathsf{N}}
+\newcommand{\U}{\mathsf{U}}
+\newcommand{\C}{\mathsf{C}}
+\newcommand{\B}{\mathsf{B}}
+
+\renewcommand{\H}{\mathrm{H}}
+\newcommand{\uH}{\underline{\mathrm{H}}}
+\newcommand{\Hstar}{\mathrm{H}^{*}}
+\newcommand{\Gstar}{\mathrm{G}^{*}}
+\newcommand{\PP}{\mathrm{P}}
+\newcommand{\QQ}{\mathrm{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\FF}{\mathrm{F}}
+\newcommand{\YY}{\mathrm{Y}}
+\newcommand{\ZP}{\mathrm{Z}} % Z-polynomial
+
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\hatQ}{\hat{\mathrm{Q}}}
+\newcommand{\barchi}{\overline{\chi}}
+
+\newcommand{\qbinom}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}_q}
+
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calP}{\mathcal{P}}
+
+\newcommand{\Se}{\mathcal{S}_e}
+\newcommand{\Te}{\mathcal{T}_e}
+\newcommand{\Ae}{\mathcal{A}_e}
+
+\AtBeginDocument{%
+   \def\MR#1{}
+}
+
+\allowdisplaybreaks
+
+
+%%% -----------------------------------------------------------
+%%% Bibliography
+%%% -----------------------------------------------------------
+%% Uncomment and point to your .bib file:
+%\usepackage[backend=biber,style=alphabetic]{biblatex}
+%\addbibresource{references.bib}
+
+
+%%% -----------------------------------------------------------
+%%% Title and metadata
+%%% -----------------------------------------------------------
+\title{Deletion Formulas}
+
+\subjclass[2020]{Primary: 06A07, 05B35, 52B05, 05A20}
+
+
+\begin{document}
+
+\begin{abstract}
+Aloha
+\end{abstract}
+
+\maketitle
+
+
+%%% ============================================================
+%%% SECTION 1 -- Introduction
+%%% ============================================================
+\section{Introduction}
+
+%% TODO: Write the introduction.
+
+
+%%% ============================================================
+%%% SECTION 2 -- Preliminaries
+%%% ============================================================
+\section{Preliminaries}
+
+\subsection{Conventions}
+For a finite matroid~$\N$, write $E(\N)$ for its ground set,
+$\mathcal{L}(\N)$ for its lattice of flats, and $\rk(\N)$ and
+$\crk_{\N}(A) = \rk(\N) - \rk_{\N}(A)$ for rank and corank.
+We use the standard minor notation~$\N|A$, $\N/A$, and~$\N \setminus e$.
+If $a$ and~$b$ are functions on finite matroids, their \emph{convolution} is
+\[
+(a * b)_{\N}
+= \sum_{A \in \mathcal{L}(\N)} a_{\N|A}\, b_{\N/A}.
+\]
+For a polynomial-valued invariant~$a$, its reversal is denoted by
+\[
+a^{\rev}_{\N}(x) = x^{\rk(\N)}\, a_{\N}(x^{-1}).
+\]
+
+The symbols $\PP$, $\H$, $\Hstar$, $\QQ$, $\YY$, $\ZP$, $\FF$,
+and~$\Gstar$ denote the polynomial invariants introduced in the
+applications below; their required convolution identities are recorded
+there.  Whenever an invariant is extended by zero to matroids with loops,
+that extension is stated explicitly at the point where it is used.
+
+For a matroid~$\M$ and an element $e \in E(\M)$, define the
+\emph{boundary sets}
+\[
+\Se(\M) = \{F \in \mathcal{L}(\M) \mid e \notin F
+  \text{ and } F \cup \{e\} \in \mathcal{L}(\M)\},
+\]
+\[
+\Te(\M) = \{B \in \mathcal{L}(\M) \mid e \in B,\;
+  B \setminus \{e\} \notin \mathcal{L}(\M)\},
+\]
+and put $\overline{\Se}(\M) = \Se(\M) \setminus \{\emptyset\}$.
+No non-coloop assumption is part of this notation; such an assumption
+is made only when required by a deletion formula.
+
+We define $\tau$ by
+\[
+\tau(\M) :=
+\begin{cases}
+[x^{(\rk(\M)-1)/2}]\, \PP_{\M}(x) & \text{if } \rk(\M) \text{ is odd},\\
+0 & \text{if } \rk(\M) \text{ is even}.
+\end{cases}
+\]
+
+\subsection{Flat calculus}
+We recall the deletion formula for the characteristic polynomial:
+\begin{lemma}\label{lem:char-poly-del}
+Let $\N$ be a matroid and $e \in E(\N)$.
+If $e$ is a coloop of~$\N$, then
+\[
+\chi_{\N}(x) = (x-1)\, \chi_{\N/e}(x).
+\]
+If $e$ is not a coloop of~$\N$, then
+\[
+\chi_{\N}(x) = \chi_{\N \setminus e}(x) - \chi_{\N/e}(x).
+\]
+\end{lemma}
+
+The following two lemmas collect the flat decompositions and convolution
+reindexings used throughout the deletion formulas.
+
+\begin{lemma}[Flat calculus at a non-coloop]\label{lem:flat-calc}
+Let $\M$ be loopless and let $e \in E(\M)$ be a non-coloop.  Put
+\[
+\Ae(\M) = \{A \in \mathcal{L}(\M) : e \notin A\},\quad
+\mathcal{S} = \Se(\M),\quad
+\mathcal{T} = \Te(\M).
+\]
+Then
+\begin{align*}
+\mathcal{L}(\M)
+  &= \Ae(\M) \;\sqcup\; \{A \cup \{e\} : A \in \mathcal{S}\}
+     \;\sqcup\; \mathcal{T}, \\
+\mathcal{L}(\M \setminus e)
+  &= \Ae(\M) \;\sqcup\; \{B \setminus \{e\} : B \in \mathcal{T}\}, \\
+\mathcal{L}(\M/e)
+  &= \mathcal{S} \;\sqcup\; \{B \setminus \{e\} : B \in \mathcal{T}\}.
+\end{align*}
+For every $A \in \Ae(\M)$, the matroid $\M/A$ is loopless,
+$e$~is not a coloop of $\M/A$, and the maps $K \mapsto A \cup K$ identify
+\[
+\Se(\M/A) = \{F \setminus A : F \in \mathcal{S},\; A \subseteq F\},\quad
+\Te(\M/A) = \{F \setminus A : F \in \mathcal{T},\; A \subseteq F\}.
+\]
+For every flat $B \in \mathcal{L}(\M)$ containing~$e$,
+\[
+\Se(\M|B) = \{F \in \mathcal{S} : F \subseteq B\},
+\]
+and, if $B \in \mathcal{T}$, then
+\[
+\Te(\M|B) = \{K \in \mathcal{T} : K \subseteq B\}.
+\]
+Finally, the map $(F,B) \mapsto (F, B \setminus F)$ is a bijection
+\[
+\{(F,B) : B \in \mathcal{T},\; F \in \Se(\M|B)\}
+\;\longrightarrow\;
+\{(F,K) : F \in \mathcal{S},\; K \in \Te(\M/F)\}.
+\]
+\end{lemma}
+
+\begin{proof}
+If a flat of~$\M$ contains~$e$, then either removing~$e$ leaves a flat,
+which gives a unique member of~$\mathcal{S}$, or it does not, which gives
+a member of~$\mathcal{T}$.  This proves the first decomposition.
+If $C \in \mathcal{L}(\M \setminus e)$, then $\cl_{\M}(C)$ is either~$C$
+or $C \cup \{e\}$.  In the former case $C \in \Ae(\M)$, while in the
+latter $C = B \setminus \{e\}$ for the unique $B = \cl_{\M}(C) \in \mathcal{T}$;
+the converse statements follow in the same way.  This proves the second
+decomposition.  Finally,
+\[
+\cl_{\M/e}(C) = \cl_{\M}(C \cup \{e\}) \setminus \{e\}
+\qquad (C \subseteq E(\M) \setminus \{e\}).
+\]
+Thus, if $C \in \mathcal{L}(\M/e)$ and $B = \cl_{\M}(C \cup \{e\})$,
+then either $B \setminus \{e\} = C$ is a flat of~$\M$, so $C \in \mathcal{S}$,
+or $B \in \mathcal{T}$ and $C = B \setminus \{e\}$.  Conversely, every flat
+in either displayed class is a flat of~$\M/e$.
+This proves the third decomposition.
+
+If $A \in \Ae(\M)$, then $\M/A$ is loopless because $A$ is a flat, and
+\[
+\rk\bigl((\M/A) \setminus e\bigr) = \rk(\M \setminus e) - \rk(A)
+= \rk(\M) - \rk(A) = \rk(\M/A),
+\]
+so $e$ is not a coloop of~$\M/A$.  The stated descriptions of its
+boundary sets follow from the interval isomorphism between the flats
+of~$\M/A$ and the flats of~$\M$ containing~$A$.  Likewise, the flats
+of~$\M|B$ are the flats of~$\M$ contained in~$B$, which proves the two
+restriction identities.  The last bijection has inverse
+$(F,K) \mapsto (F, F \cup K)$; the flat descriptions just proved show
+that these maps have the claimed domains.
+\end{proof}
+
+\begin{lemma}[Convolution reindexing]\label{lem:conv-reindex}
+In the setting of \cref{lem:flat-calc}, let $u$ and~$v$ be functions on
+finite matroids and put
+\[
+w_{\N} = \sum_{A \in \mathcal{L}(\N)} u_{\N|A}\, v_{\N/A}.
+\]
+Then
+\begin{align}
+w_{\M/e}
+  &= \sum_{A \in \mathcal{S}} u_{\M|A}\, v_{\M/(A \cup \{e\})}
+   + \sum_{B \in \mathcal{T}} u_{(\M|B)/e}\, v_{\M/B},
+     \label{eq:reindex-1} \\
+w_{\M|F}
+  &= \sum_{\substack{A \in \mathcal{L}(\M) \\ A \subseteq F}}
+     u_{\M|A}\, v_{(\M|F)/A}
+     \qquad (F \in \mathcal{S}),
+     \label{eq:reindex-2} \\
+w_{\M/(L \cup \{e\})}
+  &= \sum_{\substack{B \in \mathcal{L}(\M) \\ B \supseteq L \cup \{e\}}}
+     u_{(\M|B)/(L \cup \{e\})}\, v_{\M/B}
+     \qquad (L \in \mathcal{S}),
+     \label{eq:reindex-3} \\
+w_{\M/K}
+  &= \sum_{\substack{B \in \mathcal{L}(\M) \\ B \supseteq K}}
+     u_{(\M|B)/K}\, v_{\M/B}
+     \qquad (K \in \mathcal{T}).
+     \label{eq:reindex-4}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+For the first identity, the third decomposition in \cref{lem:flat-calc}
+applies, and the corresponding minors are
+\[
+(\M/e)|A = \M|A,\quad (\M/e)/A = \M/(A \cup \{e\})
+\qquad (A \in \mathcal{S}),
+\]
+and
+\[
+(\M/e)|(B \setminus \{e\}) = (\M|B)/e,\quad
+(\M/e)/(B \setminus \{e\}) = \M/B
+\qquad (B \in \mathcal{T}).
+\]
+For the remaining identities, use the correspondence between flats
+of~$\M/H$ and flats~$B$ of~$\M$ containing~$H$, together with
+\[
+(\M/H)|(B \setminus H) = (\M|B)/H,\quad
+(\M/H)/(B \setminus H) = \M/B.
+\]
+Taking $H = F$, $L \cup \{e\}$, and~$K$, respectively, proves the claim.
+\end{proof}
+
+
+%%% ============================================================
+%%% SECTION 3 -- Convolution Deletion Formula
+%%% ============================================================
+\section{Convolution Deletion Formula}
+
+The next theorem records the bookkeeping needed to pass a pair of
+deletion recurrences through a convolution.  It retains the terms
+coming from contractions by nonflats, which vanish in the
+loop-vanishing specializations used below.
+
+\begin{theorem}[Convolution Deletion Formula]\label{thm:conv-del}
+Let $R$ be a commutative ring, and let
+$g$, $h$, $\Phi^h$, $\Psi^h$, $\Phi^g$, and~$\Psi^g$
+be isomorphism-invariant functions on finite matroids with values in~$R$.
+Define
+\[
+f_{\N} = \sum_{A \in \mathcal{L}(\N)} g_{\N|A}\, h_{\N/A}.
+\]
+Suppose that there are fixed scalars $\alpha_h, \alpha_g, \gamma_g \in R$
+such that, for every pointed loopless matroid $(\N, p)$ with $p$~not a
+coloop, one has
+\begin{align*}
+h_{\N} &= h_{\N \setminus p} + \alpha_h\, h_{\N/p}
+  + \sum_{K_h \in \Se[p](\N)} \Phi^h\bigl(\N/(K_h \cup \{p\})\bigr)\, h_{\N|K_h}
+  + \sum_{L_h \in \Te[p](\N)} \Psi^h(\N/L_h)\, h_{(\N|L_h)/p}, \\
+g_{\N} &= g_{\N \setminus p} + \alpha_g\, g_{\N/p}
+  + \sum_{K_g \in \Se[p](\N)} \Phi^g(\N|K_g)\, g_{\N/(K_g \cup \{p\})}
+  + \sum_{L_g \in \Te[p](\N)} \Psi^g\bigl((\N|L_g)/p\bigr)\, g_{\N/L_g},
+\end{align*}
+and that, whenever $p$ is a coloop of a loopless matroid~$\N$,
+\[
+g_{\N} = \gamma_g\, g_{\N/p}
+  + \sum_{K_g \in \Se[p](\N)} \Phi^g(\N|K_g)\, g_{\N/(K_g \cup \{p\})}.
+\]
+Let $\M$ be loopless and let $e \in E(\M)$ not be a coloop.
+With
+\[
+\delta = \alpha_h + \gamma_g - \alpha_g,
+\]
+the following identity holds:
+\begin{align*}
+f_{\M} &= f_{\M \setminus e} + \alpha_g\, f_{\M/e}
+  + \delta \sum_{A \in \Se(\M)} g_{\M|A}\, h_{\M/(A \cup \{e\})} \\
+&\quad + \alpha_h \!\!\sum_{\substack{A \in \mathcal{L}(\M),\; e \notin A \\
+    A \cup \{e\} \notin \mathcal{L}(\M)}}
+  g_{\M|A}\, h_{\M/(A \cup \{e\})} \\
+&\quad + \sum_{F \in \Se(\M)}
+    \Phi^h\bigl(\M/(F \cup \{e\})\bigr)\, f_{\M|F} \\
+&\quad + \sum_{F \in \Te(\M)} \Psi^h(\M/F)
+    \sum_{\substack{A \in \mathcal{L}(\M|F) \\ e \notin A}}
+    g_{(\M|F)|A}\, h_{(\M|F)/(A \cup \{e\})} \\
+&\quad + \sum_{L \in \Se(\M)}
+    \Phi^g(\M|L)\, f_{\M/(L \cup \{e\})} \\
+&\quad + \sum_{K \in \Te(\M)}
+    \Psi^g\bigl((\M|K)/e\bigr)\, f_{\M/K}.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Put
+\[
+\mathcal{A} = \{A \in \mathcal{L}(\M) : e \notin A\},\quad
+\mathcal{S} = \Se(\M),\quad
+\mathcal{T} = \Te(\M).
+\]
+\cref{lem:flat-calc} gives all flat decompositions used below.
+In particular, for every $A \in \mathcal{A}$, the matroid~$\M/A$ is
+loopless and $e$~is not a coloop of~$\M/A$.  Set
+\[
+X = \sum_{A \in \mathcal{A}} g_{\M|A}\, h_{\M/A}.
+\]
+By the boundary-set description in \cref{lem:flat-calc}, the recurrence
+for each~$h_{\M/A}$ is indexed by the flats $F \in \mathcal{S} \cup \mathcal{T}$
+containing~$A$.  The relevant minor identities are
+\[
+(\M/A)/(K \cup \{e\}) = \M/(F \cup \{e\}),\quad
+(\M/A)|K = (\M|F)/A,
+\]
+and
+\[
+(\M/A)/J = \M/F,\quad
+((\M/A)|J)/e = ((\M|F)/A)/e,
+\]
+where $K = F \setminus A$ and $J = F \setminus A$.
+Thus, after multiplying by~$g_{\M|A}$ and summing over $A \in \mathcal{A}$,
+we group the deletion, contraction, $\Phi^h$-, and~$\Psi^h$-terms separately.
+\cref{lem:flat-calc} and the restriction reindexing
+identity~\eqref{eq:reindex-2} give
+\begin{align}
+X &= f_{\M \setminus e}
+  - \sum_{B \in \mathcal{T}} g_{\M|(B \setminus \{e\})}\, h_{\M/B}
+  \tag{deletion terms} \label{eq:del-terms} \\
+&\quad + \alpha_h \sum_{A \in \mathcal{S}}
+  g_{\M|A}\, h_{\M/(A \cup \{e\})}
+  \tag{contraction terms with $A \cup \{e\}$ flat}
+  \label{eq:contr-flat} \\
+&\quad + \alpha_h \!\!\!\sum_{\substack{A \in \mathcal{L}(\M),\;
+  e \notin A \\ A \cup \{e\} \notin \mathcal{L}(\M)}} \!\!\!
+  g_{\M|A}\, h_{\M/(A \cup \{e\})}
+  \label{eq:contr-nonflat} \\
+&\quad + \sum_{F \in \mathcal{S}}
+  \Phi^h\bigl(\M/(F \cup \{e\})\bigr)\, f_{\M|F}
+  \tag{$\Phi^h$-boundary terms}
+  \label{eq:Phih-terms} \\
+&\quad + \sum_{F \in \mathcal{T}} \Psi^h(\M/F)
+  \sum_{\substack{A \in \mathcal{L}(\M|F) \\ e \notin A}}
+  g_{(\M|F)|A}\, h_{(\M|F)/(A \cup \{e\})}.
+  \label{eq:Psih-terms}
+\end{align}
+The $\Phi^h$- and $\Psi^h$-boundary terms are obtained by exchanging the
+sums over~$A$ and~$F$; for $F \in \mathcal{S}$, the resulting inner
+convolution is~$f_{\M|F}$, by~\eqref{eq:reindex-2}.
+Here the two contraction terms~\eqref{eq:contr-flat}
+and~\eqref{eq:contr-nonflat} are separated according as $A \cup \{e\}$
+is, or is not, a flat.  The deletion term follows from the deletion-flat
+decomposition in \cref{lem:flat-calc}: if $B \in \mathcal{T}$, then $e$~is
+a loop of~$\M/(B \setminus \{e\})$, and hence
+$(\M \setminus e)/(B \setminus \{e\}) = \M/B$.
+
+Put
+\[
+Y = \sum_{A \in \mathcal{S}} g_{\M|(A \cup \{e\})}\, h_{\M/(A \cup \{e\})}
+  + \sum_{B \in \mathcal{T}} g_{\M|B}\, h_{\M/B}.
+\]
+Then $f_{\M} = X + Y$.
+If $A \in \mathcal{S}$, then $\rk(A \cup \{e\}) = \rk(A) + 1$, so $e$ is
+a coloop of $\M|(A \cup \{e\})$ and $(\M|(A \cup \{e\}))/e = \M|A$.
+If $B \in \mathcal{T}$, then $e \in \cl_{\M}(B \setminus \{e\})$, so $e$
+is not a coloop of~$\M|B$.  Moreover,
+\[
+\Se(\M|(A \cup \{e\})) = \{L \in \mathcal{S} : L \subseteq A\},
+\]
+and, for $B \in \mathcal{T}$,
+\[
+\Se(\M|B) = \{L \in \mathcal{S} : L \subseteq B\},\quad
+\Te(\M|B) = \{K \in \mathcal{T} : K \subseteq B\}.
+\]
+Apply the same grouping argument to~$Y$, now using the recurrence for~$g$,
+the preceding local boundary identities from \cref{lem:flat-calc},
+and~\eqref{eq:reindex-3}--\eqref{eq:reindex-4}.  This yields
+\begin{align}
+Y &= \sum_{B \in \mathcal{T}} g_{\M|(B \setminus \{e\})}\, h_{\M/B}
+  \notag \\
+&\quad + \gamma_g \sum_{A \in \mathcal{S}} g_{\M|A}\, h_{\M/(A \cup \{e\})}
+  + \alpha_g \sum_{B \in \mathcal{T}} g_{(\M|B)/e}\, h_{\M/B}
+  \notag \\
+&\quad + \sum_{L \in \mathcal{S}} \Phi^g(\M|L)\, f_{\M/(L \cup \{e\})}
+  \notag \\
+&\quad + \sum_{K \in \mathcal{T}}
+  \Psi^g\bigl((\M|K)/e\bigr)\, f_{\M/K}.
+  \label{eq:Y-expansion}
+\end{align}
+
+Finally, \eqref{eq:reindex-1}~gives
+\[
+f_{\M/e} = \sum_{A \in \mathcal{S}} g_{\M|A}\, h_{\M/(A \cup \{e\})}
+  + \sum_{B \in \mathcal{T}} g_{(\M|B)/e}\, h_{\M/B}.
+\]
+Adding~\eqref{eq:del-terms} and~\eqref{eq:Y-expansion}, the two sums
+indexed by~$\mathcal{T}$ with factor~$g_{\M|(B \setminus \{e\})}\, h_{\M/B}$
+cancel.  The displayed identity for~$f_{\M/e}$ and the equality
+$\delta = \alpha_h + \gamma_g - \alpha_g$ then transform the remaining
+scalar terms into the first two lines of the asserted formula.
+The four boundary sums are already the remaining four lines of that formula.
+\end{proof}
+
+\begin{corollary}[Loop-vanishing convolution deletion formula]
+\label{cor:loop-vanish}
+In the setting of \cref{thm:conv-del}, additionally assume that
+$h_{\N} = 0$ whenever $\N$ has a loop, that $\Psi^h = 0$,
+and that $\Phi^g(\emptyset) = 0$.  Then
+\begin{align*}
+f_{\M} &= f_{\M \setminus e} + \alpha_g\, f_{\M/e}
+  + \delta \sum_{A \in \Se(\M)} g_{\M|A}\, h_{\M/(A \cup \{e\})} \\
+&\quad + \sum_{F \in \Se(\M)}
+    \Phi^h\bigl(\M/(F \cup \{e\})\bigr)\, f_{\M|F} \\
+&\quad + \sum_{L \in \Se(\M)}
+    \Phi^g(\M|L)\, f_{\M/(L \cup \{e\})} \\
+&\quad + \sum_{K \in \Te(\M)}
+    \Psi^g\bigl((\M|K)/e\bigr)\, f_{\M/K}.
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+Let $A \in \mathcal{L}(\M)$ avoid~$e$ and suppose that $A \cup \{e\}$
+is not a flat.  Choose
+$z \in \cl_{\M}(A \cup \{e\}) \setminus (A \cup \{e\})$.
+Then
+\[
+\rk_{\M/(A \cup \{e\})}(\{z\})
+= \rk_{\M}(A \cup \{e,z\}) - \rk_{\M}(A \cup \{e\}) = 0,
+\]
+so $z$ is a loop of~$\M/(A \cup \{e\})$.
+The loop-vanishing hypothesis therefore makes every summand in the
+nonflat-boundary sum zero.  The hypothesis $\Psi^h = 0$ eliminates the
+$\Psi^h$-sum, and $\Phi^g(\emptyset) = 0$ makes the $L = \emptyset$
+summand vanish.  The theorem now reduces exactly to the displayed formula.
+\end{proof}
+
+\begin{remark}\label{rem:loop-vanish-needed}
+The loop-vanishing hypothesis in the corollary cannot be omitted:
+for example, $h_{\N} = 2^{|E(\N)|}$ and $g_{\N} = 1$, with
+$\alpha_h = \gamma_g = 1$, $\alpha_g = 0$, and all boundary weights zero,
+satisfy the recurrences but the nonflat-boundary sum for~$\U_{2,3}$ is nonzero.
+\end{remark}
+
+
+%%% ============================================================
+%%% SECTION 4 -- Inverse Deletion Formula
+%%% ============================================================
+\section{Inverse Deletion Formula}
+
+The next result is a companion to the Convolution Deletion Formula.
+It makes precise how a deletion recurrence for a convolution kernel
+transfers to its inverse.  The residual term records exactly what can
+remain when contractions by nonflats create loops.
+
+\begin{theorem}[Inverse Deletion Formula]\label{thm:inv-del}
+Let $R$ be a commutative ring, and let $\kappa$, $\lambda$, and~$\phi$
+be isomorphism-invariant functions on finite matroids with values in~$R$.
+Suppose that
+\[
+\kappa_{\emptyset} = \sigma \in \{1, -1\}
+\]
+and that $\lambda$ is a right convolution inverse of~$\kappa$, namely
+\begin{equation}\label{eq:conv-inv}
+\sum_{F \in \mathcal{L}(\N)} \kappa_{\N|F}\, \lambda_{\N/F}
+= \delta_{\emptyset, \N}
+\quad \text{for every finite matroid } \N.
+\end{equation}
+Assume that there are fixed scalars $\alpha, \gamma, \varepsilon \in R$
+such that, for every pointed loopless matroid $(\N, p)$, one has
+\begin{alignat}{2}
+\kappa_{\N} &= \kappa_{\N \setminus p} + \alpha\, \kappa_{\N/p}
+  + \sum_{F \in \Se[p](\N)}
+    \phi\bigl(\N/(F \cup \{p\})\bigr)\, \kappa_{\N|F}
+  &\quad& \text{if $p$ is not a coloop},
+  \label{eq:kappa-noncoloop} \\
+\kappa_{\N} &= \gamma\, \kappa_{\N/p}
+  + \varepsilon\, \mathbf{1}_{\{\N \cong \U_{1,1}\}}
+  &\quad& \text{if $p$ is a coloop}.
+  \label{eq:kappa-coloop}
+\end{alignat}
+Then, for every loopless matroid~$\M$ and every non-coloop
+$e \in E(\M)$,
+\begin{align}
+\lambda_{\M} &= \lambda_{\M \setminus e}
+  + \sigma(\alpha - \gamma)
+    \sum_{A \in \Se(\M)} \kappa_{\M|A}\, \lambda_{\M/(A \cup \{e\})}
+  - \sigma\varepsilon\, \mathbf{1}_{\{\emptyset \in \Se(\M)\}}\,
+    \lambda_{\M/e}
+    \notag \\
+&\quad - \sigma \!\!\sum_{\substack{A \in \mathcal{L}(\M) \\
+    e \notin A,\; A \neq \emptyset}} \!\!
+    \kappa_{\M|A}\bigl(\lambda_{\M/A} - \lambda_{(\M/A) \setminus e}\bigr)
+    \notag \\
+&\quad - \sigma \sum_{A \in \Se(\M)} \kappa_{\M|A}
+    \sum_{B \in \Te(\M/A)}
+    \phi\bigl(((\M/A)|B)/e\bigr)\, \lambda_{(\M/A)/B}.
+    \label{eq:inv-del}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Put
+\[
+\mathcal{A} = \{A \in \mathcal{L}(\M) : e \notin A\},\quad
+\mathcal{S} = \Se(\M),\quad
+\mathcal{T} = \Te(\M),\quad
+\eta = \mathbf{1}_{\{\emptyset \in \mathcal{S}\}}.
+\]
+First suppose that $\sigma = 1$.
+We use \cref{lem:flat-calc}.  In particular, a flat of~$\M$ containing~$e$
+is either $A \cup \{e\}$ for a unique $A \in \mathcal{S}$, or belongs
+to~$\mathcal{T}$.
+
+Let
+\[
+X = \sum_{\substack{B \in \mathcal{L}(\M) \\ e \in B}}
+  \kappa_{\M|B}\, \lambda_{\M/B}.
+\]
+For $A \in \mathcal{S}$, the element~$e$ is a coloop of
+$\M|(A \cup \{e\})$, whereas for $B \in \mathcal{T}$ it is not a coloop
+of~$\M|B$.
+Applying~\eqref{eq:kappa-coloop} in the first case
+and~\eqref{eq:kappa-noncoloop} in the second gives
+\begin{align}
+X &= \gamma \sum_{A \in \mathcal{S}}
+    \kappa_{\M|A}\, \lambda_{\M/(A \cup \{e\})}
+  + \sum_{B \in \mathcal{T}}
+    \kappa_{\M|(B \setminus \{e\})}\, \lambda_{\M/B}
+    \notag \\
+&\quad + \alpha \sum_{B \in \mathcal{T}}
+    \kappa_{(\M|B)/e}\, \lambda_{\M/B}
+  + \sum_{A \in \mathcal{S}} \kappa_{\M|A}
+    \sum_{C \in \Te(\M/A)}
+    \phi\bigl(((\M/A)|C)/e\bigr)\, \lambda_{(\M/A)/C}
+    \notag \\
+&\quad + \eta \varepsilon\, \lambda_{\M/e}.
+    \label{eq:X-inv}
+\end{align}
+Indeed, the exceptional summand in the coloop recurrence occurs only
+when $A = \emptyset$, and this index is present precisely when
+$\emptyset \in \mathcal{S}$.  For the last term, we have interchanged
+the two boundary sums using the final bijection of \cref{lem:flat-calc}.
+
+The proof then proceeds by induction on $|E(\M)|$.
+Subtracting $X$ from the convolution identity~\eqref{eq:conv-inv}
+and using~\eqref{eq:reindex-1} to identify~$f_{\M/e}$ yields the
+result after collecting terms.
+The case $\sigma = -1$ follows by replacing~$\kappa$ with~$-\kappa$.
+\end{proof}
+
+\begin{corollary}[Loop-vanishing inverse deletion formula]
+\label{cor:inv-loop-vanish}
+In the setting of \cref{thm:inv-del}, additionally assume that
+$\kappa_{\N} = 0$ whenever $\N$ has a loop, and that $\phi(\N) = 0$
+whenever $\N$ has a loop.
+If $\varepsilon = 0$, or more generally if
+$\varepsilon \neq 0$ only when $\N \cong \U_{1,1}$, then the last two lines
+of~\eqref{eq:inv-del} vanish, and
+\begin{align*}
+\lambda_{\M} &= \lambda_{\M \setminus e}
+  + \sigma(\alpha - \gamma) \sum_{A \in \Se(\M)}
+    \kappa_{\M|A}\, \lambda_{\M/(A \cup \{e\})}
+  - \sigma\varepsilon\, \mathbf{1}_{\{\emptyset \in \Se(\M)\}}\,
+    \lambda_{\M/e} \\
+&\quad + \sum_{B \in \Te(\M)}
+    \phi\bigl((\M|B)/e\bigr)\, \lambda_{\M/B}.
+\end{align*}
+\end{corollary}
+
+
+%%% ============================================================
+%%% SECTION 5 -- Deletion Formulas
+%%% ============================================================
+\section{Deletion Formulas}
+
+\subsection{The Kazhdan--Lusztig Polynomial}
+
+\begin{theorem}[Kazhdan--Lusztig deletion formula]\label{thm:KL-del}
+Let $\M$ be loopless and let $e \in E(\M)$ be a non-coloop.  Then
+\[
+\PP_{\M}(x) = \PP_{\M \setminus e}(x) - x\, \PP_{\M/e}(x)
+  + \sum_{F \in \Se(\M)}
+    \tau\bigl(\M/(F \cup \{e\})\bigr)\, x^{\crk_{\M}(F)/2}\,
+    \PP_{\M|F}(x).
+\]
+\end{theorem}
+
+\begin{proof}
+Apply the three flat decompositions of \cref{lem:flat-calc} to the
+convolution identity
+$\PP^{\rev}_{\M}(x) = \sum_{B \in \mathcal{L}(\M)}
+\chi_{\M|B}(x)\, \PP_{\M/B}(x)$.
+Using \cref{lem:char-poly-del} on the factors indexed by flats containing~$e$ gives
+\begin{align}
+\PP^{\rev}_{\M}(x) &= \sum_{A \not\ni e} \chi_{\M|A}\, \PP_{\M/A}
+  + \sum_{A \in \Se(\M)} (x-1)\, \chi_{\M|A}\, \PP_{\M/(A \cup \{e\})}
+    \notag \\
+&\quad + \sum_{B \in \Te(\M)}
+    (\chi_{\M|B \setminus \{e\}} - \chi_{(\M|B)/e})\, \PP_{\M/B}.
+    \label{eq:KL-expansion}
+\end{align}
+The flats of $\M \setminus e$ and $\M/e$ partition analogously, giving
+\begin{align*}
+\PP^{\rev}_{\M \setminus e}(x)
+  &= \sum_{A \not\ni e} \chi_{\M|A}\, \PP_{(\M/A) \setminus e}
+  + \sum_{B \in \Te(\M)}
+    \chi_{\M|B \setminus \{e\}}\, \PP_{\M/B}, \\
+\PP^{\rev}_{\M/e}(x)
+  &= \sum_{A \in \Se(\M)} \chi_{\M|A}\, \PP_{\M/(A \cup \{e\})}
+  + \sum_{B \in \Te(\M)}
+    \chi_{(\M|B)/e}\, \PP_{\M/B}.
+\end{align*}
+The alternating sum
+$\PP^{\rev}_{\M} - \PP^{\rev}_{\M \setminus e} + \PP^{\rev}_{\M/e}$
+cancels terms corresponding to~$\Te(\M)$, yielding
+\begin{equation}\label{eq:KL-alt-sum}
+\PP^{\rev}_{\M} - \PP^{\rev}_{\M \setminus e} + \PP^{\rev}_{\M/e}
+= \sum_{A \in \Se(\M) \cup \{\emptyset\}}
+  \chi_{\M|A}\bigl(\PP_{\M/A} - \PP_{(\M/A) \setminus e}
+  + x\, \PP_{(\M/A)/e}\bigr),
+\end{equation}
+where terms with $A \notin \Se(\M)$ vanish because $e$ becomes parallel
+to another element in~$\M/A$, forcing
+$\PP_{\M/A} = \PP_{(\M/A) \setminus e}$ and $\PP_{(\M/A)/e} = 0$.
+
+For every loopless minor~$\N$ in which $e$ is a non-coloop, put
+\[
+C_e(\N) = \PP_{\N} - \PP_{\N \setminus e} + x\, \PP_{\N/e}.
+\]
+Since $C_e(\M)^{\rev} = x^{\rk(\M)}\, C_e(\M)(x^{-1})$,
+equation~\eqref{eq:KL-alt-sum} simplifies to
+\begin{equation}\label{eq:Ce-recursion}
+C_e(\M)^{\rev} - C_e(\M)
+= \sum_{\emptyset \neq A \in \Se(\M)}
+  \chi_{\M|A}(x)\, C_e(\M/A).
+\end{equation}
+
+Define
+\[
+R_e(\N) = \sum_{F \in \Se(\N)}
+  \tau\bigl(\N/(F \cup \{e\})\bigr)\, x^{\crk_{\N}(F)/2}\,
+  \PP_{\N|F}(x).
+\]
+We claim, by induction on $|E(\M)|$, that $C_e(\M) = R_e(\M)$.
+The defining convolution identity for~$\PP$ gives
+\begin{align*}
+R_e(\M)^{\rev}
+&= \sum_{F \in \Se(\M)}
+  \tau\bigl(\M/(F \cup \{e\})\bigr)\, x^{\crk_{\M}(F)/2}\,
+  \PP^{\rev}_{\M|F}(x) \\
+&= \sum_{F \in \Se(\M)}
+  \tau\bigl(\M/(F \cup \{e\})\bigr)\, x^{\crk_{\M}(F)/2}
+  \sum_{A \in \mathcal{L}(\M|F)} \chi_{\M|A}(x)\, \PP_{(\M|F)/A}(x) \\
+&= R_e(\M) + \sum_{\emptyset \neq A \in \Se(\M)}
+  \chi_{\M|A}(x)\, R_e(\M/A).
+\end{align*}
+Indeed, in the last equality we exchange the sums.
+If $A \subseteq F$ with $F \in \Se(\M)$, then $A \in \Se(\M)$;
+and the flats $F/A$ that arise are precisely the members
+of~$\Se(\M/A)$.  The corresponding restrictions, contractions,
+coranks, and $\tau$-coefficients agree.
+This is also the point at which the formula is automatically zero
+when $e$ has a parallel mate: then $\Se(\M) = \emptyset$.
+
+By the induction hypothesis and~\eqref{eq:Ce-recursion}, the difference
+$C_e(\M) - R_e(\M)$ is invariant under reversal.  It remains to use the
+usual degree bound.  Every nonempty-flat summand of~$R_e(\M)$ has degree
+strictly smaller than $\rk(\M)/2$.  The same holds for~$C_e(\M)$ unless
+$\rk(\M)$ is even; in that case its coefficient in degree $\rk(\M)/2$
+comes only from $x\, \PP_{\M/e}$ and equals
+\[
+[x^{(\rk(\M)-2)/2}]\, \PP_{\M/e}(x) = \tau(\M/e).
+\]
+This is exactly the degree-$\rk(\M)/2$ coefficient of the $F = \emptyset$
+summand of~$R_e(\M)$ (and both coefficients are zero when
+$\emptyset \notin \Se(\M)$).  Hence
+$\deg(C_e(\M) - R_e(\M)) < \rk(\M)/2$.  A polynomial of degree strictly
+less than half its reversal degree which is invariant under reversal
+is zero.  Thus $C_e(\M) = R_e(\M)$, which is the asserted formula.
+\end{proof}
+
+
+\subsection{The Chow Polynomial}
+
+\begin{corollary}[Chow polynomial deletion formula]\label{cor:chow-del}
+Let $\M$ be a loopless matroid and let $e \in E(\M)$.  Then
+\begin{equation}\label{eq:chow-del}
+\H_{\M}(x) = \H_{\M \setminus e}(x)
+  + x \sum_{G \in \overline{\Se}(\M)}
+    \H_{\M|G}(x)\, \H_{\M/(G \cup \{e\})}(x).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Use the defining expression for $\Se(\M)$ also when $e$ is a coloop.
+Extend $\H$ by~$0$ to matroids with loops, with $\H_{\emptyset} = 1$,
+and define
+\[
+\kappa_{\N} =
+\begin{cases}
+-1, & \N = \emptyset, \\
+\dfrac{\chi_{\N}(x)}{x - 1}, & \N \neq \emptyset,
+\end{cases}
+\qquad \lambda_{\N} = -\H_{\N}(x).
+\]
+The defining convolution identity for~$\H$ says exactly that $\lambda$ is
+the right convolution inverse of~$\kappa$.
+
+By the characteristic-polynomial deletion identities, the hypotheses
+of \cref{thm:inv-del} hold with
+\[
+\alpha = -1,\quad \gamma = x-1,\quad \varepsilon = x,\quad \phi = 0.
+\]
+We prove the result by induction on $|E(\M)|$; the one-element case is
+immediate.  First suppose that $e$ is not a coloop and put
+$D_e(\N) = \H_{\N} - \H_{\N \setminus e}$.
+If $\emptyset \in \Se(\M)$, the $A = \emptyset$ summand in the inverse
+deletion formula cancels the exceptional term~$x\, \H_{\M/e}$;
+if $\emptyset \notin \Se(\M)$, both terms are absent.
+Thus \cref{thm:inv-del} gives
+\begin{equation}\label{eq:chow-induction}
+(x-1)\, D_e(\M)
+- \sum_{\substack{A \in \mathcal{L}(\M) \\
+    e \notin A,\; A \neq \emptyset}}
+  \chi_{\M|A}(x)\, D_e(\M/A)
+= x \sum_{G \in \overline{\Se}(\M)}
+  \chi_{\M|G}(x)\, \H_{\M/(G \cup \{e\})}(x).
+\end{equation}
+For every nonempty flat~$A$ avoiding~$e$, the induction hypothesis
+applies to~$\M/A$.  Reindexing the resulting sums by $G = A \cup C$,
+as in \cref{lem:flat-calc}, gives
+\begin{align*}
+\sum_{\substack{A \in \mathcal{L}(\M) \\
+    e \notin A,\; A \neq \emptyset}}
+  \chi_{\M|A}\, D_e(\M/A)
+&= x \sum_{G \in \overline{\Se}(\M)}
+  \Biggl(\sum_{\substack{A \in \mathcal{L}(\M|G) \\
+    \emptyset \neq A \subsetneq G}}
+  \chi_{\M|A}\, \H_{(\M|G)/A}\Biggr)
+  \H_{\M/(G \cup \{e\})} \\
+&= x \sum_{G \in \overline{\Se}(\M)}
+  \bigl((x-1)\, \H_{\M|G} - \chi_{\M|G}\bigr)\,
+  \H_{\M/(G \cup \{e\})}.
+\end{align*}
+The last equality is the defining convolution identity
+$(x - 1)\, \H_L = \sum_{\emptyset \neq A \in \mathcal{L}(L)}
+\chi_{L|A}\, \H_{L/A}$ for $L \neq \emptyset$.
+Substitution in~\eqref{eq:chow-induction} yields
+\[
+(x-1)\, D_e(\M) = x(x-1) \sum_{G \in \overline{\Se}(\M)}
+  \H_{\M|G}\, \H_{\M/(G \cup \{e\})},
+\]
+and cancellation of $x - 1$ proves~\eqref{eq:chow-del}.
+
+It remains to treat a coloop~$e$.  Put $\N = \M/e = \M \setminus e$
+and $J_L = \H_{L \oplus \U_{1,1}}$.
+Here $\overline{\Se}(\M) = \mathcal{L}(\N) \setminus \{\emptyset\}$.
+The case $\N = \emptyset$ is immediate.
+For $\N \neq \emptyset$, pairing the flats $A$ and $A \cup \{e\}$ in
+the defining convolution for~$\H$ gives
+\[
+(x-1)\, J_{\N}
+= \sum_{\emptyset \neq A \in \mathcal{L}(\N)}
+  \chi_{\N|A}\, J_{\N/A}
+  + (x-1) \sum_{A \in \mathcal{L}(\N)}
+  \chi_{\N|A}\, \H_{\N/A}.
+\]
+The second sum is $(x-1)\, x\, \H_{\N}$.
+Applying the induction hypothesis to each $J_{\N/A}$ in the first sum
+and reindexing once more gives, with
+\[
+C_{\N} = \sum_{\emptyset \neq B \in \mathcal{L}(\N)}
+  \H_{\N|B}\, \H_{\N/B},
+\]
+\[
+\sum_{\emptyset \neq A \in \mathcal{L}(\N)}
+  \chi_{\N|A}\, J_{\N/A}
+= (x-1)\, \H_{\N} + x\bigl((x-1)\, C_{\N} - (x-1)\, \H_{\N}\bigr).
+\]
+Indeed, the double sum arising from the induction hypothesis is reindexed
+by $B = A \cup C$, and its inner sum is
+\[
+\sum_{\substack{A \in \mathcal{L}(\N|B) \\
+    \emptyset \neq A \subsetneq B}}
+  \chi_{\N|A}\, \H_{(\N|B)/A}
+= (x-1)\, \H_{\N|B} - \chi_{\N|B}.
+\]
+Consequently,
+\[
+(x-1)\, J_{\N} = (x-1)(\H_{\N} + x\, C_{\N}),
+\]
+which is precisely~\eqref{eq:chow-del} for the coloop~$e$.
+\end{proof}
+
+
+\subsection{The Dual Chow Polynomial}
+Let $\Hstar_{\N}(x)$ denote the dual Chow polynomial of a loopless
+matroid~$\N$, with the convention $\Hstar_{\emptyset}(x) = 1$.
+For the next lemma, we make the auxiliary convention that
+$\Hstar_{\N}(x) = 0$ when $\N$ has a loop.
+This does not change the convolution defining~$\Gstar_{\M}$ for
+loopless~$\M$, because contractions by flats of a loopless matroid
+are loopless.
+
+\begin{lemma}[Loop-extended dual-Chow deletion]\label{lem:dual-chow-del}
+Let $\N$ be a loopless matroid and let $p \in E(\N)$ be a non-coloop.
+Then
+\[
+\Hstar_{\N}(x) = \Hstar_{\N \setminus p}(x) + \Hstar_{\N/p}(x)
+  + x \sum_{K \in \overline{\Se[p]}(\N)}
+    \Hstar_{\N|K}(x)\, \Hstar_{\N/(K \cup \{p\})}(x).
+\]
+\end{lemma}
+
+\begin{proof}
+If $p$ has no parallel mate, the deletion formula of
+Caiolo--Ferroni--Hoster has the form
+\[
+\Hstar_{\N} = \Hstar_{\N \setminus p} + (1+x)\, \Hstar_{\N/p}
+  + x \sum_{K \in \overline{\Se[p]}(\N)}
+    \Hstar_{\N|K}\, \Hstar_{\N/(K \cup \{p\})}.
+\]
+In this case $\emptyset \in \Se[p](\N)$, and the $K = \emptyset$ summand
+in the displayed formula of the lemma is $x\, \Hstar_{\N/p}$, because
+$\Hstar_{\N|\emptyset} = \Hstar_{\emptyset} = 1$.
+Thus the two forms agree.
+
+Suppose instead that $p$ has a parallel mate~$q$.
+Then $\overline{\Se[p]}(\N) = \emptyset$: a flat avoiding~$p$ also
+avoids~$q$, whereas adjoining~$p$ without~$q$ cannot produce a flat.
+Deleting~$p$ preserves the ranked lattice of flats, so
+$\Hstar_{\N} = \Hstar_{\N \setminus p}$.
+On the other hand, $q$~is a loop of~$\N/p$, and the auxiliary
+zero-on-loops convention gives $\Hstar_{\N/p} = 0$.
+This proves the stated recurrence in every case.
+\end{proof}
+
+
+\subsection{The $Z$-Polynomial}
+The $Z$-polynomial of~$\M$ is defined by the convolution
+\begin{equation}\label{eq:Z-def}
+\ZP_{\M}(x) = (\zeta^{\rev} * \PP)_{\M}
+= \sum_{A \in \mathcal{L}(\M)} x^{\rk(A)}\, \PP_{\M/A}(x),
+\end{equation}
+where $\zeta^{\rev}_{\N}(x) = x^{\rk(\N)}$.
+The following is a direct specialization of \cref{cor:loop-vanish}.
+
+\begin{corollary}[$Z$-polynomial deletion formula]\label{cor:Z-del}
+Let $\M$ be loopless and let $e \in E(\M)$ be a non-coloop.  Then
+\[
+\ZP_{\M}(x) = \ZP_{\M \setminus e}(x)
+  + \sum_{F \in \Se(\M)}
+    \tau\bigl(\M/(F \cup \{e\})\bigr)\, x^{\crk_{\M}(F)/2}\,
+    \ZP_{\M|F}(x).
+\]
+\end{corollary}
+
+\begin{proof}
+Extend $\PP$ by~$0$ to matroids with loops, and put
+\[
+\phi(Q) =
+\begin{cases}
+\tau(Q)\, x^{(\rk(Q)+1)/2}, & \text{if $Q$ is loopless and $\rk(Q)$ is odd},\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+Apply \cref{cor:loop-vanish} with
+$g_{\N} = x^{\rk(\N)}$ and $h_{\N} = \PP_{\N}(x)$.
+The Kazhdan--Lusztig deletion formula gives
+\[
+\alpha_h = -x,\quad \Phi^h = \phi,\quad \Psi^h = 0,
+\]
+while $g_{\N} = g_{\N \setminus p}$ for a non-coloop~$p$ and
+$g_{\N} = x\, g_{\N/p}$ for a coloop~$p$, so that
+\[
+\alpha_g = 0,\quad \gamma_g = x,\quad \Phi^g = \Psi^g = 0.
+\]
+The convolution in the Convolution Deletion Formula is
+$f_{\N} = \ZP_{\N}(x)$, and its additional loop-vanishing hypotheses hold.
+Since $\delta = -x + x = 0$, only the $\Phi^h$-term remains.
+Finally, for $F \in \Se(\M)$,
+\[
+\phi\bigl(\M/(F \cup \{e\})\bigr)
+= \tau\bigl(\M/(F \cup \{e\})\bigr)\, x^{\crk_{\M}(F)/2},
+\]
+because $\rk(\M/(F \cup \{e\})) + 1 = \crk_{\M}(F)$.
+This proves the formula.
+\end{proof}
+
+
+\begin{lemma}\label{lem:Prev-del}
+For any loopless matroid~$\M$ and $e \in E(\M)$ that is not a coloop,
+the reversed Kazhdan--Lusztig polynomial satisfies:
+\[
+\PP^{\rev}_{\M}(x) = \PP^{\rev}_{\M \setminus e}(x)
+  - \PP^{\rev}_{\M/e}(x)
+  + \sum_{F \in \Se(\M)}
+    \tau(\M/(F \cup \{e\}))\, x^{\crk_{\M}(F)/2}\,
+    \PP^{\rev}_{\M|F}(x).
+\]
+\end{lemma}
+
+\begin{proof}
+The standard deletion formula for the Kazhdan--Lusztig polynomial
+$\PP_{\M}(x)$ is:
+\[
+\PP_{\M}(x) = \PP_{\M \setminus e}(x) - x\, \PP_{\M/e}(x)
+  + \sum_{F \in \Se(\M)}
+    \tau(\M/(F \cup \{e\}))\, x^{\crk_{\M}(F)/2}\,
+    \PP_{\M|F}(x).
+\]
+Substituting $x$ with $x^{-1}$ and multiplying by $x^{\rk(\M)}$
+yields the stated formula for~$\PP^{\rev}_{\M}(x)$.
+\end{proof}
+
+
+\subsection{The Right Augmented Chow Polynomial}
+
+\[
+\FF_{\N}(x) = (\H * \PP^{\rev})_{\N}
+= \sum_{A \in \mathcal{L}(\N)}
+  \H_{\N|A}(x)\, \PP^{\rev}_{\N/A}(x)
+\]
+for every loopless matroid~$\N$.
+For the bookkeeping required by the Convolution Deletion Formula,
+extend~$\H$ by~$0$ to matroids with loops.
+
+\begin{corollary}[Right augmented Chow deletion formula]\label{cor:aug-chow-del}
+Let $\M$ be a simple matroid and let $e \in E(\M)$ be a non-coloop.
+The right augmented Chow polynomial satisfies:
+\begin{equation}\label{eq:aug-chow-del}
+\FF_{\M}(x) = \FF_{\M \setminus e}(x)
+  + x \sum_{G \in \overline{\Se}(\M)}
+    \H_{\M|G}(x)\, \FF_{\M/(G \cup \{e\})}(x)
+  + \sum_{F \in \Se(\M)}
+    \tau(\M/(F \cup \{e\}))\, x^{\crk_{\M}(F)/2}\,
+    \FF_{\M|F}(x).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Extend $\PP^{\rev}$ by~$0$ to matroids with loops, and set
+\[
+\phi(Q) =
+\begin{cases}
+\tau(Q)\, x^{(\rk(Q)+1)/2}, & \text{if $Q$ is loopless and $\rk(Q)$ is odd},\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+We apply \cref{cor:loop-vanish} with
+\[
+g_{\N} = \H_{\N}(x),\quad h_{\N} = \PP^{\rev}_{\N}(x).
+\]
+\Cref{cor:chow-del} gives the required $g$-recurrences with
+\[
+\alpha_g = 0,\quad \gamma_g = 1,\quad \Psi^g = 0,
+\]
+and
+\[
+\Phi^g(Q) =
+\begin{cases}
+x\, \H_Q(x), & \text{if } E(Q) \neq \emptyset, \\
+0, & \text{if } Q = \emptyset.
+\end{cases}
+\]
+Indeed, the non-coloop formula has precisely the $\overline{\Se[p]}(\N)$
+sum, while the coloop formula has the extra term $\H_{\N/p}$ required
+by the Convolution Deletion Formula.
+\Cref{lem:Prev-del} supplies the $h$-recurrence with
+\[
+\alpha_h = -1,\quad \Phi^h = \phi,\quad \Psi^h = 0.
+\]
+The equality
+\[
+\rk\bigl(\N/(K \cup \{p\})\bigr) + 1 = \crk_{\N}(K)
+\]
+for $K \in \Se[p](\N)$ identifies its $\Phi^h$-weight with the boundary
+coefficient in that lemma.
+
+The convolution in the Convolution Deletion Formula is $f_{\N} = \FF_{\N}$,
+and $h$ vanishes on looped matroids.  The remaining hypotheses of
+\cref{cor:loop-vanish} hold because $\Psi^h = 0$ and $\Phi^g(\emptyset) = 0$.
+Moreover,
+\[
+\delta = \alpha_h + \gamma_g - \alpha_g = -1 + 1 = 0.
+\]
+Consequently, the $\Phi^h$-sum in the loop-vanishing corollary is
+\[
+\sum_{F \in \Se(\M)}
+  \tau\bigl(\M/(F \cup \{e\})\bigr)\, x^{\crk_{\M}(F)/2}\,
+  \FF_{\M|F}(x),
+\]
+whereas its $\Phi^g$-sum is
+\[
+x \sum_{G \in \overline{\Se}(\M)}
+  \H_{\M|G}(x)\, \FF_{\M/(G \cup \{e\})}(x).
+\]
+These are exactly the two terms in the stated deletion formula.
+\end{proof}
+
+
+\subsection{The Left Augmented Dual Chow Polynomial}
+The left augmented dual Chow polynomial is defined by
+\[
+\Gstar_{\M}(x) = \sum_{F \in \mathcal{L}(\M)}
+  \QQ^{\rev}_{\M|F}(x)\, \Hstar_{\M/F}(x),
+\]
+where $\Hstar_{\M}(x)$ is the dual Chow polynomial and
+$\QQ^{\rev}_{\M}(x) = x^{\rk(\M)}\, \QQ_{\M}(x^{-1})$ is the
+reversed inverse Kazhdan--Lusztig polynomial.
+
+\begin{corollary}[Left augmented dual Chow deletion formula]
+\label{cor:Gstar-del}
+Let $\M$ be a simple matroid, and let $e \in E(\M)$ be a non-coloop.
+Then the left augmented dual Chow polynomial $\Gstar_{\M}(x)$ satisfies
+the deletion formula:
+\begin{align*}
+\Gstar_{\M}(x) &= \Gstar_{\M \setminus e}(x)
+  + (1+x)\, \Gstar_{\M/e}(x)
+  + x \sum_{F \in \overline{\Se}(\M)}
+    \Gstar_{\M|F}(x)\, \Hstar_{\M/(F \cup \{e\})}(x) \\
+&\quad - \sum_{\substack{K \in \Te(\M) \\ \rk_{\M}(K) \text{ even}}}
+    \tau\bigl((\M|K)/e\bigr)\, x^{\rk_{\M}(K)/2}\,
+    \Gstar_{\M/K}(x).
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+Put $q_{\N} = \QQ^{\rev}_{\N}(x)$, using the zero-on-loops convention
+already fixed for~$\QQ$, and define
+\[
+\psi(Q) =
+\begin{cases}
+-\tau(Q)\, x^{(\rk(Q)+1)/2}, & \text{if $Q$ is loopless and $\rk(Q)$ is odd},\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+The inverse Kazhdan--Lusztig deletion formula, proved below as
+\cref{cor:invKL-del} gives, after reversal, for a loopless pointed
+matroid $(\N, p)$ with $p$ a non-coloop,
+\[
+q_{\N} = q_{\N \setminus p} + (1+x)\, q_{\N/p}
+  + \sum_{K \in \Te[p](\N)}
+    \psi\bigl((\N|K)/p\bigr)\, q_{\N/K}.
+\]
+If $p$ is a coloop, then $\QQ_{\N} = \QQ_{\N/p}$, and reversal gives
+\[
+q_{\N} = x\, q_{\N/p}.
+\]
+We may therefore apply \cref{cor:loop-vanish} with
+\[
+h_{\N} = \Hstar_{\N}(x),\quad g_{\N} = q_{\N},
+\]
+and parameters
+\[
+\alpha_h = 1,\quad
+\Phi^h(Q) = x\, \Hstar_Q(x),\quad
+\Psi^h = 0,\quad
+\alpha_g = 1+x,\quad
+\gamma_g = x,\quad
+\Phi^g = 0,\quad
+\Psi^g(Q) = \psi(Q).
+\]
+\Cref{lem:dual-chow-del} supplies the $h$-recurrence, including the case
+in which $p$ has a parallel mate.  Its auxiliary extension also gives the
+required loop-vanishing condition.
+The convolution in the Convolution Deletion Formula is
+\[
+f_{\N} = \sum_{A \in \mathcal{L}(\N)}
+  \QQ^{\rev}_{\N|A}(x)\, \Hstar_{\N/A}(x) = \Gstar_{\N}(x),
+\]
+and
+\[
+\delta = \alpha_h + \gamma_g - \alpha_g = 1 + x - (1+x) = 0.
+\]
+Thus the $\Phi^h$-term in the loop-vanishing corollary is
+\[
+x \sum_{F \in \overline{\Se}(\M)}
+  \Gstar_{\M|F}(x)\, \Hstar_{\M/(F \cup \{e\})}(x),
+\]
+and the $\Psi^g$-term is
+\[
+\sum_{K \in \Te(\M)}
+  \psi\bigl((\M|K)/e\bigr)\, \Gstar_{\M/K}(x).
+\]
+Since $\rk\bigl((\M|K)/e\bigr) = \rk_{\M}(K) - 1$, the latter sum is
+exactly
+\[
+-\sum_{\substack{K \in \Te(\M) \\ \rk_{\M}(K) \text{ even}}}
+  \tau\bigl((\M|K)/e\bigr)\, x^{\rk_{\M}(K)/2}\,
+  \Gstar_{\M/K}(x).
+\]
+Together with the deletion and contraction terms of the master corollary,
+this is the displayed formula.
+\end{proof}
+
+\begin{remark}[The $\Gstar$ contraction coefficient]\label{rem:Gstar-coeff}
+For the right augmented Chow polynomial, the nonzero master boundary
+weight is~$\Phi^g$, so its extra contribution is indexed by~$\Se(\M)$.
+Here $\Phi^g = 0$; instead, the $\Gstar$ specialization has the
+contraction coefficient
+$\Psi^g(Q) = \psi(Q)$.
+Consequently the Convolution Deletion Formula evaluates it
+on the contraction $(\M|K)/e$ and produces
+$\Psi^g\bigl((\M|K)/e\bigr) = \psi\bigl((\M|K)/e\bigr)$.
+Thus the contraction by~$e$ is taken after restricting to~$K$,
+which is the source of the $\Te(\M)$-sum in the $\Gstar$ formula.
+\end{remark}
+
+
+\subsection{The Inverse Kazhdan--Lusztig Polynomial}
+For a loopless matroid~$\M$, put
+\[
+\hat{\QQ}_{\M}(x) = (-1)^{\rk(\M)}\, \QQ_{\M}(x).
+\]
+Extend $\PP$, $\QQ$, and~$\tau$ by zero to matroids with loops.
+With this convention, $\hat{\QQ}$ is the right convolution inverse of~$\PP$:
+\begin{equation}\label{eq:PQ-inv}
+\sum_{A \in \mathcal{L}(\M)}
+  \PP_{\M|A}(x)\, \hat{\QQ}_{\M/A}(x) = \delta_{\emptyset, \M}.
+\end{equation}
+For looped~$\M$, this identity is automatic, because every flat
+contains a loop and every restricted $\PP$-factor therefore vanishes.
+\Cref{cor:inv-loop-vanish} therefore gives the deletion formula
+formally from the deletion formula for~$\PP$.
+
+\begin{corollary}[Inverse Kazhdan--Lusztig deletion formula]
+\label{cor:invKL-del}
+Let $\M$ be a loopless matroid and let $e \in E(\M)$ be a non-coloop.
+Then
+\begin{equation}\label{eq:invKL-del}
+\QQ_{\M}(x) = \QQ_{\M \setminus e}(x)
+  + (1+x)\, \QQ_{\M/e}(x)
+  - \sum_{\substack{F \in \Te(\M) \\ \rk(F) \text{ even}}}
+    \tau\bigl((\M|F)/e\bigr)\, x^{\rk(F)/2}\,
+    \QQ_{\M/F}(x).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Since $\PP_{\emptyset} = 1$, \cref{cor:inv-loop-vanish} applies with
+\[
+\kappa_{\N} = \PP_{\N}(x),\quad
+\lambda_{\N} = \hat{\QQ}_{\N}(x),\quad
+\alpha = -x,\quad
+\gamma = 1,
+\]
+and define
+\[
+\phi(\N) =
+\begin{cases}
+\tau(\N)\, x^{(\rk(\N)+1)/2},
+  & \text{if $\N$ is loopless and $\rk(\N)$ is odd},\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+Indeed, the Kazhdan--Lusztig deletion recurrence has the form
+\[
+\PP_{\N} = \PP_{\N \setminus p} - x\, \PP_{\N/p}
+  + \sum_{G \in \Se[p](\N)}
+    \phi\bigl(\N/(G \cup \{p\})\bigr)\, \PP_{\N|G},
+\]
+because $\rk\bigl(\N/(G \cup \{p\})\bigr) + 1 = \crk_{\N}(G)$.
+Its coloop relation is $\PP_{\N} = \PP_{\N/p}$.
+Thus the corollary gives
+\[
+\hat{\QQ}_{\M} = \hat{\QQ}_{\M \setminus e}
+  - (1+x)\, \hat{\QQ}_{\M/e}
+  - \sum_{\substack{F \in \Te(\M) \\ \rk(F) \text{ even}}}
+    \tau\bigl((\M|F)/e\bigr)\, x^{\rk(F)/2}\,
+    \hat{\QQ}_{\M/F}.
+\]
+The rank of $(\M|F)/e$ is $\rk(F) - 1$, so only even-rank~$F$
+can contribute.  If $r = \rk(\M)$, then
+\[
+\rk(\M \setminus e) = r,\quad
+\rk(\M/e) = r-1,\quad
+\rk(\M/F) = r - \rk(F).
+\]
+Replacing $\hat{\QQ}_{\N}$ by $(-1)^{\rk(\N)}\, \QQ_{\N}$ therefore
+reverses the contraction sign and preserves every boundary sign,
+proving~\eqref{eq:invKL-del}.
+\end{proof}
+
+
+\subsection{The Inverse $Z$-Polynomial}
+For a loopless matroid~$\M$, put
+\[
+\hat{\YY}_{\M}(x) = (-1)^{\rk(\M)}\, \YY_{\M}(x).
+\]
+For the following convolutional argument, extend $\ZP$, $\hat{\YY}$
+(and hence~$\YY$), and~$\tau$ by zero to matroids with loops.
+This is an auxiliary bookkeeping convention; it does not
+evaluate~\eqref{eq:Z-def} on a looped matroid.
+With this convention, $\hat{\YY}$ is the right convolution inverse
+of~$\ZP$:
+\begin{equation}\label{eq:ZY-inv}
+\sum_{A \in \mathcal{L}(\M)}
+  \ZP_{\M|A}(x)\, \hat{\YY}_{\M/A}(x) = \delta_{\emptyset, \M}.
+\end{equation}
+For looped~$\M$, this identity is automatic, because every flat
+contains a loop and every restricted $\ZP$-factor therefore vanishes.
+
+\begin{corollary}[Inverse $Z$-polynomial deletion formula]
+\label{cor:invZ-del}
+Let $\M$ be a loopless matroid and let $e \in E(\M)$ be a non-coloop.
+Then
+\begin{equation}\label{eq:invZ-del}
+\YY_{\M}(x) = \YY_{\M \setminus e}(x)
+  + (1+x)\, \YY_{\M/e}(x)
+  - \sum_{\substack{F \in \Te(\M) \\ \rk(F) \text{ even}}}
+    \tau\bigl((\M|F)/e\bigr)\, x^{\rk(F)/2}\,
+    \YY_{\M/F}(x).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Since $\ZP_{\emptyset} = 1$, \cref{cor:inv-loop-vanish} applies with
+\[
+\kappa_{\N} = \ZP_{\N}(x),\quad
+\lambda_{\N} = \hat{\YY}_{\N}(x),\quad
+\alpha = 0,\quad
+\gamma = 1+x,
+\]
+and
+\[
+\phi(\N) =
+\begin{cases}
+\tau(\N)\, x^{(\rk(\N)+1)/2},
+  & \text{if $\N$ is loopless and $\rk(\N)$ is odd},\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+The loopless deletion formula of \cref{cor:Z-del} has the required form
+with $\alpha = 0$, since
+$\rk\bigl(\N/(G \cup \{p\})\bigr) + 1 = \crk_{\N}(G)$.
+If $p$ is a coloop of~$\N$, the flats of~$\N$ occur in pairs $A$
+and $A \cup \{p\}$ with $A \in \mathcal{L}(\N/p)$.
+Adjoining a coloop does not change the Kazhdan--Lusztig polynomial,
+so the corresponding summands in~\eqref{eq:Z-def} are $1$ and~$x$
+times the same summand of~$\ZP_{\N/p}$.  Hence
+\[
+\ZP_{\N} = (1+x)\, \ZP_{\N/p}.
+\]
+Thus $\alpha - \gamma = -(1+x)$, and the corollary gives
+\[
+\hat{\YY}_{\M} = \hat{\YY}_{\M \setminus e}
+  - (1+x)\, \hat{\YY}_{\M/e}
+  - \sum_{\substack{F \in \Te(\M) \\ \rk(F) \text{ even}}}
+    \tau\bigl((\M|F)/e\bigr)\, x^{\rk(F)/2}\,
+    \hat{\YY}_{\M/F}.
+\]
+Again, a nonzero boundary term has $\rk(F)$ even.
+If $r = \rk(\M)$, then
+\[
+\rk(\M \setminus e) = r,\quad
+\rk(\M/e) = r-1,\quad
+\rk(\M/F) = r - \rk(F).
+\]
+Replacing $\hat{\YY}_{\N}$ by $(-1)^{\rk(\N)}\, \YY_{\N}$ therefore
+reverses the contraction sign and preserves every boundary sign,
+proving~\eqref{eq:invZ-del}.
+\end{proof}
+
+\begin{remark}[Why the inverse formulas coincide]\label{rem:inverse-coincide}
+The deletion formulas in \cref{cor:invKL-del,cor:invZ-del} coincide
+because the forward kernels have the same boundary weight~$\phi$, and
+\[
+(-x) - 1 = -(1+x) = 0 - (1+x).
+\]
+Equivalently, the pairs $(\alpha, \gamma) = (-x, 1)$ for~$\PP$
+and $(0, 1+x)$ for~$\ZP$ have the same difference $\alpha - \gamma$.
+The loop-vanishing inverse formula depends on the forward recurrence
+precisely through this difference and~$\phi$; after the same rank-sign
+normalization, it therefore yields identical recurrences for~$\QQ$
+and~$\YY$.
+\end{remark}
+
+
+%%% ============================================================
+%%% SECTION 6 -- Remark on Gamma-Positivity
+%%% ============================================================
+\section{Remark on Gamma-Positivity}
+
+\begin{remark}\label{rem:gamma-pos}
+Recall that a symmetric polynomial $p(x)$ of degree~$d$ is
+\emph{$\gamma$-positive} if it is a nonnegative linear combination of
+the polynomials $x^i(1+x)^{d-2i}$.
+The deletion formula for the right augmented Chow polynomial is
+compatible with its symmetry, but it does not by itself imply
+$\gamma$-positivity: its summands have different symmetry degrees,
+and the formula includes the coefficients~$\tau$ of Kazhdan--Lusztig
+polynomials.  Establishing $\gamma$-positivity therefore requires an
+additional structural argument, which is not supplied here.
+\end{remark}
+
+
+%%% ============================================================
+%%% SECTION 7 -- Examples and Specializations
+%%% ============================================================
+\section{Examples and Specializations}
+
+We illustrate the deletion formula for the right augmented Chow
+polynomial in several matroid classes.  The following calculations
+specialize the formula proved above.  We write
+\[
+\B_j := \U_{j,j},\qquad \C_j := \U_{j-1,j},
+\]
+for the Boolean matroid of rank~$j$ and the circuit of size~$j$,
+respectively.  We set
+\[
+A_j(x) := \H_{\B_j}(x),\qquad
+\widetilde{A}_j(x) := \FF_{\B_j}(x),
+\]
+which denote the Chow and right augmented Chow polynomials of the
+Boolean matroid of rank~$j$.
+
+The class-specific calculations in the subsequent sections specialize
+\cref{cor:aug-chow-del} for a simple matroid~$\M$:
+\begin{equation}\tag{D$_{\FF}$}\label{eq:DF}
+\FF_{\M}(x) = \FF_{\M \setminus e}(x)
+  + x \sum_{G \in \overline{\Se}(\M)}
+    \H_{\M|G}(x)\, \FF_{\M/(G \cup \{e\})}(x)
+  + \sum_{G \in \Se(\M)}
+    \tau(\M/(G \cup \{e\}))\, x^{\crk_{\M}(G)/2}\,
+    \FF_{\M|G}(x).
+\end{equation}
+Whenever a Kazhdan--Lusztig $\tau$-coefficient $\tau(\N)$ is nonzero,
+$\rk(\N)$ is odd; hence the corresponding half-integral exponent
+in~\eqref{eq:DF} is an integer.
+
+
+\subsection{Uniform Matroids}
+
+\begin{theorem}\label{thm:uniform-del}
+Let $2 \le r < n$, let $\M = \U_{r,n}$, and let $e \in E(\M)$.  Then
+\[
+\Se(\M) = \{G \subseteq E(\M) \setminus \{e\} : |G| \le r-2\}.
+\]
+Consequently, the augmented Chow polynomial satisfies
+\begin{equation}\label{eq:uniform-del}
+\FF_{\U_{r,n}}(x) = \FF_{\U_{r,n-1}}(x)
+  + x \sum_{j=1}^{r-2} \binom{n-1}{j}\,
+    A_j(x)\, \FF_{\U_{r-j-1,n-j-1}}(x)
+  + \sum_{j=0}^{r-2} \binom{n-1}{j}\,
+    \tau(\U_{r-j-1,n-j-1})\, x^{(r-j)/2}\,
+    \widetilde{A}_j(x).
+\end{equation}
+The first sum is empty when $r = 2$.
+\end{theorem}
+
+\begin{proof}
+The proper flats of~$\U_{r,n}$ are precisely the subsets of cardinality
+strictly less than~$r$.  Hence, for a flat~$G$ not containing~$e$,
+$G \cup \{e\} \in \mathcal{L}(\U_{r,n})$ if and only if $|G| + 1 < r$.
+Therefore,
+\[
+G \in \Se(\M) \iff |G| \le r-2.
+\]
+If $|G| = j \le r-2$, then $G$ is independent, so
+$\M|G \cong \B_j$ and $\M/(G \cup \{e\}) \cong \U_{r-j-1,n-j-1}$.
+Moreover, $\crk_{\M}(G) = r - j$.
+There are exactly $\binom{n-1}{j}$ such flats.
+Thus, the quadratic term in~\eqref{eq:DF} becomes
+\[
+x \sum_{j=1}^{r-2} \binom{n-1}{j}\,
+  A_j(x)\, \FF_{\U_{r-j-1,n-j-1}}(x),
+\]
+while the $\tau$-term becomes
+\[
+\sum_{j=0}^{r-2} \binom{n-1}{j}\,
+  \tau(\U_{r-j-1,n-j-1})\, x^{(r-j)/2}\,
+  \widetilde{A}_j(x).
+\]
+Finally, $\M \setminus e \cong \U_{r,n-1}$, which
+establishes~\eqref{eq:uniform-del}.
+\end{proof}
+
+\begin{remark}[Boundary Cases]\label{rem:uniform-boundary}
+For $r = 2$, we have
+$\FF_{\U_{2,n}}(x) = \FF_{\U_{2,n-1}}(x) + x$,
+because $\tau(\U_{1,n-1}) = 1$.
+The case $r = n$ is excluded because every element is a coloop.
+The case $r = 1 < n$ is excluded from the stated simple-matroid
+theorem because $\U_{1,n}$ is not simple.
+\end{remark}
+
+
+\subsection{Glued Cycles}
+Let $\mathcal{C}_{a,b}$ be the graphic matroid of two cycles of
+lengths~$a$ and~$b$, with $a,b \ge 3$, glued along a common edge~$e$.
+Put $p := a-1$ and $q := b-1$.
+The graph consists of~$e$ and two internally disjoint paths of
+lengths~$p$ and~$q$ between the endpoints of~$e$.
+
+\begin{lemma}\label{lem:glued-Se}
+A subset $G \subseteq E(\mathcal{C}_{a,b}) \setminus \{e\}$ lies in
+$\Se(\mathcal{C}_{a,b})$ if and only if $G$ omits at least two edges
+from each of the two paths.
+\end{lemma}
+
+\begin{proof}
+Let $P_a$ and~$P_b$ denote the two paths.
+If $G$ omits only one edge~$f$ from~$P_a$, then in $G \cup \{e\}$
+the endpoints of~$f$ are connected by the remaining edges of~$P_a$
+together with~$e$.
+Thus $f \in \cl(G \cup \{e\})$, so $G \cup \{e\}$ is not a flat.
+The same applies to~$P_b$.
+
+Conversely, suppose at least two edges are omitted from each path.
+Then neither~$G$ nor $G \cup \{e\}$ contains all but one edge of any
+cycle of the theta graph.
+Hence, no omitted edge has both endpoints in the same connected
+component of the corresponding spanning subgraph.
+Therefore, both~$G$ and $G \cup \{e\}$ are flats.
+\end{proof}
+
+\begin{lemma}\label{lem:glued-minors}
+Suppose $G \in \Se(\mathcal{C}_{a,b})$ omits $s$~edges from~$P_a$
+and $t$~edges from~$P_b$.  Then $s \ge 2$, $t \ge 2$, and
+\[
+\mathcal{C}_{a,b}|G \cong \B_{p+q-s-t},\qquad
+\mathcal{C}_{a,b}/(G \cup \{e\}) \cong \C_s \oplus \C_t.
+\]
+\end{lemma}
+
+\begin{proof}
+The restriction to~$G$ is a forest, so every element of~$G$ is a
+coloop in the restriction.  Hence it is Boolean.
+After contracting~$e$ and all selected edges of each path,
+the $s$~uncontracted edges of the first path form a cycle, as do
+the $t$~uncontracted edges of the second path.
+These two cycles meet only at a vertex, so their cycle matroids
+form a direct sum.
+\end{proof}
+
+\begin{lemma}\label{lem:glued-tau}
+For $s, t \ge 2$, $\tau(\C_s \oplus \C_t) = 0$.
+\end{lemma}
+
+\begin{proof}
+The Kazhdan--Lusztig polynomial is multiplicative under direct sums:
+$\PP_{\C_s \oplus \C_t}(x) = \PP_{\C_s}(x)\, \PP_{\C_t}(x)$.
+If $(s-1) + (t-1)$ is even, the assertion follows from the definition
+of~$\tau$.  If it is odd, precisely one of $s-1$ and $t-1$ is even.
+The degree bounds $\deg \PP_{\C_s}(x) < \frac{s-1}{2}$ and
+$\deg \PP_{\C_t}(x) < \frac{t-1}{2}$ imply
+$\deg \PP_{\C_s \oplus \C_t}(x) < \frac{s+t-3}{2}$, so the
+coefficient defining~$\tau$ vanishes.
+\end{proof}
+
+\begin{theorem}\label{thm:glued-del}
+The deletion formula for the common edge is purely quadratic:
+\begin{equation}\label{eq:glued-del}
+\FF_{\mathcal{C}_{a,b}}(x) = \FF_{\C_{a+b-2}}(x)
+  + x \sum_{\substack{s=2 \\ t=2 \\
+      (s,t) \neq (a-1,b-1)}}^{\substack{a-1 \\ b-1}}
+    \binom{a-1}{s} \binom{b-1}{t}\,
+    A_{a+b-2-s-t}(x)\, \FF_{\C_s \oplus \C_t}(x).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Deleting the common edge joins the two paths into a single cycle of
+length $(a-1) + (b-1) = a+b-2$.  Thus
+$\mathcal{C}_{a,b} \setminus e \cong \C_{a+b-2}$.
+For fixed~$s$ and~$t$, the omitted edges can be chosen in
+$\binom{a-1}{s} \binom{b-1}{t}$ ways.
+\Cref{lem:glued-minors} identifies the restriction and contraction
+appearing in~\eqref{eq:DF}.
+The pair $(s,t) = (a-1,b-1)$ corresponds to $G = \emptyset$, which
+must be omitted from the quadratic sum.
+\Cref{lem:glued-tau} dictates that the entire $\tau$-sum identically
+vanishes.
+\end{proof}
+
+
+\subsection{Projective Geometry Deletions}
+Let $\M = \PG(r-1, q)$ with $r \ge 2$, and let $e$ be a point.
+
+\begin{lemma}\label{lem:PG-Se}
+For a projective geometry, $\overline{\Se}(\M) = \{\emptyset\}$.
+\end{lemma}
+
+\begin{proof}
+Both $\emptyset$ and $\{e\}$ are flats, so $\emptyset \in \Se(\M)$.
+Suppose $G \neq \emptyset$ is a flat not containing~$e$.
+Choose a point $f \in G$.
+Since $G$ is a projective subspace not containing~$e$, its intersection
+with the projective line $\langle e, f \rangle$ is exactly~$\{f\}$.
+The line has at least three points, so
+$\langle e, f \rangle \setminus \{e, f\} \neq \emptyset$.
+All these additional points lie in the closure of $G \cup \{e\}$, but
+not in $G \cup \{e\}$.  Therefore, $G \cup \{e\}$ is not a flat.
+\end{proof}
+
+\begin{lemma}\label{lem:PG-tau}
+For $\M = \PG(r-1, q)$,
+\[
+\tau(\M/e) =
+\begin{cases}
+1, & r = 2, \\
+0, & r \ge 3.
+\end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+Projective geometries are modular, meaning $\PP_{\M/e}(x) = 1$.
+If $r = 2$, $\M/e$ has rank~$1$, and consequently
+$\tau(\M/e) = [x^0]\, 1 = 1$.
+If $r \ge 3$, either $r-1$ is even (so $\tau$ vanishes by definition),
+or $r-1$ is odd and the coefficient defining~$\tau$ has positive degree
+in the constant polynomial~$1$, yielding zero.
+\end{proof}
+
+\begin{theorem}\label{thm:PG-del}
+A single-point deletion satisfies
+\begin{equation}\label{eq:PG-del}
+\FF_{\PG(r-1,q) \setminus e}(x)
+= \FF_{\PG(r-1,q)}(x) - \mathbf{1}_{\{r=2\}}\, x.
+\end{equation}
+In particular,
+$\FF_{\PG(r-1,q) \setminus e}(x) = \FF_{\PG(r-1,q)}(x)$
+for every $r \ge 3$.
+\end{theorem}
+
+\begin{proof}
+Since $\overline{\Se}(\M) = \emptyset$, the quadratic sum
+in~\eqref{eq:DF} is empty.  The only term in the $\tau$-sum is
+$G = \emptyset$, for which $\crk_{\M}(\emptyset) = r$ and
+$\FF_{\M|\emptyset}(x) = 1$.
+Thus $\FF_{\M}(x) = \FF_{\M \setminus e}(x) + \tau(\M/e)\, x^{r/2}$,
+and \cref{lem:PG-tau} yields the result.
+\end{proof}
+
+
+%%% ============================================================
+%%% References
+%%% ============================================================
+%% Uncomment when ready:
+%\printbibliography
+
+
+\end{document}
